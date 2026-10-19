@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>諾豪資訊｜小型軟體開發：網站、資料轉換、LINE 機器人</title>
+<meta name="description" content="諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價。">
+<meta name="theme-color" content="#0E7A55">
+<link rel="icon" href="logo.png">
+<style>
+:root{--bg:#F6F4EE;--card:#fff;--ink:#17201B;--muted:#55605A;--green:#0E7A55;--line:#E2DED3}
+@media (prefers-color-scheme:dark){:root{--bg:#101612;--card:#17201B;--ink:#EEF2EE;--muted:#9AA8A0;--green:#4CC59A;--line:#2A3630}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+.brand img{width:44px;height:44px;border-radius:50%}
+nav{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:15px}
+nav a:hover,nav a:focus-visible{color:var(--green)}
+.hero{padding:72px 0 56px}
+.hero h1{font-size:clamp(30px,6vw,48px);line-height:1.25;margin:0 0 20px;letter-spacing:.02em}
+.hero p{max-width:34em;color:var(--muted);font-size:18px;margin:0}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-size:24px;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{margin:0 0 8px;font-size:18px}
+.card p{margin:0 0 14px;color:var(--muted);font-size:15px}
+.price{font-weight:700;color:var(--green);font-size:20px}
+ol.steps{margin:0;padding-left:1.4em}
+ol.steps li{margin-bottom:8px}
+.note{color:var(--muted);font-size:15px;margin-top:16px}
+ul.plain{margin:0;padding-left:1.3em}
+ul.plain li{margin-bottom:8px}
+dl{margin:0;display:grid;grid-template-columns:7em 1fr;gap:10px 16px}
+dt{color:var(--muted)}
+dd{margin:0}
+.todo{background:#FFF1C2;color:#6B4E00;padding:0 .35em;border-radius:4px}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+a{color:var(--green)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="諾豪資訊標誌" width="44" height="44">諾豪資訊</a>
+    <nav aria-label="頁面導覽">
+      <a href="#services">服務與價格</a>
+      <a href="#process">合作流程</a>
+      <a href="#about">關於我們</a>
+      <a href="#refund">付款與退款</a>
+      <a href="#contact">客服資訊</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <section class="hero" style="border-top:0">
+      <h1>把重複的工作，<br>交給程式。</h1>
+      <p>諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價，完成交付後提供使用說明。</p>
+    </section>
+
+    <section id="services">
+      <h2>服務項目與價格</h2>
+      <p class="lead">價格為起算價，實際金額依需求範圍，於書面報價時載明。</p>
+      <div class="cards">
+        <article class="card">
+          <h3>資料轉換／小工具</h3>
+          <p>Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。</p>
+          <div class="price">NT$3,000 起</div>
+        </article>
+        <article class="card">
+          <h3>一頁式網站</h3>
+          <p>手機版型、服務介紹、聯絡方式與上線協助。</p>
+          <div class="price">NT$15,000 起</div>
+        </article>
+        <article class="card">
+          <h3>API 串接／LINE 機器人</h3>
+          <p>第三方 API 串接、LINE 官方帳號聊天機器人。</p>
+          <div class="price">依複雜度報價</div>
+        </article>
+      </div>
+      <p class="note">API 串接與 LINE 機器人需先洽談需求，確認範圍後提供報價。</p>
+    </section>
+
+    <section id="process">
+      <h2>合作流程</h2>
+      <p class="lead">先把需求講清楚，再報價；報價確定後不臨時加價。</p>
+      <ol class="steps">
+        <li>線上了解需求（文字或視訊皆可）。</li>
+        <li>書面確認範圍、報價與交期。</li>
+        <li>先交可試用的版本，確認方向。</li>
+        <li>依回饋修改（含 2 次修改）。</li>
+        <li>交付成品、原始碼與使用說明。</li>
+      </ol>
+      <p class="note">範圍有變動時，會先說明再調整報價。</p>
+    </section>
+
+    <section id="about">
+      <h2>關於我們</h2>
+      <p>諾豪資訊專注在「小而快」的軟體案子，協助個人與小型店家把重複的工作交給程式處理。主要服務包含：一頁式網站製作、資料轉換（Excel／CSV／XML）、第三方 API 串接、LINE 官方帳號聊天機器人，以及各種自動化小工具。</p>
+      <p>我們以線上洽談為主，先確認需求範圍，再提供書面報價與交期。報價確定後不臨時加價，交付時一併提供原始碼與使用說明。</p>
+      <p>承辦人為全端工程師，曾參與全國性公共服務系統的開發，重視資料正確與資安，也曾擔任兒童程式講師，擅長用白話說明技術。</p>
+    </section>
+
+    <section id="refund">
+      <h2>付款與退款政策</h2>
+      <p class="lead">付款方式：信用卡、ATM 轉帳（透過藍新金流收款）。</p>
+      <ul class="plain">
+        <li><strong>尚未開工：</strong>報價確認、付訂金後尚未開工者，全額退款。</li>
+        <li><strong>已開工、尚未交付：</strong>扣除已完成進度的費用後，退還其餘款項。</li>
+        <li><strong>已交付並驗收：</strong>不退款；驗收期內提供 2 次免費修正。</li>
+        <li><strong>退款方式：</strong>一律以原付款方式辦理（信用卡以退刷方式退款）。</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>客服資訊</h2>
+      <p class="lead">洽談需求或訂單問題，請由下列方式聯絡。</p>
+      <dl>
+        <dt>電話</dt><dd><span class="todo">【待填：電話】</span></dd>
+        <dt>Email</dt><dd><span class="todo">【待填：Email】</span></dd>
+        <dt>LINE ID</dt><dd><span class="todo">【待填：LINE ID】</span></dd>
+        <dt>服務時間</dt><dd><span class="todo">【待填：服務時間】</span></dd>
+      </dl>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 諾豪資訊　版權所有</div>
+</footer>
+</body>
+</html>
