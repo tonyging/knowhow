@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <title>諾豪資訊 Knowhow｜小型軟體開發：網站、資料轉換、LINE 機器人</title>
 <meta name="description" content="諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具，以及網站維運與資安健檢。以線上洽談為主，依需求範圍報價。">
 <meta name="theme-color" content="#0E7A55">
@@ -136,11 +136,10 @@
   --rail:72px;--radius:16px;
   --mono:ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
 }
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0E1411;--card:#161F1A;--ink:#EEF2EE;--muted:#9AA8A0;
-    --green:#4CC59A;--on-green:#08140E;--green-soft:#245444;
-    --line:#26322C;--line-strong:#3A4A42;--dot:#222C26;--shadow:0 22px 44px -26px rgba(0,0,0,.7)}
-}
+/* 預設固定為淺色，不跟隨系統深色模式；要啟用深色，在 <html> 加上 data-theme="dark" */
+:root[data-theme="dark"]{--bg:#0E1411;--card:#161F1A;--ink:#EEF2EE;--muted:#9AA8A0;
+  --green:#4CC59A;--on-green:#08140E;--green-soft:#245444;
+  --line:#26322C;--line-strong:#3A4A42;--dot:#222C26;--shadow:0 22px 44px -26px rgba(0,0,0,.7)}
 @property --g{syntax:"<number>";inherits:false;initial-value:0}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
