@@ -746,6 +746,31 @@ ol.steps li span{text-wrap:balance}
 html.paged.tall .screen{height:auto;min-height:100vh;min-height:100svh;overflow:visible}
 html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-items:flex-start}
 
+/* ============ 首屏插圖：循環小動畫（便條依序飛進表格，格子亮起，最後打勾） ============ */
+@media (prefers-reduced-motion:no-preference){
+@keyframes fly0{0%,10%{transform:translate(0,0) scale(1);opacity:1;animation-timing-function:ease-in-out}13.5%{transform:translate(106px,63px) scale(.95);opacity:1}19.0%{transform:translate(189px,63px) scale(.8);opacity:1}25%{transform:translate(221px,12px) scale(.35);opacity:0}92%{transform:translate(0,0) scale(1);opacity:0}100%{transform:translate(0,0) scale(1);opacity:1}}
+@keyframes lite0{0%,24%{opacity:0;transform:scale(.4)}25%{opacity:1;transform:scale(1.15)}27%{opacity:1;transform:scale(1)}93%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.4)}}
+@keyframes fly1{0%,25%{transform:translate(0,0) scale(1);opacity:1;animation-timing-function:ease-in-out}28.5%{transform:translate(51px,19px) scale(.95);opacity:1}34.0%{transform:translate(134px,19px) scale(.8);opacity:1}40%{transform:translate(166px,2px) scale(.35);opacity:0}92%{transform:translate(0,0) scale(1);opacity:0}100%{transform:translate(0,0) scale(1);opacity:1}}
+@keyframes lite1{0%,39%{opacity:0;transform:scale(.4)}40%{opacity:1;transform:scale(1.15)}42%{opacity:1;transform:scale(1)}93%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.4)}}
+@keyframes fly2{0%,40%{transform:translate(0,0) scale(1);opacity:1;animation-timing-function:ease-in-out}43.5%{transform:translate(102px,-21px) scale(.95);opacity:1}49.0%{transform:translate(185px,-21px) scale(.8);opacity:1}55%{transform:translate(217px,-4px) scale(.35);opacity:0}92%{transform:translate(0,0) scale(1);opacity:0}100%{transform:translate(0,0) scale(1);opacity:1}}
+@keyframes lite2{0%,54%{opacity:0;transform:scale(.4)}55%{opacity:1;transform:scale(1.15)}57%{opacity:1;transform:scale(1)}93%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.4)}}
+@keyframes fly3{0%,55%{transform:translate(0,0) scale(1);opacity:1;animation-timing-function:ease-in-out}58.5%{transform:translate(45px,-53px) scale(.95);opacity:1}64.0%{transform:translate(128px,-53px) scale(.8);opacity:1}70%{transform:translate(160px,-6px) scale(.35);opacity:0}92%{transform:translate(0,0) scale(1);opacity:0}100%{transform:translate(0,0) scale(1);opacity:1}}
+@keyframes lite3{0%,69%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.15)}72%{opacity:1;transform:scale(1)}93%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.4)}}
+@keyframes liteC{0%,71%{opacity:0;transform:scale(.4)}73%{opacity:1;transform:scale(1.2)}76%{opacity:1;transform:scale(1)}93%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.4)}}
+@keyframes tick{0%,72%{stroke-dashoffset:1;opacity:1}79%{stroke-dashoffset:0;opacity:1}93%{stroke-dashoffset:0;opacity:1}98%,100%{stroke-dashoffset:0;opacity:0}}
+.art .fly{transform-box:fill-box;transform-origin:center}
+.js .on .art .f0{animation:fly0 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .g rect[style*="--i:0"]{animation:lite0 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .f1{animation:fly1 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .g rect[style*="--i:1"]{animation:lite1 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .f2{animation:fly2 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .g rect[style*="--i:2"]{animation:lite2 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .f3{animation:fly3 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .g rect[style*="--i:3"]{animation:lite3 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .g circle[style*="--i:4"]{animation:liteC 6.0s linear infinite;animation-delay:2.2s}
+.js .on .art .d[style*="--i:16"]{animation:tick 6.0s linear infinite;animation-delay:2.2s}
+}
+
 /* ============ 緊湊模式：內容在視窗內放不下（縮放低於 85%）時才由腳本加上 html.compact ============ */
 @media (min-width:900px){
   html.compact .bento{gap:10px}
@@ -866,10 +891,10 @@ html[lang="th"] .col+.col::before{display:none}
 <div class="tile art-tile hero-art" data-a="">
 <svg aria-label="ภาพประกอบ: ข้อมูลที่กระจัดกระจายถูกโปรแกรมจัดเป็นตารางเรียบร้อย" class="art" role="img" viewbox="0 0 360 220">
 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-<g class="bob" style="--b:0"><g transform="rotate(-9 36 49)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:0" width="48" x="12" y="34"></rect><path class="d" d="M22 46 h22 M22 54 h14" pathlength="1" style="--i:1"></path></g></g>
-<g class="bob" style="--b:1"><g transform="rotate(6 91 93)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:2" width="54" x="64" y="78"></rect><path class="d" d="M74 90 h30 M74 98 h18" pathlength="1" style="--i:3"></path></g></g>
-<g class="bob" style="--b:2"><g transform="rotate(-4 40 133)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:4" width="44" x="18" y="118"></rect><path class="d" d="M28 130 h20 M28 138 h12" pathlength="1" style="--i:5"></path></g></g>
-<g class="bob" style="--b:3"><g transform="rotate(10 97 165)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:6" width="50" x="72" y="150"></rect><path class="d" d="M82 162 h26 M82 170 h14" pathlength="1" style="--i:7"></path></g></g>
+<g class="fly f0"><g class="bob" style="--b:0"><g transform="rotate(-9 36 49)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:0" width="48" x="12" y="34"></rect><path class="d" d="M22 46 h22 M22 54 h14" pathlength="1" style="--i:1"></path></g></g></g>
+<g class="fly f1"><g class="bob" style="--b:1"><g transform="rotate(6 91 93)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:2" width="54" x="64" y="78"></rect><path class="d" d="M74 90 h30 M74 98 h18" pathlength="1" style="--i:3"></path></g></g></g>
+<g class="fly f2"><g class="bob" style="--b:2"><g transform="rotate(-4 40 133)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:4" width="44" x="18" y="118"></rect><path class="d" d="M28 130 h20 M28 138 h12" pathlength="1" style="--i:5"></path></g></g></g>
+<g class="fly f3"><g class="bob" style="--b:3"><g transform="rotate(10 97 165)"><rect class="d" height="30" pathlength="1" rx="3" style="--i:6" width="50" x="72" y="150"></rect><path class="d" d="M82 162 h26 M82 170 h14" pathlength="1" style="--i:7"></path></g></g></g>
 <path d="M142 112 H212" stroke-dasharray="2 6"></path>
 <path class="d" d="M205 105 L213 112 L205 119" pathlength="1" style="--i:8"></path>
 <rect class="d" height="128" pathlength="1" rx="6" style="--i:9" width="110" x="238" y="44"></rect>
