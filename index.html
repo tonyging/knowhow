@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>諾豪資訊 Knowhow｜小型軟體開發：網站、資料轉換、LINE 機器人</title>
-<meta name="description" content="諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價。">
+<meta name="description" content="諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具，以及網站維運與資安健檢。以線上洽談為主，依需求範圍報價。">
 <meta name="theme-color" content="#0E7A55">
 <link rel="icon" href="logo.png">
 <script>document.documentElement.classList.add("js")</script>
@@ -70,6 +70,36 @@
               "@type": "Service",
               "name": "一頁式網站",
               "description": "手機版型、服務介紹、聯絡方式與上線協助。價格為起算價，實際金額依需求範圍於書面報價時載明。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/#care",
+            "priceSpecification": {"@type": "UnitPriceSpecification", "price": 3000, "priceCurrency": "TWD", "unitText": "MON"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "基本維運（月費）",
+              "description": "每月備份與還原確認、系統與套件安全更新、網站狀態監控、每月 1 小時內容更新與小修。按月預付，下個月起可停止。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/#care",
+            "priceSpecification": {"@type": "UnitPriceSpecification", "price": 5000, "priceCurrency": "TWD", "unitText": "MON"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "進階維運（月費）",
+              "description": "基本維運全部項目，加每月 3 小時更新與小修、每季資安檢查摘要、問題優先處理並於當日回覆。按月預付，下個月起可停止。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/#care",
+            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 8000, "priceCurrency": "TWD"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "資安健檢（一次性）",
+              "description": "檢查 HTTPS 與安全標頭、帳號權限與密碼、套件漏洞與更新、備份還原機制，提供書面報告與修補建議。不含滲透測試與入侵檢測，僅檢查客戶授權的網站。"
             }
           },
           {
@@ -351,7 +381,7 @@ ol.steps li:nth-child(2){--n:1}ol.steps li:nth-child(3){--n:2}ol.steps li:nth-ch
 .statement{font-size:clamp(19px,1.9vw,25px);line-height:1.65;letter-spacing:.02em;font-weight:500;margin:8px 0 20px;position:relative;z-index:1}
 .statement b{color:var(--green);font-weight:700;white-space:nowrap}
 .facts{list-style:none;margin:0;padding:0;display:grid;gap:10px;position:relative;z-index:1}
-.facts li{display:flex;align-items:center;gap:14px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;
+.facts li{text-align:left;display:flex;align-items:center;gap:14px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;
   background:color-mix(in srgb,var(--bg) 45%,var(--card));font-size:15px;line-height:1.5;
   transition:border-color .35s var(--ease),transform .6s var(--ease)}
 .facts li:hover{border-color:var(--green);transform:translateX(4px)}
@@ -488,6 +518,25 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .badge{display:inline-block;margin-left:8px;padding:2px 9px;border:1px solid var(--green);border-radius:99px;
   font:11px/1.6 var(--mono);letter-spacing:.12em;color:var(--green);vertical-align:2px;white-space:nowrap}
 
+/* ============ 維運與資安 ============ */
+.ticks{list-style:none;margin:2px 0 12px;padding:0;display:grid;gap:8px}
+.ticks li{position:relative;padding-left:24px;font-size:clamp(15px,1.2vw,16.5px);line-height:1.55;color:var(--ink)}
+.ticks li::before{content:"";position:absolute;left:2px;top:.5em;width:10px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
+.care-note{padding:16px 22px}
+.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 26px}
+.facts li{text-align:left;display:flex;flex-direction:column;gap:4px;padding-left:14px;border-left:2px solid var(--green)}
+.facts b,.facts span{text-align:left}
+.facts b{font-size:clamp(16px,1.3vw,18px);letter-spacing:.04em}
+.facts span{font-size:clamp(14px,1.1vw,15.5px);line-height:1.6;color:var(--muted);text-wrap:pretty}
+@media (max-width:1000px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.facts{grid-template-columns:minmax(0,1fr)}}
+
+@media (max-width:899px){
+  .hrs{min-width:0}
+  .week{width:100%;gap:clamp(4px,1.6vw,10px)}
+  .week li{flex:1 1 0;min-width:0;width:auto;height:auto;aspect-ratio:1;max-width:44px}
+}
+
 /* ============ 首屏與第二屏：重做（左右分割、字級放大） ============ */
 .hero-in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,4vw,64px);align-items:center;
   width:min(1200px,100%);max-width:none;text-align:left;
@@ -591,6 +640,7 @@ ol.steps li span{text-wrap:balance}
 <nav class="dots" aria-label="區塊導覽">
   <a href="#top" data-t="首頁" aria-label="首頁"><i></i></a>
   <a href="#work" data-t="服務與流程" aria-label="服務與流程"><i></i></a>
+  <a href="#care" data-t="維運與資安" aria-label="維運與資安"><i></i></a>
   <a href="#trust" data-t="關於與付款" aria-label="關於與付款"><i></i></a>
   <a href="#contact" data-t="客服資訊" aria-label="客服資訊"><i></i></a>
 </nav>
@@ -599,9 +649,10 @@ ol.steps li span{text-wrap:balance}
   <nav aria-label="網站選單">
     <a href="#services" style="--m:0"><b>01</b>服務項目與價格</a>
     <a href="#process" style="--m:1"><b>02</b>合作流程</a>
-    <a href="#about" style="--m:2"><b>03</b>關於我們</a>
-    <a href="#refund" style="--m:3"><b>04</b>付款與退款政策</a>
-    <a href="#contact" style="--m:4"><b>05</b>客服資訊</a>
+    <a href="#care-plans" style="--m:2"><b>03</b>維運與資安</a>
+    <a href="#about" style="--m:3"><b>04</b>關於我們</a>
+    <a href="#refund" style="--m:4"><b>05</b>付款與退款政策</a>
+    <a href="#contact" style="--m:5"><b>06</b>客服資訊</a>
   </nav>
   <p class="menu-foot">KNOWHOW ・ SMALL &amp; FAST</p>
 </div>
@@ -718,6 +769,75 @@ ol.steps li span{text-wrap:balance}
           <p class="note">範圍有變動時，會先說明再調整報價。</p>
         </section>
 
+
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 維運與資安 -->
+  <section class="screen" id="care">
+    <div class="panel"><div class="copy-in" data-grow="1.35">
+      <div class="vt-head"><span class="en">CARE ・ SECURITY</span><h2 class="vt-h2" data-split>維運與資安</h2></div>
+      <div class="bento">
+
+        <div class="row-head" id="care-plans" style="--d:12;--t:6" data-a>
+          <div><p class="label"><b>03</b><i></i>CARE &amp; SECURITY</p><h3 class="th">網站維運與資安健檢</h3></div>
+          <p class="lead">網站上線之後，交給我們固定照顧。月費方案可隨時停止。</p>
+        </div>
+
+        <article class="tile svc hover glow" style="--d:4;--t:6" data-a>
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M30 8a9 9 0 0 0-9 12L8 33l7 7 13-13a9 9 0 0 0 12-9l-6 6-5-1-1-5z"/>
+            <path d="M14 36l1 1" stroke="var(--green)"/>
+          </svg>
+          <h4>基本維運</h4>
+          <ul class="ticks">
+            <li>每月備份與還原確認</li>
+            <li>系統與套件安全更新</li>
+            <li>網站狀態監控</li>
+            <li>每月 1 小時內容更新與小修</li>
+          </ul>
+          <div class="price">NT$3,000／月</div>
+        </article>
+
+        <article class="tile svc hover glow" style="--d:4;--t:6" data-a>
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M24 5l15 6v11c0 10-6 17-15 21C15 39 9 32 9 22V11z"/>
+            <path d="M17 24l5 5 9-10" stroke="var(--green)"/>
+          </svg>
+          <h4>進階維運<span class="badge">推薦</span></h4>
+          <ul class="ticks">
+            <li>基本維運全部項目</li>
+            <li>每月 3 小時更新與小修</li>
+            <li>每季資安檢查摘要</li>
+            <li>問題優先處理，當日回覆</li>
+          </ul>
+          <div class="price">NT$5,000／月</div>
+        </article>
+
+        <article class="tile svc hover glow" style="--d:4;--t:6" data-a>
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="21" cy="21" r="12"/><path d="M30 30l11 11"/>
+            <path d="M16 21l4 4 7-8" stroke="var(--green)"/>
+          </svg>
+          <h4>資安健檢<span class="badge">一次性</span></h4>
+          <ul class="ticks">
+            <li>HTTPS 與安全標頭設定</li>
+            <li>帳號、權限與密碼檢查</li>
+            <li>套件漏洞與更新狀況</li>
+            <li>備份還原機制與書面報告</li>
+          </ul>
+          <div class="price">NT$8,000 起</div>
+        </article>
+
+        <section class="tile glow care-note" style="--d:12;--t:6" data-a>
+          <ul class="facts">
+            <li><b>開發經驗</b><span>曾參與全國性公共服務系統，熟悉依資安規範開發的流程</span></li>
+            <li><b>回覆時間</b><span>週一至週五，一個工作天內回覆</span></li>
+            <li><b>月費方式</b><span>按月預付，下個月起可停止，已開始的當月不退費</span></li>
+            <li><b>服務界線</b><span>不含滲透測試與入侵檢測；僅檢查客戶授權的網站</span></li>
+          </ul>
+        </section>
 
       </div>
     </div></div>
