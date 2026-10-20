@@ -605,6 +605,24 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .care-bottom{padding:12px 14px}
 @media (max-width:1000px){.cf{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.cf{grid-template-columns:minmax(0,1fr)}.cmp th,.cmp td{padding:10px 6px;font-size:14px}.cmp .pp{font-size:20px}.cmp th:first-child,.cmp td:first-child{width:38%}.cmp .badge{display:none}}
+/* 手機：比較表改成「功能名稱一行、下面並排兩個方案」，避免第一欄被價格擠成直排 */
+@media (max-width:560px){
+  .cmp,.cmp tbody{display:block}
+  .cmp thead{display:block}
+  .cmp thead tr,.cmp tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .cmp thead th:first-child{display:none}
+  .cmp th,.cmp td{padding:10px 6px}
+  .cmp thead th{padding-top:14px}
+  .cmp .pp{font-size:clamp(18px,5.4vw,22px)}
+  .cmp .pp small{display:block;margin:2px 0 0}
+  .cmp tbody tr{border-bottom:1px solid var(--line)}
+  .cmp tbody tr:last-child{border-bottom:0}
+  .cmp tbody td{border-bottom:0}
+  .cmp tbody td:first-child{grid-column:1/-1;width:auto;text-align:left;padding:14px 2px 0;font-size:14px;font-weight:500;color:var(--muted)}
+  .cmp tbody td:not(:first-child){padding:6px 6px 14px;font-size:16px}
+  .cmp tbody .hot{background:none}
+  .cmp tbody .hot.v{color:var(--green)}
+}
 @media (max-width:899px){
   .hrs{min-width:0}
   .week{width:100%;gap:clamp(4px,1.6vw,10px)}
