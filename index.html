@@ -518,19 +518,70 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .badge{display:inline-block;margin-left:8px;padding:2px 9px;border:1px solid var(--green);border-radius:99px;
   font:11px/1.6 var(--mono);letter-spacing:.12em;color:var(--green);vertical-align:2px;white-space:nowrap}
 
-/* ============ 維運與資安 ============ */
-.ticks{list-style:none;margin:2px 0 12px;padding:0;display:grid;gap:8px}
-.ticks li{position:relative;padding-left:24px;font-size:clamp(15px,1.2vw,16.5px);line-height:1.55;color:var(--ink)}
-.ticks li::before{content:"";position:absolute;left:2px;top:.5em;width:10px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
-.care-note{padding:16px 22px}
-.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 26px}
-.facts li{text-align:left;display:flex;flex-direction:column;gap:4px;padding-left:14px;border-left:2px solid var(--green)}
-.facts b,.facts span{text-align:left}
-.facts b{font-size:clamp(16px,1.3vw,18px);letter-spacing:.04em}
-.facts span{font-size:clamp(14px,1.1vw,15.5px);line-height:1.6;color:var(--muted);text-wrap:pretty}
-@media (max-width:1000px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.facts{grid-template-columns:minmax(0,1fr)}}
+/* ============ 完整退款條款（彈出視窗） ============ */
+.more-btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:15px;font-weight:600;line-height:1.2;letter-spacing:.04em;color:var(--green);background:none;border:0;padding:4px 0;cursor:pointer}
+.more-btn i{display:block;position:relative;width:20px;height:20px;border:1px solid var(--green);border-radius:50%;transition:transform .5s var(--ease)}
+.more-btn i::before,.more-btn i::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:1.5px;background:var(--green);transform:translate(-50%,-50%)}
+.more-btn i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.more-btn:hover i{transform:rotate(90deg)}
+.terms{border:0;padding:0;background:transparent;color:var(--ink);width:min(720px,calc(100vw - 32px));max-height:min(82vh,820px);margin:auto;overflow:visible}
+.terms::backdrop{background:rgba(14,20,17,.45);backdrop-filter:blur(4px)}
+.terms[open]{animation:termsin .5s var(--ease)}
+@keyframes termsin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.terms-in{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px 24px;max-height:min(82vh,820px);overflow:auto;overscroll-behavior:contain;box-shadow:var(--shadow)}
+.terms-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.terms-head h3{margin:0;font-size:clamp(20px,2vw,24px);letter-spacing:.03em}
+.terms-x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-strong);background:none;cursor:pointer;position:relative;flex:none}
+.terms-x i{position:absolute;inset:0}
+.terms-x i::before,.terms-x i::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%) rotate(45deg)}
+.terms-x i::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.terms-x:hover{border-color:var(--green)}
+.terms-list{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.terms-list li{padding:11px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.75;color:var(--muted)}
+.terms-list li:first-child{border-top:0}
+.terms-list strong{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+@media (prefers-reduced-motion:reduce){.terms[open]{animation:none}}
 
+/* ============ 維運與資安 ============ */
+.plan,.scan{display:flex;flex-direction:column}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:2px}
+.cmp th,.cmp td{padding:11px 14px;text-align:center;font-size:clamp(15px,1.2vw,17px);border-bottom:1px solid var(--line)}
+.cmp tbody tr:last-child td,.cmp tbody tr:last-child th{border-bottom:0}
+.cmp th:first-child,.cmp td:first-child{text-align:left;font-weight:500;padding-left:4px}
+.cmp thead th{border-bottom:1px solid var(--line-strong);vertical-align:bottom;padding-top:6px;padding-bottom:14px}
+.cmp .pn{display:block;font-size:clamp(17px,1.4vw,20px);font-weight:700;letter-spacing:.03em}
+.cmp .pp{display:block;margin-top:6px;font-size:clamp(22px,2vw,28px);font-weight:800;color:var(--green);letter-spacing:.01em;white-space:nowrap}
+.cmp .pp small{font-size:.55em;font-weight:600;color:var(--muted);margin-left:2px}
+.cmp .hot{background:color-mix(in srgb,var(--green) 9%,transparent)}
+.cmp thead .hot{border-radius:14px 14px 0 0}
+.cmp tbody tr:last-child .hot{border-radius:0 0 14px 14px}
+.cmp .y{display:inline-block;width:20px;height:11px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg) translate(2px,-3px)}
+.cmp .n{color:var(--muted)}
+.cmp .v{font-weight:700}
+.cmp .badge{margin:0 0 0 6px}
+.scan{position:relative}
+.scan .th,.scan .label,.scan .label b{color:inherit}
+.scan .label i{background:color-mix(in srgb,var(--on-green) 45%,transparent)}
+.scan .lead{color:inherit;opacity:.9;margin-bottom:12px;font-size:clamp(15px,1.2vw,17px)}
+.scan .wm{position:absolute;right:-26px;bottom:-30px;width:190px;height:190px;opacity:.13;pointer-events:none}
+.rep{list-style:none;margin:0 0 14px;padding:12px 14px;background:color-mix(in srgb,var(--on-green) 12%,transparent);border:1px solid color-mix(in srgb,var(--on-green) 28%,transparent);border-radius:14px;display:grid;gap:9px;position:relative;z-index:1}
+.rep .cap{font:11px/1 var(--mono);letter-spacing:.2em;opacity:.8;margin-bottom:2px}
+.rep li:not(.cap){display:flex;align-items:center;gap:10px;font-size:clamp(15px,1.2vw,17px)}
+.rep li i{width:9px;height:9px;border-radius:50%;background:var(--on-green);flex:none}
+.rep li.w i{background:#F2C14E}
+.rep li em{margin-left:auto;font-style:normal;font-size:.86em;opacity:.85;white-space:nowrap}
+.scan .sp{margin-top:auto;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.scan .sp b{font-size:clamp(26px,2.4vw,34px);font-weight:800;letter-spacing:.01em}
+.scan .sp span{font-size:clamp(13.5px,1.05vw,15px);opacity:.9}
+.cf{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cf li{display:flex;align-items:center;gap:14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;text-align:left;transition:border-color .35s var(--ease),transform .5s var(--ease)}
+.cf li:hover{border-color:var(--green);transform:translateY(-3px)}
+.cf svg{width:28px;height:28px;color:var(--green);flex:none}
+.cf b{display:block;font-size:clamp(16px,1.3vw,18px);letter-spacing:.03em;margin-bottom:2px}
+.cf span{display:block;font-size:clamp(13.5px,1.05vw,15px);line-height:1.5;color:var(--muted);text-wrap:pretty}
+.care-bottom{padding:12px 14px}
+@media (max-width:1000px){.cf{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cf{grid-template-columns:minmax(0,1fr)}.cmp th,.cmp td{padding:10px 6px;font-size:14px}.cmp .pp{font-size:20px}.cmp th:first-child,.cmp td:first-child{width:38%}.cmp .badge{display:none}}
 @media (max-width:899px){
   .hrs{min-width:0}
   .week{width:100%;gap:clamp(4px,1.6vw,10px)}
@@ -644,6 +695,23 @@ ol.steps li span{text-wrap:balance}
   <a href="#trust" data-t="關於與付款" aria-label="關於與付款"><i></i></a>
   <a href="#contact" data-t="客服資訊" aria-label="客服資訊"><i></i></a>
 </nav>
+
+<dialog class="terms" id="terms" aria-labelledby="terms-t">
+  <div class="terms-in">
+    <div class="terms-head"><h3 id="terms-t">退款條款</h3><button class="terms-x" type="button" data-close aria-label="關閉"><i></i></button></div>
+    <ul class="terms-list">
+              <li><strong>服務性質：</strong>本商店提供的是依客戶需求客製化的服務。依《通訊交易解除權合理例外情事適用準則》第 2 條第 2 款，客製化給付不適用七日解除權（鑑賞期）；以下為本商店另行提供的退款保障。</li>
+              <li><strong>尚未開工：</strong>報價確認、付訂金後尚未開工者，全額退款。</li>
+              <li><strong>已開工、尚未交付：</strong>依書面確認的報價項目計算已完成的進度，扣除已完成部分的費用後，退還其餘款項。</li>
+              <li><strong>已交付並驗收：</strong>不退款。驗收期為交付後 7 日，期間內提供 2 次免費修正。</li>
+              <li><strong>因本商店因素無法交付：</strong>全額退款。</li>
+              <li><strong>金流手續費：</strong>由本商店負擔，不從退款金額中扣除。</li>
+              <li><strong>月費方案：</strong>按月預付，下個月起可停止；已開始的當月不退費。</li>
+              <li><strong>申請方式：</strong>以 LINE 或電話聯絡，說明訂單與退款原因，不需要填寫表單。</li>
+              <li><strong>處理時間：</strong>確認退款後 3 個工作天內辦理。信用卡以退刷方式退回，實際入帳時間依發卡銀行而定；其他付款方式依藍新金流的退款機制辦理。</li>
+            </ul>
+  </div>
+</dialog>
 
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="網站選單">
   <nav aria-label="網站選單">
@@ -785,57 +853,45 @@ ol.steps li span{text-wrap:balance}
           <p class="lead">網站上線之後，交給我們固定照顧。月費方案可隨時停止。</p>
         </div>
 
-        <article class="tile svc hover glow" style="--d:4;--t:6" data-a>
-          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M30 8a9 9 0 0 0-9 12L8 33l7 7 13-13a9 9 0 0 0 12-9l-6 6-5-1-1-5z"/>
-            <path d="M14 36l1 1" stroke="var(--green)"/>
-          </svg>
-          <h4>基本維運</h4>
-          <ul class="ticks">
-            <li>每月備份與還原確認</li>
-            <li>系統與套件安全更新</li>
-            <li>網站狀態監控</li>
-            <li>每月 1 小時內容更新與小修</li>
-          </ul>
-          <div class="price">NT$3,000／月</div>
-        </article>
+        <section class="tile glow plan" style="--d:7;--t:6" data-a>
+          <table class="cmp">
+            <thead><tr>
+              <th scope="col"><span class="n">月費方案</span></th>
+              <th scope="col"><span class="pn">基本維運</span><span class="pp">NT$3,000<small>／月</small></span></th>
+              <th scope="col" class="hot"><span class="pn">進階維運<span class="badge">推薦</span></span><span class="pp">NT$5,000<small>／月</small></span></th>
+            </tr></thead>
+            <tbody>
+              <tr><td>每月備份與還原確認</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td></tr>
+              <tr><td>系統與套件安全更新</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td></tr>
+              <tr><td>網站狀態監控</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td></tr>
+              <tr><td>內容更新與小修</td><td class="v">1 小時</td><td class="hot v">3 小時</td></tr>
+              <tr><td>每季資安檢查摘要</td><td class="n">—</td><td class="hot"><i class="y"></i></td></tr>
+              <tr><td>問題回覆</td><td class="v">一個工作天</td><td class="hot v">當日</td></tr>
+            </tbody>
+          </table>
+        </section>
 
-        <article class="tile svc hover glow" style="--d:4;--t:6" data-a>
-          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M24 5l15 6v11c0 10-6 17-15 21C15 39 9 32 9 22V11z"/>
-            <path d="M17 24l5 5 9-10" stroke="var(--green)"/>
-          </svg>
-          <h4>進階維運<span class="badge">推薦</span></h4>
-          <ul class="ticks">
-            <li>基本維運全部項目</li>
-            <li>每月 3 小時更新與小修</li>
-            <li>每季資安檢查摘要</li>
-            <li>問題優先處理，當日回覆</li>
+        <section class="tile accent scan" style="--d:5;--t:6" data-a>
+          <svg class="wm" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z"/><path d="M16 24l6 6 11-12"/></svg>
+          <p class="label"><b>04</b><i></i>SECURITY CHECK<span class="badge" style="color:inherit;border-color:currentColor">一次性</span></p>
+          <h3 class="th">資安健檢</h3>
+          <p class="lead">檢查網站安全設定，交付書面報告與修補建議。</p>
+          <ul class="rep">
+            <li class="cap">REPORT ・ 報告範例</li>
+            <li><i></i>HTTPS 與安全標頭<em>通過</em></li>
+            <li><i></i>帳號、權限與密碼<em>通過</em></li>
+            <li class="w"><i></i>套件漏洞與更新<em>建議更新</em></li>
+            <li><i></i>備份與還原機制<em>通過</em></li>
           </ul>
-          <div class="price">NT$5,000／月</div>
-        </article>
+          <div class="sp"><b>NT$8,000 起</b><span>不含滲透測試，僅檢查授權網站</span></div>
+        </section>
 
-        <article class="tile svc hover glow" style="--d:4;--t:6" data-a>
-          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="21" cy="21" r="12"/><path d="M30 30l11 11"/>
-            <path d="M16 21l4 4 7-8" stroke="var(--green)"/>
-          </svg>
-          <h4>資安健檢<span class="badge">一次性</span></h4>
-          <ul class="ticks">
-            <li>HTTPS 與安全標頭設定</li>
-            <li>帳號、權限與密碼檢查</li>
-            <li>套件漏洞與更新狀況</li>
-            <li>備份還原機制與書面報告</li>
-          </ul>
-          <div class="price">NT$8,000 起</div>
-        </article>
-
-        <section class="tile glow care-note" style="--d:12;--t:6" data-a>
-          <ul class="facts">
-            <li><b>開發經驗</b><span>曾參與全國性公共服務系統，熟悉依資安規範開發的流程</span></li>
-            <li><b>回覆時間</b><span>週一至週五，一個工作天內回覆</span></li>
-            <li><b>月費方式</b><span>按月預付，下個月起可停止，已開始的當月不退費</span></li>
-            <li><b>服務界線</b><span>不含滲透測試與入侵檢測；僅檢查客戶授權的網站</span></li>
+        <section class="tile glow care-bottom" style="--d:12;--t:6" data-a>
+          <ul class="cf">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg><div><b>開發經驗</b><span>參與全國性公共服務系統開發</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>回覆時間</b><span>週一至週五，一個工作天內</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><div><b>月費方式</b><span>按月預付，下個月起可停止</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12h6"/></svg><div><b>服務界線</b><span>只檢查客戶授權的網站</span></div></li>
           </ul>
         </section>
 
@@ -858,7 +914,7 @@ ol.steps li span{text-wrap:balance}
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8 4 12l4 4M16 8l4 4-4 4M13.5 6l-3 12"/></svg><span>全端工程師</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5"/></svg><span>參與全國性公共服務系統開發</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg><span>重視資料正確與資安</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-4 4v-4H4z"/></svg><span>擅長用白話說明技術<small>曾擔任兒童程式講師</small></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-4 4v-4H4z"/></svg><span>擅長用白話說明技術</span></li>
           </ul>
         </section>
 
@@ -878,16 +934,8 @@ ol.steps li span{text-wrap:balance}
             <li><i class="sd sd2" aria-hidden="true"></i><em>STAGE 2</em><b>已開工、尚未交付</b><span>扣除已完成進度，退還其餘</span></li>
             <li><i class="sd sd3" aria-hidden="true"></i><em>STAGE 3</em><b>已交付並驗收</b><span>不退款；驗收期內免費修正 2 次</span></li>
           </ol>
-          <p class="via">退款方式：一律以原付款方式辦理（信用卡以退刷方式退款）。</p>
-          <details class="more">
-            <summary>查看完整退款條款</summary>
-            <ul>
-              <li><strong>尚未開工：</strong>報價確認、付訂金後尚未開工者，全額退款。</li>
-              <li><strong>已開工、尚未交付：</strong>扣除已完成進度的費用後，退還其餘款項。</li>
-              <li><strong>已交付並驗收：</strong>不退款；驗收期內提供 2 次免費修正。</li>
-              <li><strong>退款方式：</strong>一律以原付款方式辦理（信用卡以退刷方式退款）。</li>
-            </ul>
-          </details>
+          <p class="via">退款一律以原付款方式辦理。金流手續費由本商店負擔，不從退款中扣除。</p>
+          <button class="more-btn" type="button" data-open="terms"><i aria-hidden="true"></i>查看完整退款條款</button>
         </div>
 
       </div>
@@ -1013,6 +1061,11 @@ ol.steps li span{text-wrap:balance}
     a.addEventListener("click",function(){ menu.classList.remove("open"); btn.setAttribute("aria-expanded","false"); btn.setAttribute("aria-label","開啟選單"); root.style.overflow=""; root.classList.remove("menu-open"); });
   });
   addEventListener("keydown",function(e){ if(e.key==="Escape"&&menu.classList.contains("open")) setMenu(false); });
+  var terms=document.getElementById("terms");
+  if(terms){
+    document.querySelectorAll("[data-open=terms]").forEach(function(b){ b.addEventListener("click",function(){ if(terms.showModal) terms.showModal(); else terms.setAttribute("open",""); }); });
+    terms.addEventListener("click",function(e){ if(e.target===terms||e.target.closest("[data-close]")) terms.close(); });
+  }
 
   /* 游標柔光（僅滑鼠裝置） */
   if(!reduce && matchMedia("(hover:hover) and (pointer:fine)").matches){
@@ -1107,7 +1160,7 @@ ol.steps li span{text-wrap:balance}
   }
 
   addEventListener("wheel",function(e){
-    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))) return;
+    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
     e.preventDefault();
     var now=performance.now(), gap=now-lastWheel; lastWheel=now;
     if(busy) return;
@@ -1118,7 +1171,7 @@ ol.steps li span{text-wrap:balance}
   },{passive:false});
 
   addEventListener("keydown",function(e){
-    if(!paged||(menu&&menu.classList.contains("open"))) return;
+    if(!paged||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
     var t=e.target, tag=t&&t.tagName, k=e.key, dir=0;
     if(/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
     if(k===" "&&/^(A|BUTTON)$/.test(tag)) return;
