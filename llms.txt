@@ -6,7 +6,7 @@
 
 ## 服務項目
 
-- [流程診斷報告（入門方案）](https://tonyging.github.io/knowhow/#services)：了解目前重複性工作的做法，找出可以交給程式處理的環節，提供書面診斷報告，說明建議的做法、預估費用與交期。依範圍報價。
+- [流程診斷報告（入門方案）](https://tonyging.github.io/knowhow/#services)：了解目前重複性工作的做法，找出可以交給程式處理的環節，提供書面診斷報告，說明建議的做法、預估費用與交期。NT$1,000 起。
 - [資料轉換／小工具](https://tonyging.github.io/knowhow/#services)：Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。NT$3,000 起。
 - [一頁式網站](https://tonyging.github.io/knowhow/#services)：手機版型、服務介紹、聯絡方式與上線協助。NT$15,000 起。
 - [基本維運（月費）](https://tonyging.github.io/knowhow/#care)：每月備份與還原確認、系統與套件安全更新、網站狀態監控、每月 1 小時內容更新與小修。NT$3,000／月。

@@ -46,10 +46,11 @@
           {
             "@type": "Offer",
             "url": "https://tonyging.github.io/knowhow/#services",
+            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 1000, "priceCurrency": "TWD"},
             "itemOffered": {
               "@type": "Service",
               "name": "流程診斷報告（入門方案）",
-              "description": "了解客戶目前重複性工作的做法，找出可以交給程式處理的環節，提供書面診斷報告，說明建議的做法、預估費用與交期。依範圍報價。"
+              "description": "了解客戶目前重複性工作的做法，找出可以交給程式處理的環節，提供書面診斷報告，說明建議的做法、預估費用與交期。價格為起算價，實際金額依需求範圍於書面報價時載明。"
             }
           },
           {
@@ -518,6 +519,9 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .badge{display:inline-block;margin-left:8px;padding:2px 9px;border:1px solid var(--green);border-radius:99px;
   font:11px/1.6 var(--mono);letter-spacing:.12em;color:var(--green);vertical-align:2px;white-space:nowrap}
 
+/* 服務卡的標籤固定在右上角，避免標題被擠成兩行 */
+.svc .badge{position:absolute;top:20px;right:18px;margin:0}
+
 /* ============ 完整退款條款（彈出視窗） ============ */
 .more-btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:15px;font-weight:600;line-height:1.2;letter-spacing:.04em;color:var(--green);background:none;border:0;padding:4px 0;cursor:pointer}
 .more-btn i{display:block;position:relative;width:20px;height:20px;border:1px solid var(--green);border-radius:50%;transition:transform .5s var(--ease)}
@@ -791,7 +795,7 @@ ol.steps li span{text-wrap:balance}
           </svg>
           <h4>流程診斷報告<span class="badge">入門方案</span></h4>
           <p>找出哪些重複工作可以交給程式處理，提供書面診斷報告，說明建議做法、預估費用與交期。</p>
-          <div class="price">依範圍報價</div>
+          <div class="price">NT$1,000 起</div>
         </article>
         <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -818,7 +822,7 @@ ol.steps li span{text-wrap:balance}
             <path d="M13 14h14M13 19h8"/>
             <path d="M36 30v-4M42 30v-4M34 30h10v4a5 5 0 0 1-10 0z" stroke="var(--green)"/><path d="M39 39v4" stroke="var(--green)"/>
           </svg>
-          <h4><span class="nw">API 串接／</span><span class="nw">LINE 機器人</span></h4>
+          <h4>API／LINE 機器人</h4>
           <p>第三方 API 串接、LINE 官方帳號聊天機器人。需先洽談需求，確認範圍後提供報價。</p>
           <div class="price">依複雜度報價</div>
         </article>
