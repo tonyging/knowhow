@@ -3,51 +3,170 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>諾豪資訊｜小型軟體開發：網站、資料轉換、LINE 機器人</title>
 <meta name="description" content="諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價。">
 <meta name="theme-color" content="#0E7A55">
 <link rel="icon" href="logo.png">
 <style>
-:root{--bg:#F6F4EE;--card:#fff;--ink:#17201B;--muted:#55605A;--green:#0E7A55;--line:#E2DED3}
-@media (prefers-color-scheme:dark){:root{--bg:#101612;--card:#17201B;--ink:#EEF2EE;--muted:#9AA8A0;--green:#4CC59A;--line:#2A3630}}
+:root{
+  --bg:#F3F1EA;--card:#FFFFFF;--ink:#17201B;--muted:#55605A;
+  --green:#0E7A55;--on-green:#FFFFFF;--green-soft:#C7EBDA;
+  --line:#E4E0D5;--line-strong:#C7C2B3;--dot:#D8D3C5;
+  --radius:22px;
+  --mono:ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0E1411;--card:#161F1A;--ink:#EEF2EE;--muted:#9AA8A0;
+    --green:#4CC59A;--on-green:#08140E;--green-soft:#245444;
+    --line:#26322C;--line-strong:#3A4A42;--dot:#222C26}
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
-.wrap{max-width:880px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
-.brand img{width:44px;height:44px;border-radius:50%}
-nav{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
-nav a{color:var(--muted);text-decoration:none;font-size:15px}
-nav a:hover,nav a:focus-visible{color:var(--green)}
-.hero{padding:72px 0 56px}
-.hero h1{font-size:clamp(30px,6vw,48px);line-height:1.25;margin:0 0 20px;letter-spacing:.02em}
-.hero p{max-width:34em;color:var(--muted);font-size:18px;margin:0}
-section{padding:44px 0;border-top:1px solid var(--line)}
-h2{font-size:24px;margin:0 0 6px}
-.lead{color:var(--muted);margin:0 0 24px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
-.card h3{margin:0 0 8px;font-size:18px}
-.card p{margin:0 0 14px;color:var(--muted);font-size:15px}
-.price{font-weight:700;color:var(--green);font-size:20px}
-ol.steps{margin:0;padding-left:1.4em}
-ol.steps li{margin-bottom:8px}
-.note{color:var(--muted);font-size:15px;margin-top:16px}
-ul.plain{margin:0;padding-left:1.3em}
-ul.plain li{margin-bottom:8px}
-dl{margin:0;display:grid;grid-template-columns:7em 1fr;gap:10px 16px}
-dt{color:var(--muted)}
-dd{margin:0}
-.todo{background:#FFF1C2;color:#6B4E00;padding:0 .35em;border-radius:4px}
-footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.85 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 a{color:var(--green)}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+
+/* header */
+header{position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px)}
+header .wrap{display:flex;align-items:center;gap:14px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:.04em;flex:none}
+.brand img{width:38px;height:38px;border-radius:50%}
+nav{margin-left:auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;letter-spacing:.05em;padding:6px 12px;border-radius:99px;white-space:nowrap}
+nav a:hover{color:var(--green);background:var(--card)}
+
+/* bento grid */
+main{padding:28px 0 56px}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.tile{grid-column:span var(--d,12);position:relative;overflow:hidden;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 28px;min-width:0;
+  transition:border-color .2s,transform .2s}
+.tile.hover:hover{border-color:var(--green);transform:translateY(-2px)}
+.tile.accent{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.tile.accent a{color:inherit}
+.tile.plain{background:transparent;border-style:dashed}
+
+.label{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:11px/1 var(--mono);letter-spacing:.22em;color:var(--muted)}
+.label b{color:var(--green);font-weight:400;font-size:12px}
+.label i{display:block;width:34px;height:1px;background:var(--line-strong)}
+.accent .label,.accent .label b{color:inherit;opacity:.85}
+.accent .label i{background:currentColor;opacity:.5}
+h1,h2,h3{margin:0;letter-spacing:.03em}
+h2{font-size:clamp(22px,3.2vw,30px);line-height:1.35;margin-bottom:6px}
+.lead{margin:0;color:var(--muted)}
+.note{margin:18px 0 0;color:var(--muted);font-size:14px;line-height:1.75}
+
+/* hero + art */
+.hero{padding:44px 40px;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(34px,5.6vw,56px);line-height:1.2;font-weight:700;margin:0 0 22px}
+.hero .cur{display:inline-block;width:.5em;height:.1em;margin-left:.15em;background:var(--green);border-radius:99px;
+  animation:blink 1.4s steps(2,jump-none) infinite}
+.hero p.lead{font-size:17px;max-width:31em}
+.art-tile{display:flex;align-items:center;justify-content:center;padding:24px;
+  background-image:radial-gradient(var(--dot) 1px,transparent 1.3px);background-size:22px 22px}
+.art{width:100%;max-width:380px;height:auto;color:var(--line-strong);overflow:visible}
+.art .g{color:var(--green)}
+.art .dot{animation:flow 3.2s ease-in-out infinite}
+
+/* services */
+.banner{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding:26px 30px}
+.banner .lead{max-width:30em}
+.svc{padding-top:34px}
+.svc::before,.svc::after{content:"+";position:absolute;font:14px/1 var(--mono);color:var(--green)}
+.svc::before{top:9px;left:12px}
+.svc::after{bottom:9px;right:12px}
+.ico{width:46px;height:46px;color:var(--ink);margin-bottom:18px;display:block}
+.svc h3{font-size:18px;margin-bottom:8px}
+.svc p{margin:0 0 18px;color:var(--muted);font-size:15px;line-height:1.75}
+.price{font-weight:700;color:var(--green);font-size:20px;padding-top:14px;border-top:1px dashed var(--line-strong)}
+.svc .note{margin-top:10px}
+
+/* steps */
+ol.steps{list-style:none;margin:22px 0 0;padding:0;counter-reset:s;position:relative}
+ol.steps::before{content:"";position:absolute;left:15px;top:14px;bottom:14px;width:1px;background:var(--line-strong)}
+ol.steps li{position:relative;counter-increment:s;padding:0 0 20px 54px;min-height:32px}
+ol.steps li:last-child{padding-bottom:0}
+ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;
+  background:var(--card);border:1px solid var(--green);color:var(--green);font:12px/30px var(--mono);text-align:center}
+
+/* about */
+.mark{position:absolute;right:-18px;bottom:-62px;font-size:min(34vw,210px);line-height:1;font-weight:900;color:transparent;
+  -webkit-text-stroke:1px var(--line-strong);opacity:.5;pointer-events:none;user-select:none}
+.about{position:relative;z-index:1;margin-top:14px;max-width:34em}
+.about p{margin:0 0 14px}
+.sig{display:flex;align-items:center;gap:12px;color:var(--muted);font:11px/1 var(--mono);letter-spacing:.22em;margin-top:18px}
+.sig i{display:block;width:44px;height:8px;border-radius:99px;background:var(--green-soft)}
+
+/* refund */
+.refund-body{display:grid;grid-template-columns:1.15fr 1fr;gap:34px;margin-top:26px;align-items:start}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:22px;position:relative}
+.flow::before{content:"";position:absolute;left:11px;top:12px;bottom:12px;width:1px;background:var(--line-strong)}
+.flow li{position:relative;padding-left:46px}
+.flow li::before{content:"";position:absolute;left:0;top:3px;width:23px;height:23px;border-radius:50%;
+  background:var(--card);border:1px solid var(--green);z-index:1}
+.flow li:nth-child(1)::before{background:var(--green)}
+.flow li:nth-child(2)::before{background:linear-gradient(90deg,var(--green) 50%,var(--card) 50%)}
+.flow em{display:block;font:11px/1 var(--mono);letter-spacing:.2em;color:var(--green);font-style:normal;margin-bottom:6px}
+.flow b{display:block;font-size:16px}
+.flow span{display:block;color:var(--muted);font-size:14px;line-height:1.7}
+ul.plain{margin:0;padding:0 0 0 20px;list-style:square}
+ul.plain li{margin:0 0 10px;font-size:15px}
+ul.plain li::marker{color:var(--green)}
+
+/* contact */
+.c{display:flex;flex-direction:column;justify-content:space-between;gap:26px;min-height:150px}
+.c svg{width:26px;height:26px;color:var(--green)}
+.accent.c svg{color:inherit}
+.c small{display:block;font:11px/1 var(--mono);letter-spacing:.22em;color:var(--muted);margin-bottom:8px}
+.accent.c small{color:inherit;opacity:.8}
+.c strong{font-weight:500;font-size:17px;overflow-wrap:anywhere;display:block;line-height:1.55}
+
+/* footer */
+footer{padding:8px 0 48px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .tag{font:11px/1 var(--mono);letter-spacing:.2em;display:flex;align-items:center;gap:10px}
+footer .tag i{width:30px;height:6px;border-radius:99px;background:var(--green-soft);display:block}
+
+@keyframes blink{50%{opacity:0}}
+@keyframes flow{0%{transform:translateX(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateX(70px);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero .cur,.art .dot{animation:none}
+  .art .dot{opacity:1}
+  .tile{transition:none}
+}
+
+/* 平板：6 欄 */
+@media (max-width:1023px){
+  .grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tile{grid-column:span var(--t,6)}
+  .hero{padding:38px 32px}
+  .refund-body{grid-template-columns:1fr}
+}
+/* 手機：單欄 */
+@media (max-width:639px){
+  .wrap{padding:0 14px}
+  main{padding:16px 0 40px}
+  .grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .tile{grid-column:auto;padding:24px 22px 22px;border-radius:18px}
+  .hero{padding:32px 24px}
+  .banner{padding:22px}
+  .art-tile{padding:18px}
+  .mark{display:none}
+  .c{min-height:0;gap:18px}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <a class="brand" href="#top"><img src="logo.png" alt="諾豪資訊標誌" width="44" height="44">諾豪資訊</a>
+    <a class="brand" href="#top"><img src="logo.png" alt="諾豪資訊標誌" width="38" height="38">諾豪資訊</a>
     <nav aria-label="頁面導覽">
       <a href="#services">服務與價格</a>
       <a href="#process">合作流程</a>
@@ -60,80 +179,166 @@ a{color:var(--green)}
 
 <main id="top">
   <div class="wrap">
-    <section class="hero" style="border-top:0">
-      <h1>把重複的工作，<br>交給程式。</h1>
-      <p>諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價，完成交付後提供使用說明。</p>
-    </section>
+    <div class="grid">
 
-    <section id="services">
-      <h2>服務項目與價格</h2>
-      <p class="lead">價格為起算價，實際金額依需求範圍，於書面報價時載明。</p>
-      <div class="cards">
-        <article class="card">
-          <h3>資料轉換／小工具</h3>
-          <p>Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。</p>
-          <div class="price">NT$3,000 起</div>
-        </article>
-        <article class="card">
-          <h3>一頁式網站</h3>
-          <p>手機版型、服務介紹、聯絡方式與上線協助。</p>
-          <div class="price">NT$15,000 起</div>
-        </article>
-        <article class="card">
-          <h3>API 串接／LINE 機器人</h3>
-          <p>第三方 API 串接、LINE 官方帳號聊天機器人。</p>
-          <div class="price">依複雜度報價</div>
-        </article>
+      <!-- hero -->
+      <div class="tile hero" style="--d:7;--t:6">
+        <p class="label"><i></i>SMALL &amp; FAST SOFTWARE</p>
+        <h1>把重複的工作，<br>交給程式<span class="cur" aria-hidden="true"></span></h1>
+        <p class="lead">諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價，完成交付後提供使用說明。</p>
       </div>
-      <p class="note">API 串接與 LINE 機器人需先洽談需求，確認範圍後提供報價。</p>
-    </section>
+      <div class="tile art-tile" style="--d:5;--t:6">
+        <svg class="art" viewBox="0 0 360 220" role="img" aria-label="示意圖：零散的資料經過程式整理成整齊的表格">
+          <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <g>
+              <rect x="12" y="34" width="48" height="30" rx="3" transform="rotate(-9 36 49)"/>
+              <path d="M22 46 h22 M22 54 h14" transform="rotate(-9 36 49)"/>
+              <rect x="64" y="78" width="54" height="30" rx="3" transform="rotate(6 91 93)"/>
+              <path d="M74 90 h30 M74 98 h18" transform="rotate(6 91 93)"/>
+              <rect x="18" y="118" width="44" height="30" rx="3" transform="rotate(-4 40 133)"/>
+              <path d="M28 130 h20 M28 138 h12" transform="rotate(-4 40 133)"/>
+              <rect x="72" y="150" width="50" height="30" rx="3" transform="rotate(10 97 165)"/>
+              <path d="M82 162 h26 M82 170 h14" transform="rotate(10 97 165)"/>
+            </g>
+            <path d="M142 112 H212" stroke-dasharray="2 6"/>
+            <path d="M205 105 L213 112 L205 119"/>
+            <g>
+              <rect x="238" y="44" width="110" height="128" rx="6"/>
+              <path d="M238 78 H348 M238 112 H348 M238 146 H348 M276 44 V172"/>
+            </g>
+          </g>
+          <g class="g" fill="currentColor">
+            <circle class="dot" cx="142" cy="112" r="3.5"/>
+            <rect x="248" y="54" width="18" height="14" rx="2"/>
+            <rect x="248" y="88" width="18" height="14" rx="2"/>
+            <rect x="248" y="122" width="18" height="14" rx="2"/>
+            <rect x="248" y="156" width="18" height="10" rx="2"/>
+            <circle cx="344" cy="176" r="13"/>
+          </g>
+          <path d="M337 176 l5 5 l9 -10" fill="none" stroke="var(--card)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
 
-    <section id="process">
-      <h2>合作流程</h2>
-      <p class="lead">先把需求講清楚，再報價；報價確定後不臨時加價。</p>
-      <ol class="steps">
-        <li>線上了解需求（文字或視訊皆可）。</li>
-        <li>書面確認範圍、報價與交期。</li>
-        <li>先交可試用的版本，確認方向。</li>
-        <li>依回饋修改（含 2 次修改）。</li>
-        <li>交付成品、原始碼與使用說明。</li>
-      </ol>
-      <p class="note">範圍有變動時，會先說明再調整報價。</p>
-    </section>
+      <!-- services -->
+      <div class="tile banner plain" id="services" style="--d:12;--t:6">
+        <div>
+          <p class="label"><b>01</b><i></i>SERVICES</p>
+          <h2>服務項目與價格</h2>
+        </div>
+        <p class="lead">價格為起算價，實際金額依需求範圍，於書面報價時載明。</p>
+      </div>
 
-    <section id="about">
-      <h2>關於我們</h2>
-      <p>諾豪資訊專注在「小而快」的軟體案子，協助個人與小型店家把重複的工作交給程式處理。主要服務包含：一頁式網站製作、資料轉換（Excel／CSV／XML）、第三方 API 串接、LINE 官方帳號聊天機器人，以及各種自動化小工具。</p>
-      <p>我們以線上洽談為主，先確認需求範圍，再提供書面報價與交期。報價確定後不臨時加價，交付時一併提供原始碼與使用說明。</p>
-      <p>承辦人為全端工程師，曾參與全國性公共服務系統的開發，重視資料正確與資安，也曾擔任兒童程式講師，擅長用白話說明技術。</p>
-    </section>
+      <article class="tile svc hover" style="--d:4;--t:3">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 18h38M5 28h38M18 8v32"/>
+          <path d="M25 34h10m-4-4 4 4-4 4" stroke="var(--green)"/>
+        </svg>
+        <h3>資料轉換／小工具</h3>
+        <p>Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。</p>
+        <div class="price">NT$3,000 起</div>
+      </article>
+      <article class="tile svc hover" style="--d:4;--t:3">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 16h38"/>
+          <circle cx="10" cy="12" r=".8" fill="currentColor"/><circle cx="14" cy="12" r=".8" fill="currentColor"/>
+          <path d="M12 24h14M12 30h22"/><rect x="29" y="21" width="9" height="7" rx="1.5" stroke="var(--green)"/>
+        </svg>
+        <h3>一頁式網站</h3>
+        <p>手機版型、服務介紹、聯絡方式與上線協助。</p>
+        <div class="price">NT$15,000 起</div>
+      </article>
+      <article class="tile svc hover" style="--d:4;--t:6">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 10a3 3 0 0 1 3-3h20a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H17l-6 5v-5H9a3 3 0 0 1-3-3z"/>
+          <path d="M13 14h14M13 19h8"/>
+          <path d="M36 30v-4M42 30v-4M34 30h10v4a5 5 0 0 1-10 0z" stroke="var(--green)"/><path d="M39 39v4" stroke="var(--green)"/>
+        </svg>
+        <h3>API 串接／LINE 機器人</h3>
+        <p>第三方 API 串接、LINE 官方帳號聊天機器人。</p>
+        <div class="price">依複雜度報價</div>
+        <p class="note">API 串接與 LINE 機器人需先洽談需求，確認範圍後提供報價。</p>
+      </article>
 
-    <section id="refund">
-      <h2>付款與退款政策</h2>
-      <p class="lead">付款方式：信用卡、ATM 轉帳（透過藍新金流收款）。</p>
-      <ul class="plain">
-        <li><strong>尚未開工：</strong>報價確認、付訂金後尚未開工者，全額退款。</li>
-        <li><strong>已開工、尚未交付：</strong>扣除已完成進度的費用後，退還其餘款項。</li>
-        <li><strong>已交付並驗收：</strong>不退款；驗收期內提供 2 次免費修正。</li>
-        <li><strong>退款方式：</strong>一律以原付款方式辦理（信用卡以退刷方式退款）。</li>
-      </ul>
-    </section>
+      <!-- process + about -->
+      <section class="tile" id="process" style="--d:5;--t:6">
+        <p class="label"><b>02</b><i></i>PROCESS</p>
+        <h2>合作流程</h2>
+        <p class="lead">先把需求講清楚，再報價；報價確定後不臨時加價。</p>
+        <ol class="steps">
+          <li>線上了解需求（文字或視訊皆可）。</li>
+          <li>書面確認範圍、報價與交期。</li>
+          <li>先交可試用的版本，確認方向。</li>
+          <li>依回饋修改（含 2 次修改）。</li>
+          <li>交付成品、原始碼與使用說明。</li>
+        </ol>
+        <p class="note">範圍有變動時，會先說明再調整報價。</p>
+      </section>
+      <section class="tile" id="about" style="--d:7;--t:6">
+        <div class="mark" aria-hidden="true">諾</div>
+        <p class="label"><b>03</b><i></i>ABOUT</p>
+        <h2>關於我們</h2>
+        <div class="about">
+          <p>諾豪資訊專注在「小而快」的軟體案子，協助個人與小型店家把重複的工作交給程式處理。主要服務包含：一頁式網站製作、資料轉換（Excel／CSV／XML）、第三方 API 串接、LINE 官方帳號聊天機器人，以及各種自動化小工具。</p>
+          <p>我們以線上洽談為主，先確認需求範圍，再提供書面報價與交期。報價確定後不臨時加價，交付時一併提供原始碼與使用說明。</p>
+          <p>承辦人為全端工程師，曾參與全國性公共服務系統的開發，重視資料正確與資安，也曾擔任兒童程式講師，擅長用白話說明技術。</p>
+          <div class="sig" aria-hidden="true"><i></i>NUOHAO</div>
+        </div>
+      </section>
 
-    <section id="contact">
-      <h2>客服資訊</h2>
-      <p class="lead">洽談需求或訂單問題，請由下列方式聯絡。</p>
-      <dl>
-        <dt>電話</dt><dd><a href="tel:0922170162">0922-170-162</a></dd>
-        <dt>Email</dt><dd><a href="mailto:tony10130357@gmail.com">tony10130357@gmail.com</a></dd>
-        <dt>LINE ID</dt><dd>tony30912</dd>
-        <dt>服務時間</dt><dd>週一至週五　09:00–17:30</dd>
-      </dl>
-    </section>
+      <!-- refund -->
+      <section class="tile" id="refund" style="--d:12;--t:6">
+        <p class="label"><b>04</b><i></i>PAYMENT &amp; REFUND</p>
+        <h2>付款與退款政策</h2>
+        <p class="lead">付款方式：信用卡、ATM 轉帳（透過藍新金流收款）。</p>
+        <div class="refund-body">
+          <ol class="flow" aria-label="依進度的退款方式">
+            <li><em>STAGE 1</em><b>尚未開工</b><span>全額退款</span></li>
+            <li><em>STAGE 2</em><b>已開工、尚未交付</b><span>扣除已完成進度的費用，退還其餘</span></li>
+            <li><em>STAGE 3</em><b>已交付並驗收</b><span>不退款，驗收期內免費修正 2 次</span></li>
+          </ol>
+          <ul class="plain">
+            <li><strong>尚未開工：</strong>報價確認、付訂金後尚未開工者，全額退款。</li>
+            <li><strong>已開工、尚未交付：</strong>扣除已完成進度的費用後，退還其餘款項。</li>
+            <li><strong>已交付並驗收：</strong>不退款；驗收期內提供 2 次免費修正。</li>
+            <li><strong>退款方式：</strong>一律以原付款方式辦理（信用卡以退刷方式退款）。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- contact -->
+      <div class="tile banner plain" id="contact" style="--d:12;--t:6">
+        <div>
+          <p class="label"><b>05</b><i></i>CONTACT</p>
+          <h2>客服資訊</h2>
+        </div>
+        <p class="lead">洽談需求或訂單問題，請由下列方式聯絡。</p>
+      </div>
+      <div class="tile c" style="--d:3;--t:3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        <div><small>PHONE</small><strong><a href="tel:0922170162">0922-170-162</a></strong></div>
+      </div>
+      <div class="tile c" style="--d:4;--t:3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <div><small>EMAIL</small><strong><a href="mailto:tony10130357@gmail.com">tony10130357@gmail.com</a></strong></div>
+      </div>
+      <div class="tile c accent" style="--d:2;--t:3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-5 4v-4H6a2 2 0 0 1-2-2z"/></svg>
+        <div><small>LINE ID</small><strong>tony30912</strong></div>
+      </div>
+      <div class="tile c" style="--d:3;--t:3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><small>HOURS</small><strong>週一至週五<br>09:00–17:30</strong></div>
+      </div>
+
+    </div>
   </div>
 </main>
 
 <footer>
-  <div class="wrap">© 諾豪資訊　版權所有</div>
+  <div class="wrap">
+    <span>© 諾豪資訊　版權所有</span>
+    <span class="tag"><i></i>SMALL &amp; FAST</span>
+  </div>
 </footer>
 </body>
 </html>
