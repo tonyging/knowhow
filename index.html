@@ -674,24 +674,20 @@ html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
 /* 孤字處理 */
 .intro{text-wrap:pretty}
 ol.steps li span{text-wrap:balance}
-/* ============ 矮螢幕（筆電）緊湊模式：讓每一屏縮放後仍維持可讀，維持整屏翻頁 ============ */
-@media (min-width:900px) and (max-height:760px){
-  .bento{gap:10px}
-  .tile{padding:14px 18px 12px}
-  .row-head{padding-bottom:2px}
-  .svc .ico{width:32px;height:32px;margin-bottom:6px}
-  .svc p{margin-bottom:8px;line-height:1.55}
-  .svc .price{padding-top:8px}
-  #process .lead{margin-bottom:4px}
-  ol.steps{margin-top:8px}
-  ol.steps li{padding-top:38px}
-  ol.steps+.note{margin-top:8px}
-  .cmp th,.cmp td{padding-top:6px;padding-bottom:6px}
-  .cmp thead th{padding-bottom:8px}
-  .rep{gap:6px;padding:9px 12px;margin-bottom:8px}
-  .scan .lead{margin-bottom:8px}
-  .care-bottom{padding:8px 10px}
-  .cf li{padding:8px 12px}
+/* ============ 緊湊模式：內容在視窗內放不下（縮放低於 85%）時才由腳本加上 html.compact ============ */
+@media (min-width:900px){
+  html.compact .bento{gap:10px}
+  html.compact .tile{padding:14px 18px 12px}
+  html.compact .row-head{padding-bottom:2px}
+  html.compact .svc .ico{width:32px;height:32px;margin-bottom:6px}
+  html.compact .svc p{margin-bottom:8px;line-height:1.55}
+  html.compact .svc .price{padding-top:8px}
+  html.compact .cmp th,html.compact .cmp td{padding-top:6px;padding-bottom:6px}
+  html.compact .cmp thead th{padding-bottom:8px}
+  html.compact .rep{gap:6px;padding:9px 12px;margin-bottom:8px}
+  html.compact .scan .lead{margin-bottom:8px}
+  html.compact .care-bottom{padding:8px 10px}
+  html.compact .cf li{padding:8px 12px}
 }
 </style>
 </head>
@@ -866,7 +862,7 @@ ol.steps li span{text-wrap:balance}
 
   <!-- 維運與資安 -->
   <section class="screen" id="care">
-    <div class="panel"><div class="copy-in" data-grow="1.35">
+    <div class="panel"><div class="copy-in" data-grow="1.04">
       <div class="vt-head"><span class="en">CARE ・ SECURITY</span><h2 class="vt-h2" data-split>維運與資安</h2></div>
       <div class="bento">
 
@@ -1125,28 +1121,39 @@ ol.steps li span{text-wrap:balance}
     });
     function clear(){ items.forEach(function(o){ if(o){ o.t.style.zoom=""; o.t.style.width=""; } }); }
     function set(t,z){ t.style.zoom=z; }
-    clear();
+    function run(){
+      var avail=innerHeight-112, ok=true, minz=9;
+      items.forEach(function(o){
+        if(!o) return;
+        var t=o.t, h=t.getBoundingClientRect().height, z=1;
+        if(h>avail){
+          z=avail/h; set(t,z);
+          h=t.getBoundingClientRect().height;
+          if(h>avail){ z*=avail/h; set(t,z); }
+        }else if(o.c.hasAttribute("data-grow")){
+          var cap=parseFloat(o.c.getAttribute("data-grow"))||1.3;
+          z=Math.min(cap,avail*.92/h);
+          if(z>1.02){
+            /* 放大後內容可能重新換行而變高；超出就逐步退回，最差回到不放大，避免縮放被壓到過小 */
+            set(t,z); var h2=t.getBoundingClientRect().height, n=0;
+            while(h2>avail&&z>1&&n++<14){ z=Math.max(1,z*.94); set(t,z); h2=t.getBoundingClientRect().height; }
+            if(h2>avail){ z=1; set(t,1); }
+          }else z=1;
+        }
+        if(z<.7) ok=false;
+        if(z<minz) minz=z;
+      });
+      return {ok:ok,minz:minz};
+    }
+    clear(); root.classList.remove("compact");
     if(reduce||innerWidth<900||innerHeight<560) return false;
-    var avail=innerHeight-112, ok=true;
-    items.forEach(function(o){
-      if(!o) return;
-      var t=o.t, h=t.getBoundingClientRect().height, z=1;
-      if(h>avail){
-        z=avail/h; set(t,z);
-        h=t.getBoundingClientRect().height;
-        if(h>avail){ z*=avail/h; set(t,z); }
-      }else if(o.c.hasAttribute("data-grow")){
-        var cap=parseFloat(o.c.getAttribute("data-grow"))||1.3;
-        z=Math.min(cap,avail*.92/h);
-        if(z>1.02){
-          set(t,z); var h2=t.getBoundingClientRect().height;
-          if(h2>avail){ z*=avail/h2; set(t,z); }
-        }else z=1;
-      }
-      if(z<.7) ok=false;
-    });
-    if(!ok) clear();
-    return ok;
+    var r=run();
+    if(r.ok&&r.minz>=.85) return true;
+    /* 放不下：改用緊湊版面（矮螢幕、筆電）再試一次 */
+    clear(); root.classList.add("compact");
+    r=run();
+    if(!r.ok){ clear(); root.classList.remove("compact"); return false; }
+    return true;
   }
   function nearest(){
     var y=window.pageYOffset,best=0,bd=1e9;
