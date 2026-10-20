@@ -189,14 +189,15 @@ h1,h2,h3,h4,p{margin:0}
 .hero-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(20px,5vh,48px) 24px clamp(16px,4vh,40px);max-width:760px}
 .hero-mark{width:clamp(56px,9vh,84px);height:clamp(56px,9vh,84px);border-radius:50%;margin-bottom:clamp(8px,2vh,18px)}
 .hero-name{font-size:clamp(24px,min(3.4vw,4.6vh),40px);font-weight:700;letter-spacing:.36em;margin-right:-.36em}
-.hero-origin{margin-top:14px;font-size:14px;letter-spacing:.06em;color:var(--ink)}
+.hero-origin{margin-top:clamp(8px,1.6vh,14px);font-size:clamp(14px,1.9vh,17px);letter-spacing:.05em;color:var(--ink)}
+.hero-origin b{color:var(--green);font-weight:700;white-space:nowrap}
 .hero-en{margin-top:8px;font:11px/1 var(--mono);letter-spacing:.32em;color:var(--green)}
 .tag{writing-mode:vertical-rl;margin:clamp(14px,3.4vh,32px) 0 clamp(12px,3vh,28px);font-size:clamp(20px,min(3vw,3.8vh),36px);line-height:1.6;letter-spacing:.32em;font-weight:500}
 .col{display:block;position:relative;padding:0 .7em .2em}
 .col::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line-strong);transform-origin:50% 0}
 .intro{color:var(--muted);max-width:34em;font-size:clamp(13px,1.8vh,15.5px)}
-.cue{display:grid;justify-items:center;gap:10px;margin-top:clamp(12px,3vh,30px);color:var(--muted);text-decoration:none;font:10px/1 var(--mono);letter-spacing:.3em}
-.cue i{display:block;width:1px;height:clamp(28px,5vh,46px);background:var(--line-strong);position:relative;overflow:hidden}
+.cue{display:grid;justify-items:center;gap:8px;margin-top:clamp(8px,1.8vh,18px);color:var(--muted);text-decoration:none;font:10px/1 var(--mono);letter-spacing:.3em}
+.cue i{display:block;width:1px;height:clamp(18px,3.4vh,32px);background:var(--line-strong);position:relative;overflow:hidden}
 .cue i::after{content:"";position:absolute;inset:0;background:var(--green);transform:translateY(-100%);animation:cue 2.4s var(--ease) infinite}
 
 /* ============ 磁貼 ============ */
@@ -225,10 +226,11 @@ h1,h2,h3,h4,p{margin:0}
 .svc::after{bottom:8px;right:11px}
 .ico{display:block;width:40px;height:40px;color:var(--ink);margin-bottom:10px;transition:transform .7s var(--ease)}
 .svc:hover .ico{transform:translateY(-4px)}
-.svc h4{font-size:17px;letter-spacing:.03em;margin-bottom:6px}
+.svc{display:flex;flex-direction:column}
+.svc h4{font-size:18px;letter-spacing:.03em;margin-bottom:6px}
 .svc p{margin:0 0 12px;color:var(--muted);font-size:14px;line-height:1.7}
 .svc .note{margin:10px 0 0}
-.price{font-weight:700;color:var(--green);font-size:19px;padding-top:12px;border-top:1px dashed var(--line-strong);transition:letter-spacing .6s var(--ease)}
+.price{margin-top:auto;font-weight:700;color:var(--green);font-size:22px;padding-top:12px;border-top:1px dashed var(--line-strong);transition:letter-spacing .6s var(--ease)}
 .svc:hover .price{letter-spacing:.03em}
 
 /* 插圖磁貼 */
@@ -333,6 +335,16 @@ ol.steps li:nth-child(2){--n:1}ol.steps li:nth-child(3){--n:2}ol.steps li:nth-ch
   .tile.glow{background-image:none}
   .menu,.menu.open,.menu a{transition:none}
 }
+
+/* ============ 按鈕 ============ */
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:clamp(14px,2.6vh,24px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:clamp(11px,1.7vh,15px) clamp(22px,2vw,30px);border-radius:99px;
+  font-size:16px;font-weight:700;letter-spacing:.06em;text-decoration:none;border:2px solid var(--green);
+  transition:transform .5s var(--ease),background .35s,color .35s,box-shadow .5s var(--ease)}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.btn-primary{background:var(--green);color:var(--on-green)}
+.btn-ghost{background:transparent;color:var(--green)}
+.btn-ghost:hover{background:var(--green);color:var(--on-green)}
 
 /* ============ 第三屏：精簡版 ============ */
 .bento>*{grid-row:span var(--r,1)}
@@ -475,6 +487,90 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 
 .badge{display:inline-block;margin-left:8px;padding:2px 9px;border:1px solid var(--green);border-radius:99px;
   font:11px/1.6 var(--mono);letter-spacing:.12em;color:var(--green);vertical-align:2px;white-space:nowrap}
+
+/* ============ 首屏與第二屏：重做（左右分割、字級放大） ============ */
+.hero-in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,4vw,64px);align-items:center;
+  width:min(1200px,100%);max-width:none;text-align:left;
+  padding:clamp(20px,5vh,56px) clamp(24px,5vw,80px) clamp(20px,5vh,56px) clamp(24px,4vw,64px)}
+.hero-main{display:flex;align-items:center;gap:clamp(20px,3.2vw,52px);min-width:0}
+.tag{margin:0;font-size:clamp(28px,min(3.8vw,5.6vh),54px);line-height:1.5;letter-spacing:.3em;flex:none}
+.hero-text{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(10px,2.2vh,22px);min-width:0}
+.hero-brand{display:flex;align-items:center;gap:14px}
+.hero-mark{width:clamp(48px,7.4vh,66px);height:clamp(48px,7.4vh,66px);margin:0}
+.hero-name{font-size:clamp(22px,3.4vh,30px);font-weight:700;letter-spacing:.28em;margin:0}
+.hero-en{margin:6px 0 0;font:12px/1 var(--mono);letter-spacing:.22em;color:var(--green)}
+.hero-origin{margin:0;font-size:clamp(19px,3vh,28px);line-height:1.6;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.hero-origin b{color:var(--green);font-weight:800;white-space:nowrap}
+.intro{margin:0;max-width:30em;font-size:clamp(15px,2.1vh,17px);line-height:1.75;color:color-mix(in srgb,var(--ink) 78%,var(--bg))}
+.hero-cta{justify-content:flex-start;margin-top:clamp(2px,1vh,10px)}
+.hero-art{padding:clamp(14px,3vh,28px);min-height:0}
+.hero-art .art{max-width:480px}
+.hero::before{background:radial-gradient(75% 70% at 55% 50%,transparent 40%,var(--bg) 100%)}
+
+/* 第二屏：字放大、價格對齊 */
+.svc h4{font-size:clamp(18px,1.5vw,21px)}
+.svc p{font-size:clamp(14.5px,1.15vw,16px);line-height:1.7}
+.svc .price{font-size:clamp(22px,1.9vw,26px)}
+.ico{width:44px;height:44px}
+.row-head .th{font-size:clamp(24px,2.3vw,30px)}
+.row-head .lead{font-size:clamp(15px,1.2vw,17px)}
+#process .lead{font-size:clamp(15px,1.2vw,17px);color:var(--ink)}
+ol.steps{margin-top:22px;gap:clamp(12px,1.6vw,24px)}
+ol.steps::before{left:20px;right:20px;top:19px}
+ol.steps li{padding-top:56px;font-size:clamp(15px,1.2vw,17px);line-height:1.65}
+ol.steps li::before{width:40px;height:40px;font:13px/38px var(--mono)}
+.pill{font-size:13px}
+.vt-head .en{font-size:12px}
+.dots a::after{font-size:12px}
+
+@media (max-width:899px){
+  .hero-in{grid-template-columns:minmax(0,1fr);gap:22px;padding:36px 18px 32px}
+  .hero-main{flex-direction:column;align-items:flex-start;gap:20px}
+  .tag{font-size:30px;line-height:1.5}
+  .hero-art{min-height:220px}
+  ol.steps{margin-top:16px;gap:0}
+  ol.steps::before{left:19px;right:auto;top:18px;bottom:18px;width:1px;height:auto}
+  ol.steps li{padding:0 0 18px 60px;min-height:40px}
+}
+
+/* ============ 首屏三欄與斷行修正 ============ */
+.nw{white-space:nowrap}
+.hero-in{grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,3.4vw,52px)}
+.hero-main{display:contents}
+.tag{font-size:clamp(26px,min(3.2vw,5vh),46px);line-height:1.35}
+.col{padding:0 .5em .2em}
+.hero-origin{font-size:clamp(18px,2.7vh,25px)}
+.svc h4,ol.steps li{text-wrap:balance}
+.svc p{text-wrap:pretty}
+@media (max-width:899px){
+  .hero-in{grid-template-columns:minmax(0,1fr)}
+  .hero-main{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+  .tag{font-size:30px;line-height:1.45}
+}
+
+/* ============ 流程步驟：標題＋細節；首屏斷行 ============ */
+ol.steps li{text-wrap:wrap}
+ol.steps li b{display:block;font-size:clamp(16px,1.3vw,19px);line-height:1.4;margin-bottom:2px;color:var(--ink)}
+ol.steps li span{display:block;color:var(--muted);font-size:clamp(14px,1.1vw,15.5px);line-height:1.6}
+.hero-origin{text-wrap:balance}
+
+/* ============ 一致的版面骨架：所有屏共用同一個內容框 ============ */
+.copy-in{width:100%;max-width:1240px;margin-left:auto;margin-right:auto}
+.hero{padding-left:calc(var(--rail) + clamp(28px,4vw,64px));padding-right:84px}
+.hero-in{display:block;width:100%;max-width:1240px;margin:0 auto;padding:clamp(20px,5vh,56px) 0}
+.hero-grid{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,3.4vw,52px);align-items:center}
+html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
+@media (max-width:1099px){.hero{padding-right:64px}}
+@media (max-width:899px){
+  .hero{padding-left:0;padding-right:0}
+  .hero-in{padding:36px 18px 32px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+  html.paged .panel{padding-top:36px}
+}
+
+/* 孤字處理 */
+.intro{text-wrap:pretty}
+ol.steps li span{text-wrap:balance}
 </style>
 </head>
 <body>
@@ -514,22 +610,53 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 
   <!-- 首屏 -->
   <section class="screen hero" id="top" aria-label="首頁">
-    <div class="hero-in">
-      <img class="hero-mark" data-a src="logo.png" alt="諾豪資訊標誌" width="84" height="84">
-      <p class="hero-name" data-a>諾豪資訊</p>
-      <p class="hero-en" data-a>KNOWHOW ・ SMALL &amp; FAST SOFTWARE</p>
-      <p class="hero-origin" data-a>「諾豪」取自 Know-how，把專業知識變成可以直接使用的成品。</p>
-      <h1 class="tag" aria-label="把重複的工作，交給程式。">
-        <span class="col" aria-hidden="true" data-split>把重複的工作，</span><span class="col" aria-hidden="true" data-split>交給程式。</span>
-      </h1>
-      <p class="intro" data-a>諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價，完成交付後提供使用說明。</p>
-      <a class="cue" data-a href="#services" aria-label="往下看服務項目"><i></i><span>SCROLL</span></a>
-    </div>
+    <div class="hero-in" data-grow="1.2"><div class="hero-grid">
+      <div class="hero-main">
+        <h1 class="tag" aria-label="把重複的工作，交給程式。">
+          <span class="col" aria-hidden="true" data-split>把重複的工作，</span><span class="col" aria-hidden="true" data-split>交給程式。</span>
+        </h1>
+        <div class="hero-text">
+          <div class="hero-brand" data-a>
+            <img class="hero-mark" src="logo.png" alt="諾豪資訊標誌" width="64" height="64">
+            <div><p class="hero-name">諾豪資訊</p><p class="hero-en">KNOWHOW ・ SMALL &amp; FAST SOFTWARE</p></div>
+          </div>
+          <p class="hero-origin" data-a>「諾豪」取自 <b>Know-how</b>，<br>把專業知識，<br>變成可以直接使用的成品。</p>
+          <p class="intro" data-a>諾豪資訊提供小型軟體開發服務：一頁式網站、資料轉換、API 串接、LINE 機器人與自動化小工具。以線上洽談為主，依需求範圍報價。</p>
+          <div class="hero-cta" data-a>
+            <a class="btn btn-primary" href="#contact">LINE 洽談</a>
+            <a class="btn btn-ghost" href="#services">查看服務與價格</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile art-tile hero-art" data-a>
+          <svg class="art" viewBox="0 0 360 220" role="img" aria-label="示意圖：零散的資料經過程式整理成整齊的表格">
+            <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <g class="bob" style="--b:0"><g transform="rotate(-9 36 49)"><rect class="d" style="--i:0" pathLength="1" x="12" y="34" width="48" height="30" rx="3"/><path class="d" style="--i:1" pathLength="1" d="M22 46 h22 M22 54 h14"/></g></g>
+              <g class="bob" style="--b:1"><g transform="rotate(6 91 93)"><rect class="d" style="--i:2" pathLength="1" x="64" y="78" width="54" height="30" rx="3"/><path class="d" style="--i:3" pathLength="1" d="M74 90 h30 M74 98 h18"/></g></g>
+              <g class="bob" style="--b:2"><g transform="rotate(-4 40 133)"><rect class="d" style="--i:4" pathLength="1" x="18" y="118" width="44" height="30" rx="3"/><path class="d" style="--i:5" pathLength="1" d="M28 130 h20 M28 138 h12"/></g></g>
+              <g class="bob" style="--b:3"><g transform="rotate(10 97 165)"><rect class="d" style="--i:6" pathLength="1" x="72" y="150" width="50" height="30" rx="3"/><path class="d" style="--i:7" pathLength="1" d="M82 162 h26 M82 170 h14"/></g></g>
+              <path d="M142 112 H212" stroke-dasharray="2 6"/>
+              <path class="d" style="--i:8" pathLength="1" d="M205 105 L213 112 L205 119"/>
+              <rect class="d" style="--i:9" pathLength="1" x="238" y="44" width="110" height="128" rx="6"/>
+              <path class="d" style="--i:10" pathLength="1" d="M238 78 H348 M238 112 H348 M238 146 H348 M276 44 V172"/>
+            </g>
+            <g class="g" fill="currentColor">
+              <circle class="dot" cx="142" cy="112" r="3.5"/>
+              <rect style="--i:0" x="248" y="54" width="18" height="14" rx="2"/>
+              <rect style="--i:1" x="248" y="88" width="18" height="14" rx="2"/>
+              <rect style="--i:2" x="248" y="122" width="18" height="14" rx="2"/>
+              <rect style="--i:3" x="248" y="156" width="18" height="10" rx="2"/>
+              <circle style="--i:4" cx="344" cy="176" r="13"/>
+            </g>
+            <path class="d" style="--i:16" pathLength="1" d="M337 176 l5 5 l9 -10" fill="none" stroke="var(--card)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+    </div></div>
   </section>
 
   <!-- 服務與流程 -->
   <section class="screen" id="work">
-    <div class="panel"><div class="copy-in">
+    <div class="panel"><div class="copy-in" data-grow="1.35">
       <div class="vt-head"><span class="en">SERVICES ・ PROCESS</span><h2 class="vt-h2" data-split>服務與流程</h2></div>
       <div class="bento">
 
@@ -544,7 +671,7 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
             <path d="M16 21h16M16 27h10"/><path d="M16 35l4 4 9-10" stroke="var(--green)"/>
           </svg>
           <h4>流程診斷報告<span class="badge">入門方案</span></h4>
-          <p>了解你目前重複性工作的做法，找出可以交給程式處理的環節，提供書面診斷報告，說明建議的做法、預估費用與交期。</p>
+          <p>找出哪些重複工作可以交給程式處理，提供書面診斷報告，說明建議做法、預估費用與交期。</p>
           <div class="price">依範圍報價</div>
         </article>
         <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
@@ -572,49 +699,25 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
             <path d="M13 14h14M13 19h8"/>
             <path d="M36 30v-4M42 30v-4M34 30h10v4a5 5 0 0 1-10 0z" stroke="var(--green)"/><path d="M39 39v4" stroke="var(--green)"/>
           </svg>
-          <h4>API 串接／LINE 機器人</h4>
-          <p>第三方 API 串接、LINE 官方帳號聊天機器人。</p>
+          <h4><span class="nw">API 串接／</span><span class="nw">LINE 機器人</span></h4>
+          <p>第三方 API 串接、LINE 官方帳號聊天機器人。需先洽談需求，確認範圍後提供報價。</p>
           <div class="price">依複雜度報價</div>
-          <p class="note">API 串接與 LINE 機器人需先洽談需求，確認範圍後提供報價。</p>
         </article>
 
-        <section class="tile glow" id="process" style="--d:8;--t:6" data-a>
+        <section class="tile glow" id="process" style="--d:12;--t:6" data-a>
           <p class="label"><b>02</b><i></i>PROCESS</p>
           <h3 class="th">合作流程</h3>
           <p class="lead">先把需求講清楚，再報價；報價確定後不臨時加價。</p>
           <ol class="steps">
-            <li>線上了解需求（文字或視訊皆可）。</li>
-            <li>書面確認範圍、報價與交期。</li>
-            <li>先交可試用的版本，確認方向。</li>
-            <li>依回饋修改（含 2 次修改）。</li>
-            <li>交付成品、原始碼與使用說明。</li>
+            <li><b>了解需求</b><span>線上進行，文字或視訊皆可</span></li>
+            <li><b>書面確認</b><span>範圍、報價與交期</span></li>
+            <li><b>試用版本</b><span>先交可試用的版本，確認方向</span></li>
+            <li><b>依回饋修改</b><span>含 2 次修改</span></li>
+            <li><b>交付成品</b><span>原始碼與使用說明</span></li>
           </ol>
           <p class="note">範圍有變動時，會先說明再調整報價。</p>
         </section>
 
-        <div class="tile art-tile" style="--d:4;--t:6" data-a>
-          <svg class="art" viewBox="0 0 360 220" role="img" aria-label="示意圖：零散的資料經過程式整理成整齊的表格">
-            <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <g class="bob" style="--b:0"><g transform="rotate(-9 36 49)"><rect class="d" style="--i:0" pathLength="1" x="12" y="34" width="48" height="30" rx="3"/><path class="d" style="--i:1" pathLength="1" d="M22 46 h22 M22 54 h14"/></g></g>
-              <g class="bob" style="--b:1"><g transform="rotate(6 91 93)"><rect class="d" style="--i:2" pathLength="1" x="64" y="78" width="54" height="30" rx="3"/><path class="d" style="--i:3" pathLength="1" d="M74 90 h30 M74 98 h18"/></g></g>
-              <g class="bob" style="--b:2"><g transform="rotate(-4 40 133)"><rect class="d" style="--i:4" pathLength="1" x="18" y="118" width="44" height="30" rx="3"/><path class="d" style="--i:5" pathLength="1" d="M28 130 h20 M28 138 h12"/></g></g>
-              <g class="bob" style="--b:3"><g transform="rotate(10 97 165)"><rect class="d" style="--i:6" pathLength="1" x="72" y="150" width="50" height="30" rx="3"/><path class="d" style="--i:7" pathLength="1" d="M82 162 h26 M82 170 h14"/></g></g>
-              <path d="M142 112 H212" stroke-dasharray="2 6"/>
-              <path class="d" style="--i:8" pathLength="1" d="M205 105 L213 112 L205 119"/>
-              <rect class="d" style="--i:9" pathLength="1" x="238" y="44" width="110" height="128" rx="6"/>
-              <path class="d" style="--i:10" pathLength="1" d="M238 78 H348 M238 112 H348 M238 146 H348 M276 44 V172"/>
-            </g>
-            <g class="g" fill="currentColor">
-              <circle class="dot" cx="142" cy="112" r="3.5"/>
-              <rect style="--i:0" x="248" y="54" width="18" height="14" rx="2"/>
-              <rect style="--i:1" x="248" y="88" width="18" height="14" rx="2"/>
-              <rect style="--i:2" x="248" y="122" width="18" height="14" rx="2"/>
-              <rect style="--i:3" x="248" y="156" width="18" height="10" rx="2"/>
-              <circle style="--i:4" cx="344" cy="176" r="13"/>
-            </g>
-            <path class="d" style="--i:16" pathLength="1" d="M337 176 l5 5 l9 -10" fill="none" stroke="var(--card)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
 
       </div>
     </div></div>
@@ -622,7 +725,7 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 
   <!-- 關於與付款 -->
   <section class="screen" id="trust">
-    <div class="panel"><div class="copy-in" data-grow>
+    <div class="panel"><div class="copy-in" data-grow="1.35">
       <div class="vt-head"><span class="en">ABOUT ・ PAYMENT</span><h2 class="vt-h2" data-split>關於與付款</h2></div>
       <div class="bento">
 
@@ -673,7 +776,7 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 
   <!-- 客服 -->
   <section class="screen contact" id="contact">
-    <div class="panel"><div class="copy-in" data-grow>
+    <div class="panel"><div class="copy-in" data-grow="1.35">
       <div class="vt-head"><span class="en">CONTACT</span><h2 class="vt-h2" data-split>客服資訊</h2></div>
       <div class="bento">
         <p class="lead lg" style="--d:12;--t:6" data-a>洽談需求或訂單問題，請由下列方式聯絡。</p>
@@ -818,29 +921,36 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   var paged=false, cur=0, busy=false, lastWheel=0, lastMove=0, DUR=1000, timer=0;
 
-  /* 每一屏的內容若比視窗高，就用 zoom 縮小去塞進一屏；縮到低於 70% 就放棄翻頁，退回一般捲動 */
+  /* 每一屏的內容若比視窗高，就縮小去塞進一屏；內容少的屏則放大填滿。縮放只作用在內容內部（右側磁貼／首屏網格），
+     並補償寬度，所以每一屏的左右邊界永遠一致。縮到低於 70% 就放棄翻頁，退回一般捲動。 */
   function fit(){
-    var contents=screens.map(function(s){ return s.querySelector(".copy-in,.hero-in"); });
-    contents.forEach(function(c){ if(c) c.style.zoom=""; });
+    var items=screens.map(function(s){
+      var c=s.querySelector(".copy-in,.hero-in");
+      return c?{c:c,t:c.querySelector(".bento,.hero-grid")||c}:null;
+    });
+    function clear(){ items.forEach(function(o){ if(o){ o.t.style.zoom=""; o.t.style.width=""; } }); }
+    function set(t,z){ t.style.zoom=z; }
+    clear();
     if(reduce||innerWidth<900||innerHeight<560) return false;
-    var avail=innerHeight-96, ok=true;
-    contents.forEach(function(c){
-      if(!c) return;
-      var h=c.getBoundingClientRect().height, z=1;
+    var avail=innerHeight-112, ok=true;
+    items.forEach(function(o){
+      if(!o) return;
+      var t=o.t, h=t.getBoundingClientRect().height, z=1;
       if(h>avail){
-        z=avail/h; c.style.zoom=z;
-        h=c.getBoundingClientRect().height;
-        if(h>avail){ z*=avail/h; c.style.zoom=z; }
-      }else if(c.hasAttribute("data-grow")){            /* 內容少的頁面放大填滿，字才夠大 */
-        z=Math.min(1.3,innerHeight*.76/h);
+        z=avail/h; set(t,z);
+        h=t.getBoundingClientRect().height;
+        if(h>avail){ z*=avail/h; set(t,z); }
+      }else if(o.c.hasAttribute("data-grow")){
+        var cap=parseFloat(o.c.getAttribute("data-grow"))||1.3;
+        z=Math.min(cap,avail*.92/h);
         if(z>1.02){
-          c.style.zoom=z; var h2=c.getBoundingClientRect().height;
-          if(h2>avail){ z*=avail/h2; c.style.zoom=z; }
+          set(t,z); var h2=t.getBoundingClientRect().height;
+          if(h2>avail){ z*=avail/h2; set(t,z); }
         }else z=1;
       }
       if(z<.7) ok=false;
     });
-    if(!ok) contents.forEach(function(c){ if(c) c.style.zoom=""; });
+    if(!ok) clear();
     return ok;
   }
   function nearest(){
