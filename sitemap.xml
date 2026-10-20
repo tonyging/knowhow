@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://tonyging.github.io/knowhow/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://tonyging.github.io/knowhow/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://tonyging.github.io/knowhow/th/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tonyging.github.io/knowhow/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tonyging.github.io/knowhow/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/th/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://tonyging.github.io/knowhow/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://tonyging.github.io/knowhow/th/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tonyging.github.io/knowhow/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tonyging.github.io/knowhow/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://tonyging.github.io/knowhow/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://tonyging.github.io/knowhow/th/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tonyging.github.io/knowhow/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tonyging.github.io/knowhow/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

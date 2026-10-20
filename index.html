@@ -7,6 +7,25 @@
 <title>諾豪資訊 Knowhow｜小型軟體開發：網站、資料轉換、LINE 機器人</title>
 <meta name="description" content="諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具，以及網站維運與資安健檢。以線上洽談為主，依需求範圍報價。">
 <meta name="theme-color" content="#0E7A55">
+<link rel="canonical" href="https://tonyging.github.io/knowhow/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://tonyging.github.io/knowhow/">
+<link rel="alternate" hreflang="th" href="https://tonyging.github.io/knowhow/th/">
+<link rel="alternate" hreflang="ja" href="https://tonyging.github.io/knowhow/ja/">
+<link rel="alternate" hreflang="x-default" href="https://tonyging.github.io/knowhow/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="諾豪資訊 Knowhow">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="th_TH">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="諾豪資訊 Knowhow｜小型軟體開發：網站、資料轉換、LINE 機器人">
+<meta property="og:description" content="把專業知識，變成可以直接使用的成品。一頁式網站、資料轉換、API 串接、LINE 機器人，以及網站維運與資安健檢。">
+<meta property="og:url" content="https://tonyging.github.io/knowhow/">
+<meta property="og:image" content="https://tonyging.github.io/knowhow/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="諾豪資訊 Knowhow：把專業知識，變成可以直接使用的成品">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo.png">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">
@@ -674,6 +693,14 @@ html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
 /* 孤字處理 */
 .intro{text-wrap:pretty}
 ol.steps li span{text-wrap:balance}
+/* ============ 語言切換 ============ */
+.langs{display:inline-flex;gap:8px;align-items:center}
+.langs a{font-family:inherit;font-size:13px;font-weight:600;line-height:1;padding:7px 13px;border:1px solid var(--line-strong);border-radius:99px;color:var(--muted);text-decoration:none;transition:border-color .35s var(--ease),color .35s var(--ease)}
+.langs a:hover{border-color:var(--green);color:var(--green)}
+.langs a[aria-current]{background:var(--green);border-color:var(--green);color:var(--on-green);pointer-events:none}
+.menu .langs{display:inline-flex;position:absolute;bottom:62px;left:50%;transform:translateX(-50%);width:max-content;white-space:nowrap}
+.menu .langs a{display:inline-block;padding:7px 13px;font-size:13px;opacity:1;transform:none}
+
 /* ============ 緊湊模式：內容在視窗內放不下（縮放低於 85%）時才由腳本加上 html.compact ============ */
 @media (min-width:900px){
   html.compact .bento{gap:10px}
@@ -740,6 +767,11 @@ ol.steps li span{text-wrap:balance}
     <a href="#refund" style="--m:4"><b>05</b>付款與退款政策</a>
     <a href="#contact" style="--m:5"><b>06</b>客服資訊</a>
   </nav>
+  <nav class="langs" aria-label="Language">
+    <a href="./" hreflang="zh-Hant-TW" lang="zh-Hant-TW" data-lang="zh" aria-current="true">中文</a>
+    <a href="th/" hreflang="th" lang="th" data-lang="th">ไทย</a>
+    <a href="ja/" hreflang="ja" lang="ja" data-lang="ja">日本語</a>
+  </nav>
   <p class="menu-foot">KNOWHOW ・ SMALL &amp; FAST</p>
 </div>
 
@@ -760,8 +792,8 @@ ol.steps li span{text-wrap:balance}
           <p class="hero-origin" data-a>「諾豪」取自 <b>Know-how</b>，<br>把專業知識，<br>變成可以直接使用的成品。</p>
           <p class="intro" data-a>諾豪資訊提供小型軟體開發服務：一頁式網站、資料轉換、API 串接、LINE 機器人與自動化小工具。以線上洽談為主，依需求範圍報價。</p>
           <div class="hero-cta" data-a>
-            <a class="btn btn-primary" href="#contact">LINE 洽談</a>
-            <a class="btn btn-ghost" href="#services">查看服務與價格</a>
+            <a class="btn btn-primary" href="#contact" data-track="hero-line-cta">LINE 洽談</a>
+            <a class="btn btn-ghost" href="#services" data-track="hero-view-services">查看服務與價格</a>
           </div>
         </div>
       </div>
@@ -953,7 +985,7 @@ ol.steps li span{text-wrap:balance}
             <li><i class="sd sd3" aria-hidden="true"></i><em>STAGE 3</em><b>已交付並驗收</b><span>不退款；驗收期內免費修正 2 次</span></li>
           </ol>
           <p class="via">退款一律以原付款方式辦理。金流手續費由本商店負擔，不從退款中扣除。</p>
-          <button class="more-btn" type="button" data-open="terms"><i aria-hidden="true"></i>查看完整退款條款</button>
+          <button class="more-btn" type="button" data-open="terms" data-track="open-refund-terms"><i aria-hidden="true"></i>查看完整退款條款</button>
         </div>
 
       </div>
@@ -974,7 +1006,7 @@ ol.steps li span{text-wrap:balance}
           </div>
           <p class="cl-name">LINE ID</p>
           <p class="cl-big">@879gqgah</p>
-          <button class="btn-copy" type="button" data-copy="@879gqgah">複製 LINE ID</button>
+          <button class="btn-copy" type="button" data-copy="@879gqgah" data-track="copy-line-id">複製 LINE ID</button>
           <p class="cl-hint">在 LINE 搜尋這組 ID，加入好友後直接說明需求。</p>
         </div>
 
@@ -983,7 +1015,7 @@ ol.steps li span{text-wrap:balance}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
             <span class="cl-name">電話</span>
           </div>
-          <p class="cl-val"><a class="u" href="tel:0922170162">0922-170-162</a></p>
+          <p class="cl-val"><a class="u" href="tel:0922170162" data-track="click-phone">0922-170-162</a></p>
         </div>
 
         <div class="tile cl glow" style="--d:5;--t:3" data-a>
@@ -991,7 +1023,7 @@ ol.steps li span{text-wrap:balance}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             <span class="cl-name">Email</span>
           </div>
-          <p class="cl-val sm"><a class="u" href="mailto:akintech.dev@gmail.com">akintech.dev@gmail.com</a></p>
+          <p class="cl-val sm"><a class="u" href="mailto:akintech.dev@gmail.com" data-track="click-email">akintech.dev@gmail.com</a></p>
         </div>
 
         <div class="tile cl hours" style="--d:12;--t:6" data-a>
@@ -1009,6 +1041,11 @@ ol.steps li span{text-wrap:balance}
 
         <footer class="foot" data-a>
           <span>© 諾豪資訊　版權所有</span>
+          <nav class="langs" aria-label="Language">
+            <a href="./" hreflang="zh-Hant-TW" lang="zh-Hant-TW" data-lang="zh" aria-current="true">中文</a>
+            <a href="th/" hreflang="th" lang="th" data-lang="th">ไทย</a>
+            <a href="ja/" hreflang="ja" lang="ja" data-lang="ja">日本語</a>
+          </nav>
           <span class="tg"><i></i>SMALL &amp; FAST</span>
         </footer>
       </div>
@@ -1241,6 +1278,11 @@ ol.steps li span{text-wrap:balance}
 <script>
 /* 複製 LINE ID */
 (function(){
+  /* 成效追蹤：點擊帶有 data-track 的元素時送出事件。分析腳本未載入時什麼都不會發生。 */
+  document.addEventListener("click",function(e){
+    var el=e.target.closest&&e.target.closest("[data-track]"); if(!el) return;
+    try{ if(window.umami&&typeof window.umami.track==="function") window.umami.track(el.getAttribute("data-track")); }catch(x){}
+  },true);
   document.querySelectorAll("[data-copy]").forEach(function(b){
     b.addEventListener("click",function(){
       var v=b.getAttribute("data-copy"), old=b.textContent;
