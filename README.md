@@ -35,6 +35,7 @@
 | `i18n/review-th.md`、`i18n/review-ja.md` | 給母語者校對用的對照稿（由腳本產生） |
 | `sitemap.xml` | 三種語言的網站地圖（含 hreflang，由腳本產生） |
 | `og.png` | 社群分享預覽圖（1200×630） |
+| `google112b97dce942d55e.html` | Google Search Console 擁有權驗證檔，**不要刪除**，刪除會失去驗證 |
 | `logo.png` | 標誌與 favicon |
 | `llms.txt` | 提供給 AI 搜尋與 LLM 讀取的網站摘要（[llmstxt.org](https://llmstxt.org/) 格式） |
 
