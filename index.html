@@ -701,6 +701,10 @@ ol.steps li span{text-wrap:balance}
 .menu .langs{display:inline-flex;position:absolute;bottom:62px;left:50%;transform:translateX(-50%);width:max-content;white-space:nowrap}
 .menu .langs a{display:inline-block;padding:7px 13px;font-size:13px;opacity:1;transform:none}
 
+/* ============ 高於視窗的屏（矮螢幕）：屏內可捲動，捲到底再翻頁 ============ */
+html.paged.tall .screen{height:auto;min-height:100vh;min-height:100svh;overflow:visible}
+html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-items:flex-start}
+
 /* ============ 緊湊模式：內容在視窗內放不下（縮放低於 85%）時才由腳本加上 html.compact ============ */
 @media (min-width:900px){
   html.compact .bento{gap:10px}
@@ -1158,7 +1162,7 @@ ol.steps li span{text-wrap:balance}
     });
     function clear(){ items.forEach(function(o){ if(o){ o.t.style.zoom=""; o.t.style.width=""; } }); }
     function set(t,z){ t.style.zoom=z; }
-    function run(){
+    function run(floor){
       var avail=innerHeight-112, ok=true, minz=9;
       items.forEach(function(o){
         if(!o) return;
@@ -1177,19 +1181,23 @@ ol.steps li span{text-wrap:balance}
             if(h2>avail){ z=1; set(t,1); }
           }else z=1;
         }
+        if(floor&&z<floor){ z=floor; set(t,z); }
         if(z<.7) ok=false;
         if(z<minz) minz=z;
       });
       return {ok:ok,minz:minz};
     }
-    clear(); root.classList.remove("compact");
-    if(reduce||innerWidth<900||innerHeight<560) return false;
+    clear(); root.classList.remove("compact","tall");
+    if(reduce||innerWidth<900||innerHeight<420) return false;
     var r=run();
     if(r.ok&&r.minz>=.85) return true;
     /* 放不下：改用緊湊版面（矮螢幕、筆電）再試一次 */
     clear(); root.classList.add("compact");
     r=run();
-    if(!r.ok){ clear(); root.classList.remove("compact"); return false; }
+    if(r.ok) return true;
+    /* 還是放不下：縮放不低於 80%，超出的部分在該屏內捲動，捲到底再翻下一屏 */
+    clear(); root.classList.add("tall");
+    run(.8);
     return true;
   }
   function nearest(){
@@ -1198,9 +1206,10 @@ ol.steps li span{text-wrap:balance}
     return best;
   }
   function ease(t){ return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; }
-  function goTo(i,instant){
+  function goTo(i,instant,toEnd){
     i=Math.max(0,Math.min(screens.length-1,i));
     var to=screens[i].offsetTop, from=window.pageYOffset;
+    if(toEnd&&root.classList.contains("tall")) to+=Math.max(0,screens[i].offsetHeight-innerHeight);
     cur=i;
     if(instant||Math.abs(from-to)<2){ scrollTo(0,to); return; }
     busy=true; lastMove=performance.now();
@@ -1225,15 +1234,26 @@ ol.steps li span{text-wrap:balance}
     }
   }
 
+  /* 高於視窗的屏：還沒捲到該方向的邊緣時，在屏內捲動（最多捲到該屏的邊緣，不會捲出界）。
+     回傳新的捲動位置；已在邊緣或不是高屏時回傳 null。 */
+  function slide(dy){
+    if(!root.classList.contains("tall")||busy||Math.abs(dy)<1) return null;
+    var sc=screens[cur], top=sc.offsetTop, bot=top+sc.offsetHeight, y=window.pageYOffset, room;
+    if(dy>0){ room=bot-(y+innerHeight); return room>2?y+Math.min(dy,room):null; }
+    room=y-top; return room>2?y-Math.min(-dy,room):null;
+  }
   addEventListener("wheel",function(e){
     if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    var dy0=e.deltaY; if(e.deltaMode===1) dy0*=16;
+    var ny=slide(dy0);
+    if(ny!==null){ e.preventDefault(); scrollTo(0,ny); lastMove=performance.now(); lastWheel=lastMove; return; }
     e.preventDefault();
     var now=performance.now(), gap=now-lastWheel; lastWheel=now;
     if(busy) return;
     if(gap<110&&now-lastMove<1600) return;           /* 觸控板慣性滾動的尾巴，不算新的一次 */
     var dy=e.deltaY; if(e.deltaMode===1) dy*=16;
     if(Math.abs(dy)<4) return;
-    goTo(cur+(dy>0?1:-1));
+    goTo(cur+(dy>0?1:-1),false,dy<0);
   },{passive:false});
 
   addEventListener("keydown",function(e){
@@ -1246,7 +1266,9 @@ ol.steps li span{text-wrap:balance}
     else if(k==="Home"){ e.preventDefault(); if(!busy) goTo(0); return; }
     else if(k==="End"){ e.preventDefault(); if(!busy) goTo(screens.length-1); return; }
     if(!dir) return;
-    e.preventDefault(); if(!busy) goTo(cur+dir);
+    var amt=(k==="ArrowDown"||k==="ArrowUp")?80:Math.round(innerHeight*.85), ny=slide(dir*amt);
+    if(ny!==null){ e.preventDefault(); scrollTo(0,ny); return; }
+    e.preventDefault(); if(!busy) goTo(cur+dir,false,dir<0);
   });
 
   d.addEventListener("click",function(e){
@@ -1263,6 +1285,12 @@ ol.steps li span{text-wrap:balance}
     if(!paged||busy) return;
     clearTimeout(timer);
     timer=setTimeout(function(){
+      if(root.classList.contains("tall")){
+        /* 視窗完全落在某一屏之內（高屏在屏內捲動）：不吸附，只更新目前所在的屏 */
+        var y=window.pageYOffset, found=-1;
+        screens.forEach(function(s,i){ var t=s.offsetTop; if(y>=t-2&&y+innerHeight<=t+s.offsetHeight+2) found=i; });
+        if(found>=0){ cur=found; return; }
+      }
       var n=nearest(); cur=n;
       if(Math.abs(window.pageYOffset-screens[n].offsetTop)>2) goTo(n);
     },160);
