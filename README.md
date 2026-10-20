@@ -30,12 +30,12 @@ gh api -X POST repos/{owner}/{repo}/pages -f "source[branch]=main" -f "source[pa
 ## 網址假設（上線後要核對）
 
 `index.html` 的 JSON-LD 與 `llms.txt` 裡的網址，都假設網站公開在
-`https://tonyging.github.io/nuohao-site/`。
+`https://tonyging.github.io/knowhow/`。
 
 如果實際網址不同（例如改用自訂網域），要把這個網址在兩個檔案裡全部取代掉：
 
 ```
-grep -n "tonyging.github.io/nuohao-site" index.html llms.txt
+grep -n "tonyging.github.io/knowhow" index.html llms.txt
 ```
 
 ## AI 搜尋可讀性
