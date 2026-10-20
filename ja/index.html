@@ -29,6 +29,7 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <link href="../logo.png" rel="icon"/>
 <script>document.documentElement.classList.add("js")</script>
+<script data-do-not-track="true" data-domains="tonyging.github.io" data-website-id="61f8dd1d-a873-4ab9-80a0-dcf2a8809eeb" defer="" src="https://cloud.umami.is/script.js"></script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -729,6 +730,10 @@ html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
 /* 孤字處理 */
 .intro{text-wrap:pretty}
 ol.steps li span{text-wrap:balance}
+/* ============ 頁尾的隱私說明連結 ============ */
+.foot-link{background:none;border:0;padding:0;font-family:inherit;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.foot-link:hover{color:var(--green)}
+
 /* ============ 語言切換 ============ */
 .langs{display:inline-flex;gap:8px;align-items:center}
 .langs a{font-family:inherit;font-size:13px;font-weight:600;line-height:1;padding:7px 13px;border:1px solid var(--line-strong);border-radius:99px;color:var(--muted);text-decoration:none;transition:border-color .35s var(--ease),color .35s var(--ease)}
@@ -795,6 +800,19 @@ html[lang="ja"] body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu
 <li><strong>処理期間：</strong>返金確定後3営業日以内に手続きします。クレジットカードは取消（返金処理）で返却され、実際の入金時期はカード発行会社によって異なります。その他の支払い方法は、藍新金流（NewebPay）の返金の仕組みに従います。</li>
 </ul>
 <p class="tr-note">翻訳に差異がある場合は、中国語版を正とします。</p></div>
+</dialog>
+<dialog aria-labelledby="privacy-t" class="terms" id="privacy">
+<div class="terms-in">
+<div class="terms-head"><h3 id="privacy-t">プライバシーについて</h3><button aria-label="閉じる" class="terms-x" data-close="" type="button"><i></i></button></div>
+<ul class="terms-list">
+<li><strong>収集する情報：</strong>閲覧回数、どのサイトから来たか、閲覧したページと言語、端末とブラウザの種類、おおよその地域（国または都市）、ボタンのクリック数（LINE IDのコピー、電話・メールのタップ、サービスの閲覧）。</li>
+<li><strong>収集しない情報：</strong>入力フォームはなく、氏名・電話番号・メールアドレス・決済情報は収集しません。Cookieも使用しません。</li>
+<li><strong>利用目的：</strong>サイトの利用状況を把握し、内容とデザインを改善するためだけに使います。広告には使わず、第三者に販売することもありません。</li>
+<li><strong>利用ツール：</strong>Umami Cloud（cloud.umami.is）が当店に代わって集計します。</li>
+<li><strong>集計を望まない場合：</strong>ブラウザの「Do Not Track（トラッキング拒否）」を有効にすると、当サイトはあなたの閲覧を記録しません。</li>
+<li><strong>お問い合わせ：</strong>プライバシーに関するご質問は、LINEまたはメールでお気軽にご連絡ください。</li>
+</ul>
+</div>
 </dialog>
 <div aria-label="サイトメニュー" aria-modal="true" class="menu" id="menu" role="dialog">
 <nav aria-label="サイトメニュー">
@@ -1052,6 +1070,7 @@ html[lang="ja"] body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu
 </div>
 <footer class="foot" data-a="">
 <span>© 諾豪資訊 無断転載を禁じます</span>
+<button class="foot-link" data-open="privacy" data-track="open-privacy" type="button">プライバシーについて</button>
 <nav aria-label="Language" class="langs">
 <a data-lang="zh" href="../" hreflang="zh-Hant-TW" lang="zh-Hant-TW">中文</a>
 <a data-lang="th" href="../th/" hreflang="th" lang="th">ไทย</a>
@@ -1125,11 +1144,16 @@ html[lang="ja"] body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu
     a.addEventListener("click",function(){ menu.classList.remove("open"); btn.setAttribute("aria-expanded","false"); btn.setAttribute("aria-label","開啟選單"); root.style.overflow=""; root.classList.remove("menu-open"); });
   });
   addEventListener("keydown",function(e){ if(e.key==="Escape"&&menu.classList.contains("open")) setMenu(false); });
-  var terms=document.getElementById("terms");
-  if(terms){
-    document.querySelectorAll("[data-open=terms]").forEach(function(b){ b.addEventListener("click",function(){ if(terms.showModal) terms.showModal(); else terms.setAttribute("open",""); }); });
-    terms.addEventListener("click",function(e){ if(e.target===terms||e.target.closest("[data-close]")) terms.close(); });
-  }
+  /* 彈窗：任何帶 data-open="<dialog 的 id>" 的元素都能開啟；點背景或帶 data-close 的元素關閉 */
+  document.querySelectorAll("dialog.terms").forEach(function(dlg){
+    dlg.addEventListener("click",function(e){ if(e.target===dlg||e.target.closest("[data-close]")) dlg.close(); });
+  });
+  document.querySelectorAll("[data-open]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var dlg=document.getElementById(b.getAttribute("data-open")); if(!dlg) return;
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
+    });
+  });
 
   /* 游標柔光（僅滑鼠裝置） */
   if(!reduce && matchMedia("(hover:hover) and (pointer:fine)").matches){
@@ -1248,7 +1272,7 @@ html[lang="ja"] body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu
     room=y-top; return room>2?y-Math.min(-dy,room):null;
   }
   addEventListener("wheel",function(e){
-    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||document.querySelector("dialog[open]")) return;
     var dy0=e.deltaY; if(e.deltaMode===1) dy0*=16;
     var ny=slide(dy0);
     if(ny!==null){ e.preventDefault(); scrollTo(0,ny); lastMove=performance.now(); lastWheel=lastMove; return; }
@@ -1262,7 +1286,7 @@ html[lang="ja"] body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu
   },{passive:false});
 
   addEventListener("keydown",function(e){
-    if(!paged||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    if(!paged||(menu&&menu.classList.contains("open"))||document.querySelector("dialog[open]")) return;
     var t=e.target, tag=t&&t.tagName, k=e.key, dir=0;
     if(/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
     if(k===" "&&/^(A|BUTTON)$/.test(tag)) return;

@@ -28,6 +28,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo.png">
 <script>document.documentElement.classList.add("js")</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="61f8dd1d-a873-4ab9-80a0-dcf2a8809eeb" data-domains="tonyging.github.io" data-do-not-track="true"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -693,6 +694,10 @@ html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
 /* 孤字處理 */
 .intro{text-wrap:pretty}
 ol.steps li span{text-wrap:balance}
+/* ============ 頁尾的隱私說明連結 ============ */
+.foot-link{background:none;border:0;padding:0;font-family:inherit;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.foot-link:hover{color:var(--green)}
+
 /* ============ 語言切換 ============ */
 .langs{display:inline-flex;gap:8px;align-items:center}
 .langs a{font-family:inherit;font-size:13px;font-weight:600;line-height:1;padding:7px 13px;border:1px solid var(--line-strong);border-radius:99px;color:var(--muted);text-decoration:none;transition:border-color .35s var(--ease),color .35s var(--ease)}
@@ -759,6 +764,20 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
               <li><strong>申請方式：</strong>以 LINE 或電話聯絡，說明訂單與退款原因，不需要填寫表單。</li>
               <li><strong>處理時間：</strong>確認退款後 3 個工作天內辦理。信用卡以退刷方式退回，實際入帳時間依發卡銀行而定；其他付款方式依藍新金流的退款機制辦理。</li>
             </ul>
+  </div>
+</dialog>
+
+<dialog class="terms" id="privacy" aria-labelledby="privacy-t">
+  <div class="terms-in">
+    <div class="terms-head"><h3 id="privacy-t">隱私說明</h3><button class="terms-x" type="button" data-close aria-label="關閉"><i></i></button></div>
+    <ul class="terms-list">
+      <li><strong>收集什麼：</strong>瀏覽次數、從哪個網站連過來、瀏覽的頁面與語言、裝置與瀏覽器類型、大致的地區（國家或城市），以及按鈕的點擊次數（複製 LINE ID、點選電話或 Email、查看服務）。</li>
+      <li><strong>不收集什麼：</strong>本站不要求輸入任何資料，不蒐集姓名、電話、Email 或付款資料，也不使用 cookie。</li>
+      <li><strong>用途：</strong>只用來了解網站的使用情形，改善內容與版面，不用於廣告，也不出售。</li>
+      <li><strong>使用的工具：</strong>Umami Cloud（cloud.umami.is），由 Umami 代為統計。</li>
+      <li><strong>不想被統計：</strong>在瀏覽器開啟「Do Not Track」（不追蹤）設定，本站就不會記錄你的瀏覽。</li>
+      <li><strong>聯絡：</strong>對隱私有疑問，歡迎用 LINE 或 Email 聯絡。</li>
+    </ul>
   </div>
 </dialog>
 
@@ -1045,6 +1064,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <footer class="foot" data-a>
           <span>© 諾豪資訊　版權所有</span>
+          <button class="foot-link" type="button" data-open="privacy" data-track="open-privacy">隱私說明</button>
           <nav class="langs" aria-label="Language">
             <a href="./" hreflang="zh-Hant-TW" lang="zh-Hant-TW" data-lang="zh" aria-current="true">中文</a>
             <a href="th/" hreflang="th" lang="th" data-lang="th">ไทย</a>
@@ -1120,11 +1140,16 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
     a.addEventListener("click",function(){ menu.classList.remove("open"); btn.setAttribute("aria-expanded","false"); btn.setAttribute("aria-label","開啟選單"); root.style.overflow=""; root.classList.remove("menu-open"); });
   });
   addEventListener("keydown",function(e){ if(e.key==="Escape"&&menu.classList.contains("open")) setMenu(false); });
-  var terms=document.getElementById("terms");
-  if(terms){
-    document.querySelectorAll("[data-open=terms]").forEach(function(b){ b.addEventListener("click",function(){ if(terms.showModal) terms.showModal(); else terms.setAttribute("open",""); }); });
-    terms.addEventListener("click",function(e){ if(e.target===terms||e.target.closest("[data-close]")) terms.close(); });
-  }
+  /* 彈窗：任何帶 data-open="<dialog 的 id>" 的元素都能開啟；點背景或帶 data-close 的元素關閉 */
+  document.querySelectorAll("dialog.terms").forEach(function(dlg){
+    dlg.addEventListener("click",function(e){ if(e.target===dlg||e.target.closest("[data-close]")) dlg.close(); });
+  });
+  document.querySelectorAll("[data-open]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var dlg=document.getElementById(b.getAttribute("data-open")); if(!dlg) return;
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
+    });
+  });
 
   /* 游標柔光（僅滑鼠裝置） */
   if(!reduce && matchMedia("(hover:hover) and (pointer:fine)").matches){
@@ -1243,7 +1268,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
     room=y-top; return room>2?y-Math.min(-dy,room):null;
   }
   addEventListener("wheel",function(e){
-    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||document.querySelector("dialog[open]")) return;
     var dy0=e.deltaY; if(e.deltaMode===1) dy0*=16;
     var ny=slide(dy0);
     if(ny!==null){ e.preventDefault(); scrollTo(0,ny); lastMove=performance.now(); lastWheel=lastMove; return; }
@@ -1257,7 +1282,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
   },{passive:false});
 
   addEventListener("keydown",function(e){
-    if(!paged||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    if(!paged||(menu&&menu.classList.contains("open"))||document.querySelector("dialog[open]")) return;
     var t=e.target, tag=t&&t.tagName, k=e.key, dir=0;
     if(/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
     if(k===" "&&/^(A|BUTTON)$/.test(tag)) return;

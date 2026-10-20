@@ -11,7 +11,7 @@
 
 | 項目 | 說明 |
 |---|---|
-| 形式 | 單頁式靜態網站，無外部資源；中文為內容來源，泰文與日文版由腳本產生 |
+| 形式 | 單頁式靜態網站；中文為內容來源，泰文與日文版由腳本產生。除了成效統計（Umami）之外，不載入任何外部資源 |
 | 版面 | 5 個整屏區塊，滾輪一格翻一整頁；矮螢幕、窄螢幕與「減少動態效果」設定自動改為一般捲動 |
 | 響應式 | 桌機、平板、手機（最小支援 320px 寬） |
 | 色彩 | 固定淺色，不跟隨系統深色模式（深色樣式保留，在 `<html>` 加上 `data-theme="dark"` 可手動啟用） |
@@ -37,6 +37,24 @@
 | `og.png` | 社群分享預覽圖（1200×630） |
 | `logo.png` | 標誌與 favicon |
 | `llms.txt` | 提供給 AI 搜尋與 LLM 讀取的網站摘要（[llmstxt.org](https://llmstxt.org/) 格式） |
+
+## 成效追蹤（Umami）
+
+使用 [Umami Cloud](https://umami.is/) 免費版統計，不使用 cookie，不蒐集可識別個人的資料。追蹤碼在 `index.html` 的 `<head>`，只統計 `tonyging.github.io`（本機預覽不會送出資料），並尊重瀏覽器的「Do Not Track」設定。頁尾有「隱私說明」彈窗，三種語言都有。
+
+按鈕點擊以 `data-track` 屬性標記，Umami 載入後才會送出事件：
+
+| 事件名稱 | 對應的元素 |
+|---|---|
+| `hero-line-cta` | 首屏「LINE 洽談」 |
+| `hero-view-services` | 首屏「查看服務與價格」 |
+| `copy-line-id` | 複製 LINE ID |
+| `click-phone` | 點電話 |
+| `click-email` | 點 Email |
+| `open-refund-terms` | 開啟完整退款條款 |
+| `open-privacy` | 開啟隱私說明 |
+
+新增要追蹤的按鈕時，加上 `data-track="事件名稱"` 即可。更換追蹤工具或網域時，記得同步修改隱私說明的內容。
 
 ## 多語系（中文／泰文／日文）
 

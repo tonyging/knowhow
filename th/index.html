@@ -29,6 +29,7 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <link href="../logo.png" rel="icon"/>
 <script>document.documentElement.classList.add("js")</script>
+<script data-do-not-track="true" data-domains="tonyging.github.io" data-website-id="61f8dd1d-a873-4ab9-80a0-dcf2a8809eeb" defer="" src="https://cloud.umami.is/script.js"></script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -729,6 +730,10 @@ html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
 /* 孤字處理 */
 .intro{text-wrap:pretty}
 ol.steps li span{text-wrap:balance}
+/* ============ 頁尾的隱私說明連結 ============ */
+.foot-link{background:none;border:0;padding:0;font-family:inherit;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.foot-link:hover{color:var(--green)}
+
 /* ============ 語言切換 ============ */
 .langs{display:inline-flex;gap:8px;align-items:center}
 .langs a{font-family:inherit;font-size:13px;font-weight:600;line-height:1;padding:7px 13px;border:1px solid var(--line-strong);border-radius:99px;color:var(--muted);text-decoration:none;transition:border-color .35s var(--ease),color .35s var(--ease)}
@@ -809,6 +814,19 @@ html[lang="th"] .col+.col::before{display:none}
 <li><strong>ระยะเวลาดำเนินการ:</strong> ดำเนินการภายใน 3 วันทำการหลังยืนยันการคืนเงิน บัตรเครดิตคืนด้วยวิธียกเลิกรายการบัตร เวลาที่เงินเข้าจริงขึ้นอยู่กับธนาคารผู้ออกบัตร วิธีชำระเงินอื่นดำเนินการตามกลไกการคืนเงินของ NewebPay (藍新金流)</li>
 </ul>
 <p class="tr-note">ข้อความภาษาจีนเป็นฉบับหลัก หากการแปลมีความแตกต่างกัน ให้ถือฉบับภาษาจีนเป็นหลัก</p></div>
+</dialog>
+<dialog aria-labelledby="privacy-t" class="terms" id="privacy">
+<div class="terms-in">
+<div class="terms-head"><h3 id="privacy-t">นโยบายความเป็นส่วนตัว</h3><button aria-label="ปิด" class="terms-x" data-close="" type="button"><i></i></button></div>
+<ul class="terms-list">
+<li><strong>ข้อมูลที่เก็บ:</strong> จำนวนการเข้าชม เว็บไซต์ต้นทางที่ลิงก์มา หน้าและภาษาที่เปิดดู ประเภทอุปกรณ์และเบราว์เซอร์ พื้นที่โดยประมาณ (ระดับประเทศหรือเมือง) และจำนวนการกดปุ่ม (คัดลอก LINE ID กดโทรศัพท์หรืออีเมล ดูบริการ)</li>
+<li><strong>ข้อมูลที่ไม่เก็บ:</strong> เว็บไซต์ไม่ขอให้กรอกข้อมูลใด ๆ ไม่เก็บชื่อ เบอร์โทรศัพท์ อีเมล หรือข้อมูลการชำระเงิน และไม่ใช้คุกกี้</li>
+<li><strong>วัตถุประสงค์:</strong> ใช้เพื่อทำความเข้าใจการใช้งานเว็บไซต์และปรับปรุงเนื้อหาและการออกแบบเท่านั้น ไม่ใช้เพื่อการโฆษณาและไม่ขายข้อมูล</li>
+<li><strong>เครื่องมือที่ใช้:</strong> Umami Cloud (cloud.umami.is) เป็นผู้ประมวลผลสถิติแทนเรา</li>
+<li><strong>หากไม่ต้องการให้นับสถิติ:</strong> เปิดการตั้งค่า "Do Not Track" ในเบราว์เซอร์ เว็บไซต์นี้จะไม่บันทึกการเข้าชมของคุณ</li>
+<li><strong>ติดต่อ:</strong> หากมีข้อสงสัยเรื่องความเป็นส่วนตัว ติดต่อเราทาง LINE หรืออีเมลได้</li>
+</ul>
+</div>
 </dialog>
 <div aria-label="เมนูเว็บไซต์" aria-modal="true" class="menu" id="menu" role="dialog">
 <nav aria-label="เมนูเว็บไซต์">
@@ -1066,6 +1084,7 @@ html[lang="th"] .col+.col::before{display:none}
 </div>
 <footer class="foot" data-a="">
 <span>© 諾豪資訊 สงวนลิขสิทธิ์</span>
+<button class="foot-link" data-open="privacy" data-track="open-privacy" type="button">นโยบายความเป็นส่วนตัว</button>
 <nav aria-label="Language" class="langs">
 <a data-lang="zh" href="../" hreflang="zh-Hant-TW" lang="zh-Hant-TW">中文</a>
 <a aria-current="true" data-lang="th" href="./" hreflang="th" lang="th">ไทย</a>
@@ -1139,11 +1158,16 @@ html[lang="th"] .col+.col::before{display:none}
     a.addEventListener("click",function(){ menu.classList.remove("open"); btn.setAttribute("aria-expanded","false"); btn.setAttribute("aria-label","開啟選單"); root.style.overflow=""; root.classList.remove("menu-open"); });
   });
   addEventListener("keydown",function(e){ if(e.key==="Escape"&&menu.classList.contains("open")) setMenu(false); });
-  var terms=document.getElementById("terms");
-  if(terms){
-    document.querySelectorAll("[data-open=terms]").forEach(function(b){ b.addEventListener("click",function(){ if(terms.showModal) terms.showModal(); else terms.setAttribute("open",""); }); });
-    terms.addEventListener("click",function(e){ if(e.target===terms||e.target.closest("[data-close]")) terms.close(); });
-  }
+  /* 彈窗：任何帶 data-open="<dialog 的 id>" 的元素都能開啟；點背景或帶 data-close 的元素關閉 */
+  document.querySelectorAll("dialog.terms").forEach(function(dlg){
+    dlg.addEventListener("click",function(e){ if(e.target===dlg||e.target.closest("[data-close]")) dlg.close(); });
+  });
+  document.querySelectorAll("[data-open]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var dlg=document.getElementById(b.getAttribute("data-open")); if(!dlg) return;
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
+    });
+  });
 
   /* 游標柔光（僅滑鼠裝置） */
   if(!reduce && matchMedia("(hover:hover) and (pointer:fine)").matches){
@@ -1262,7 +1286,7 @@ html[lang="th"] .col+.col::before{display:none}
     room=y-top; return room>2?y-Math.min(-dy,room):null;
   }
   addEventListener("wheel",function(e){
-    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    if(!paged||e.ctrlKey||(menu&&menu.classList.contains("open"))||document.querySelector("dialog[open]")) return;
     var dy0=e.deltaY; if(e.deltaMode===1) dy0*=16;
     var ny=slide(dy0);
     if(ny!==null){ e.preventDefault(); scrollTo(0,ny); lastMove=performance.now(); lastWheel=lastMove; return; }
@@ -1276,7 +1300,7 @@ html[lang="th"] .col+.col::before{display:none}
   },{passive:false});
 
   addEventListener("keydown",function(e){
-    if(!paged||(menu&&menu.classList.contains("open"))||(document.getElementById("terms")&&document.getElementById("terms").open)) return;
+    if(!paged||(menu&&menu.classList.contains("open"))||document.querySelector("dialog[open]")) return;
     var t=e.target, tag=t&&t.tagName, k=e.key, dir=0;
     if(/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
     if(k===" "&&/^(A|BUTTON)$/.test(tag)) return;
