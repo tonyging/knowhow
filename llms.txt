@@ -14,17 +14,17 @@
 - [資安健檢（一次性）](https://tonyging.github.io/knowhow/#care)：檢查 HTTPS 與安全標頭、帳號權限與密碼、套件漏洞與更新、備份還原機制，提供書面報告與修補建議。NT$8,000 起。不含滲透測試與入侵檢測，僅檢查客戶授權的網站。
 - [API 串接／LINE 機器人](https://tonyging.github.io/knowhow/#services)：第三方 API 串接、LINE 官方帳號聊天機器人。依複雜度報價，需先洽談需求。
 
+## 作品範例
+
+- [嵐岸咖啡 Lan’an Roastery（示範作品・虛構品牌）](https://tonyging.github.io/demo-coffee/)：咖啡烘豆所的形象官網，使用 Astro 製作，附 Sanity 後台，店家可自己新增產品、發布消息、修改門市資訊。品牌與內容皆為虛構。
+- [後台操作示意](https://tonyging.github.io/demo-coffee/backend-demo/)：示範店家如何自己改內容。
+- [作品範例區塊](https://tonyging.github.io/knowhow/#portfolio)：諾豪資訊官網上的作品介紹，另含諾豪自己使用的 LINE 官方帳號（ID：@879gqgah）與圖文選單。
+
 ## 合作方式與政策
 
 - [合作流程](https://tonyging.github.io/knowhow/#process)：線上了解需求、書面確認範圍／報價／交期、先交可試用版本、依回饋修改（含 2 次修改）、交付成品與原始碼。
 - [付款與退款政策](https://tonyging.github.io/knowhow/#refund)：服務為客製化性質，依《通訊交易解除權合理例外情事適用準則》第 2 條第 2 款不適用七日解除權，另提供退款保障。尚未開工，全額退款；已開工尚未交付，依書面確認的報價項目計算已完成進度，扣除後退還其餘；已交付並驗收，不退款，驗收期為交付後 7 日，期間內提供 2 次免費修正；因本商店因素無法交付，全額退款。金流手續費由本商店負擔，不從退款中扣除。月費方案按月預付，下個月起可停止，已開始的當月不退費。退款一律以原付款方式辦理，確認後 3 個工作天內辦理，信用卡實際入帳時間依發卡銀行而定。
 - [關於我們](https://tonyging.github.io/knowhow/#about)：承辦人為全端工程師，曾參與全國性公共服務系統的開發。
-
-## 其他語言
-
-- [ไทย（泰文）](https://tonyging.github.io/knowhow/th/)：同一份內容的泰文版。
-- [日本語（日文）](https://tonyging.github.io/knowhow/ja/)：同一份內容的日文版。
-- 翻譯僅供參考，條款與價格以中文版為準。
 
 ## 聯絡方式
 
