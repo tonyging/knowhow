@@ -63,11 +63,11 @@
           {
             "@type": "Offer",
             "url": "https://tonyging.github.io/knowhow/#services",
-            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 1000, "priceCurrency": "TWD"},
+            "priceSpecification": {"@type": "PriceSpecification", "price": 1500, "priceCurrency": "TWD"},
             "itemOffered": {
               "@type": "Service",
               "name": "流程診斷報告（入門方案）",
-              "description": "了解客戶目前重複性工作的做法，找出可以交給程式處理的環節，提供書面診斷報告，說明建議的做法、預估費用與交期。價格為起算價，實際金額依需求範圍於書面報價時載明。"
+              "description": "先聊清楚需求，附書面建議。每次 NT$1,500。"
             }
           },
           {
@@ -304,6 +304,9 @@ ol.steps li{position:relative;counter-increment:s;padding:44px 0 0;font-size:14p
 ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;
   background:var(--card);border:1px solid var(--green);color:var(--green);font:12px/30px var(--mono);text-align:center}
 ol.steps+.note{margin-top:18px}
+.own{margin:18px 0 0;padding:12px 16px;border:1px solid var(--green);border-radius:12px;font-size:clamp(15px,1.25vw,18px);line-height:1.6;color:var(--ink)}
+.own b{color:var(--green);margin-right:.8em}
+ol.steps+.own+.note{margin-top:12px}
 
 /* 關於 */
 .about{display:flex;flex-direction:column}
@@ -936,8 +939,8 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
             <path d="M16 21h16M16 27h10"/><path d="M16 35l4 4 9-10" stroke="var(--green)"/>
           </svg>
           <h4>流程診斷報告<span class="badge">入門方案</span></h4>
-          <p>找出哪些重複工作可以交給程式處理，提供書面診斷報告，說明建議做法、預估費用與交期。</p>
-          <div class="price">NT$1,000 起</div>
+          <p>先聊清楚需求，附書面建議。</p>
+          <div class="price">NT$1,500</div>
         </article>
         <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -978,8 +981,9 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
             <li><b>書面確認</b><span>範圍、報價與交期</span></li>
             <li><b>試用版本</b><span>先交可試用的版本，確認方向</span></li>
             <li><b>依回饋修改</b><span>含 2 次修改</span></li>
-            <li><b>交付成品</b><span>原始碼與使用說明</span></li>
+            <li><b>交付成品</b><span>原始碼與使用說明，付清後完整交付</span></li>
           </ol>
+          <p class="own"><b>網站是你的</b>網域、主機、後台帳號開在你名下，付清後程式一併交付，之後想找別人接手也可以。</p>
           <p class="note">範圍有變動時，會先說明再調整報價。</p>
         </section>
 
