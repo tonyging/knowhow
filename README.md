@@ -21,7 +21,7 @@
 
 1. **首頁**：品牌由來與主要服務入口
 2. **服務與流程**：服務項目、起算價格、合作流程
-3. **作品範例**：嵐岸咖啡（虛構品牌示範官網＋後台）與諾豪自己的 LINE 官方帳號
+3. **作品範例**：微光指尖（美甲美睫線上預約＋店家後台）、嵐岸咖啡（形象官網＋後台），桌機用分頁切換、手機上下排列；另有諾豪自己的 LINE 官方帳號
 4. **維運與資安**：月費維運方案與資安健檢
 5. **關於與付款**：關於我們、付款方式、依進度的退款政策（完整條款為彈出視窗）
 6. **客服資訊**：LINE 官方帳號、電話、Email、服務時間
@@ -33,7 +33,7 @@
 | `index.html` | 網站本體（**中文原稿，唯一的內容來源**），內含樣式、互動腳本與 JSON-LD 結構化資料 |
 | `th/index.html`、`ja/index.html` | 泰文、日文版（**目前隱藏、未連結，內容已過期**），由腳本產生，不要手動修改 |
 | `tools/` | `build_i18n.py`（產生多語言版本）、`translations.py`（翻譯對照表）、`i18n_units.py`（列出需翻譯的文字） |
-| `img/work-coffee.webp` | 作品範例屏使用的截圖 |
+| `img/work-*.webp` | 作品範例屏的截圖：`work-glimmer`、`work-coffee` 是桌機首頁（1200×712），`*-mobile` 是手機版（780×1688，疊在桌機圖右下角）；`work-glimmer-book`、`work-glimmer-admin` 是預約流程與店家後台截圖，備用 |
 | `sitemap.xml` | 網站地圖（目前只有中文；加回多語系時由腳本重新產生） |
 | `og.png` | 社群分享預覽圖（1200×630） |
 | `google112b97dce942d55e.html` | Google Search Console 擁有權驗證檔，**不要刪除**，刪除會失去驗證 |
@@ -55,8 +55,11 @@
 | `click-email` | 點 Email |
 | `open-refund-terms` | 開啟完整退款條款 |
 | `open-privacy` | 開啟隱私說明 |
-| `work-coffee-site` | 作品範例「看網站」 |
-| `work-coffee-backend` | 作品範例「看後台怎麼改」 |
+| `work-tab-glimmer`、`work-tab-coffee` | 作品範例切換分頁 |
+| `work-glimmer-site` | 微光指尖「看網站」 |
+| `work-glimmer-admin` | 微光指尖「看店家後台」 |
+| `work-coffee-site` | 嵐岸咖啡「看網站」 |
+| `work-coffee-backend` | 嵐岸咖啡「看後台怎麼改」 |
 | `work-line-oa` | 作品範例 LINE 官方帳號卡「看聯絡方式」 |
 
 新增要追蹤的按鈕時，加上 `data-track="事件名稱"` 即可。更換追蹤工具或網域時，記得同步修改隱私說明的內容。

@@ -38,7 +38,7 @@
       "logo": "https://tonyging.github.io/knowhow/logo.png",
       "description": "諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價。「諾豪」取自 Know-how。",
       "areaServed": "TW",
-      "subjectOf": {"@id": "https://tonyging.github.io/knowhow/#work-coffee"},
+      "subjectOf": [{"@id": "https://tonyging.github.io/knowhow/#work-glimmer"}, {"@id": "https://tonyging.github.io/knowhow/#work-coffee"}],
       "knowsLanguage": "zh-TW",
       "contactPoint": [
         {
@@ -139,6 +139,15 @@
       "name": "諾豪資訊",
       "inLanguage": "zh-Hant-TW",
       "publisher": {"@id": "https://tonyging.github.io/knowhow/#org"}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://tonyging.github.io/knowhow/#work-glimmer",
+      "name": "微光指尖 Glimmer Nail & Lash（示範作品・虛構品牌）",
+      "url": "https://tonyging.github.io/demo-booking/",
+      "description": "諾豪資訊製作的示範作品：美甲美睫工作室的線上預約網站與店家後台。客人用手機三步完成預約、可從作品照片直接預約；有新預約時店長的 LINE 會收到通知；後台含排班、請假代班、收銀結帳、定金、候補、回訪、業績抽成月結與月報表。品牌與內容皆為虛構。",
+      "inLanguage": "zh-Hant-TW",
+      "creator": {"@id": "https://tonyging.github.io/knowhow/#org"}
     },
     {
       "@type": "WebSite",
@@ -797,6 +806,37 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 .pf-line a.u{font-weight:700;font-size:16px;white-space:nowrap}
 @media (max-width:899px){.pf-main{grid-template-columns:minmax(0,1fr);padding:14px}.pf-line{padding:16px 18px}}
 @media (min-width:900px){html.compact .pf-main{padding:12px}html.compact .pf-line{padding:10px 18px}html.compact .pf-body{gap:8px}}
+/* 作品切換（前綴 pfb-）：桌機用分頁切換兩個作品、兩張疊在同一格所以高度固定；手機與沒有 JS 時直接上下排列 */
+.pfb-tabs{display:none}
+@media (min-width:900px){.js .pfb-tabs{display:flex;gap:10px;flex-wrap:wrap}}
+.pfb-tab{display:inline-flex;align-items:baseline;gap:10px;padding:11px 20px;border:1px solid var(--line-strong);border-radius:99px;background:var(--card);
+  font:inherit;color:var(--ink);cursor:pointer;white-space:nowrap;transition:border-color .35s var(--ease),background .35s var(--ease),transform .5s var(--ease),box-shadow .5s var(--ease)}
+.pfb-tab i{font:12px/1 var(--mono);font-style:normal;letter-spacing:.12em;color:var(--green)}
+.pfb-tab b{font-size:17px;line-height:1.3;letter-spacing:.04em}
+.pfb-tab span{font-size:16px;line-height:1.3;color:var(--muted)}
+.pfb-tab:hover{border-color:var(--green);transform:translateY(-2px)}
+.pfb-tab[aria-selected="true"]{border-color:var(--green);background:var(--green-soft);box-shadow:var(--shadow)}
+.pfb-tab[aria-selected="true"] span{color:var(--ink)}
+.pfb-stack{display:grid;gap:14px;min-width:0}
+/* 截圖：桌機畫面＋右下角疊一支手機畫面（兩個作品同一種處理） */
+.pfb-fig{position:relative;min-width:0;padding-bottom:17.8%}
+.pfb-fig .pf-shot{width:88%}
+.pfb-phone{position:absolute;right:0;bottom:0;width:24%;margin:0;border:1px solid var(--line-strong);border-radius:14px;overflow:hidden;background:var(--bg);box-shadow:var(--shadow)}
+.pfb-phone img{display:block;width:100%;height:auto}
+.pfb-pane .pf-body{align-self:stretch;justify-content:flex-start}
+.pfb-pts{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.pfb-pts li{display:flex;align-items:center;gap:10px;font-size:clamp(16px,1.25vw,18px);line-height:1.6;white-space:nowrap}
+.pfb-pts svg{width:22px;height:22px;flex:none;color:var(--green)}
+.pfb-svc{display:flex;flex-wrap:wrap;column-gap:10px;font-size:16px;line-height:1.6;color:var(--muted);padding-top:10px;border-top:1px dashed var(--line-strong);align-self:stretch}
+.pfb-svc b{color:var(--green);font-weight:700;white-space:nowrap}
+@media (min-width:900px){
+  .js .pfb-stack{gap:0}
+  .js .pfb-stack>.pfb-pane{grid-area:1/1}
+  .js .on .pfb-stack>.pfb-pane{transition:opacity .45s var(--ease),visibility .45s,transform 1.1s var(--ease),border-color .35s var(--ease),box-shadow .7s var(--ease),--g .5s var(--ease)}
+  .js .pfb-stack>.pfb-pane.pfb-off{visibility:hidden;opacity:0;pointer-events:none}
+  html.compact .pfb-tab{padding:8px 18px}
+  html.compact .pfb-svc{padding-top:6px}
+}
 </style>
 </head>
 <body>
@@ -1000,22 +1040,59 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <div class="row-head" id="works" style="--d:12;--t:6" data-a>
           <div><p class="label"><b>03</b><i></i>PORTFOLIO</p><h3 class="th">做出來的成品，可以直接點開看</h3></div>
-          <p class="lead">示範作品，品牌與內容皆為虛構。</p>
+          <div class="pfb-tabs" role="tablist" aria-label="選擇作品">
+            <button class="pfb-tab" type="button" role="tab" id="pfb-t1" aria-controls="pfb-p1" aria-selected="true" data-track="work-tab-glimmer"><i>01</i><b>微光指尖</b><span>美甲美睫預約</span></button>
+            <button class="pfb-tab" type="button" role="tab" id="pfb-t2" aria-controls="pfb-p2" aria-selected="false" tabindex="-1" data-track="work-tab-coffee"><i>02</i><b>嵐岸咖啡</b><span>形象官網</span></button>
+          </div>
         </div>
 
-        <article class="tile glow pf-main" style="--d:12;--t:6" data-a>
-          <figure class="pf-shot"><img src="img/work-coffee.webp" width="1200" height="712" loading="lazy" alt="嵐岸咖啡官網首頁畫面：大標「山的味道，在岸邊慢慢烘開」與咖啡豆包裝"></figure>
-          <div class="pf-body">
-            <span class="badge">示範作品・虛構品牌</span>
-            <h3 class="th">嵐岸咖啡｜形象官網＋自己就能改的後台</h3>
-            <p class="pf-text">新增產品、發布消息，<b>店家自己來</b>，不用每次找人改。</p>
-            <p class="pf-stack">ASTRO ・ SANITY</p>
-            <div class="pf-cta">
-              <a class="btn btn-primary" href="https://tonyging.github.io/demo-coffee/" target="_blank" rel="noopener" data-track="work-coffee-site">看網站</a>
-              <a class="btn btn-ghost" href="https://tonyging.github.io/demo-coffee/backend-demo/" target="_blank" rel="noopener" data-track="work-coffee-backend">看後台怎麼改</a>
+        <div class="pfb-stack" style="--d:12;--t:6">
+          <article class="tile glow pf-main pfb-pane" id="pfb-p1" role="tabpanel" aria-labelledby="pfb-t1" data-a>
+            <div class="pfb-fig">
+              <figure class="pf-shot"><img src="img/work-glimmer.webp" width="1200" height="712" loading="lazy" alt="微光指尖首頁畫面：大標「Quiet details.」與珍珠光美甲照片，右上角是「預約時段」按鈕"></figure>
+              <figure class="pfb-phone"><img src="img/work-glimmer-mobile.webp" width="780" height="1688" loading="lazy" alt="微光指尖手機版畫面：美甲作品照片與底部「預約時段」按鈕"></figure>
             </div>
-          </div>
-        </article>
+            <div class="pf-body">
+              <span class="badge">示範作品・虛構品牌</span>
+              <h3 class="th">微光指尖｜美甲美睫線上預約＋店家後台</h3>
+              <p class="pf-text">客人自己約好，<b>不用再一則則回訊息</b>。</p>
+              <ul class="pfb-pts">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="M9 10l2 2 4-4"/></svg>手機三步約好，看作品直接約</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-5 4v-4H6a2 2 0 0 1-2-2z"/><path d="M12 7.5v3.5M12 13.5v.01"/></svg>有人預約，店長 LINE 馬上收到</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14.5h3M13 14.5h3M8 17h3"/></svg>排班自動排，請假推薦代班</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>結帳定金、候補回訪、抽成月報</li>
+              </ul>
+              <p class="pfb-svc">對應服務：LINE 預約＋店家後台<b>依複雜度報價</b></p>
+              <p class="pf-stack">ASTRO ・ LINE ・ CLOUDFLARE</p>
+              <div class="pf-cta">
+                <a class="btn btn-primary" href="https://tonyging.github.io/demo-booking/" target="_blank" rel="noopener" data-track="work-glimmer-site">看網站</a>
+                <a class="btn btn-ghost" href="https://tonyging.github.io/demo-booking/admin/" target="_blank" rel="noopener" data-track="work-glimmer-admin">看店家後台</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile glow pf-main pfb-pane" id="pfb-p2" role="tabpanel" aria-labelledby="pfb-t2" data-a>
+            <div class="pfb-fig">
+              <figure class="pf-shot"><img src="img/work-coffee.webp" width="1200" height="712" loading="lazy" alt="嵐岸咖啡官網首頁畫面：大標「山的味道，在岸邊慢慢烘開」與咖啡豆包裝"></figure>
+              <figure class="pfb-phone"><img src="img/work-coffee-mobile.webp" width="780" height="1688" loading="lazy" alt="嵐岸咖啡手機版畫面：大標與「看看這季的豆子」按鈕"></figure>
+            </div>
+            <div class="pf-body">
+              <span class="badge">示範作品・虛構品牌</span>
+              <h3 class="th">嵐岸咖啡｜形象官網＋自己就能改的後台</h3>
+              <p class="pf-text">官網內容<b>店家自己來</b>，不用每次找人改。</p>
+              <ul class="pfb-pts">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v9l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v9"/></svg>產品自己上架</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>最新消息自己發布</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>門市資訊自己改</li>
+              </ul>
+              <p class="pf-stack">ASTRO ・ SANITY</p>
+              <div class="pf-cta">
+                <a class="btn btn-primary" href="https://tonyging.github.io/demo-coffee/" target="_blank" rel="noopener" data-track="work-coffee-site">看網站</a>
+                <a class="btn btn-ghost" href="https://tonyging.github.io/demo-coffee/backend-demo/" target="_blank" rel="noopener" data-track="work-coffee-backend">看後台怎麼改</a>
+              </div>
+            </div>
+          </article>
+        </div>
 
         <article class="tile glow pf-line" style="--d:12;--t:6" data-a>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-5 4v-4H6a2 2 0 0 1-2-2z"/></svg>
@@ -1440,6 +1517,30 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
   addEventListener("load",apply);
   if(d.fonts&&d.fonts.ready) d.fonts.ready.then(apply);
   apply();
+})();
+</script>
+<script>
+/* 作品範例：分頁切換（左右方向鍵也可切換） */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll(".pfb-tab"));
+  if(!tabs.length) return;
+  function pick(t,focus){
+    tabs.forEach(function(x){
+      var on=x===t, p=document.getElementById(x.getAttribute("aria-controls"));
+      x.setAttribute("aria-selected",on?"true":"false"); x.tabIndex=on?0:-1;
+      if(p) p.classList.toggle("pfb-off",!on);
+    });
+    if(focus) t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener("click",function(){ pick(t); });
+    t.addEventListener("keydown",function(e){
+      var k=e.key, n=k==="ArrowRight"?i+1:k==="ArrowLeft"?i-1:k==="Home"?0:k==="End"?tabs.length-1:null;
+      if(n===null) return;
+      e.preventDefault(); e.stopPropagation(); pick(tabs[(n+tabs.length)%tabs.length],true);
+    });
+  });
+  pick(tabs[0]);
 })();
 </script>
 <script>
