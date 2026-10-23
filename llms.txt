@@ -19,6 +19,7 @@
 
 - [微光指尖 Glimmer Nail & Lash（示範作品・虛構品牌）](https://tonyging.github.io/demo-booking/)：美甲美睫工作室的線上預約網站與店家後台，使用 Astro 製作。客人用手機三步完成預約，點作品照片可直接預約；有新預約時店長的 LINE 會收到通知；後台含排班、請假代班、收銀結帳、定金、候補、回訪、業績抽成月結與月報表。品牌與內容皆為虛構。
 - [店家後台示範](https://tonyging.github.io/demo-booking/admin/)：免帳號密碼，以店長身分進入看今天的預約、排班與報表。
+- [雲端示範店版](https://tonyging.github.io/demo-booking/live/)：同一套系統接上真後端（Cloudflare Workers＋Durable Object），可以開一間自己的 24 小時示範店，切換店長、設計師、客人三種身分，客人用驗證碼登入。
 - [嵐岸咖啡 Lan’an Roastery（示範作品・虛構品牌）](https://tonyging.github.io/demo-coffee/)：咖啡烘豆所的形象官網，使用 Astro 製作，附 Sanity 後台，店家可自己新增產品、發布消息、修改門市資訊。品牌與內容皆為虛構。
 - [後台操作示意](https://tonyging.github.io/demo-coffee/backend-demo/)：示範店家如何自己改內容。
 - [作品範例區塊](https://tonyging.github.io/knowhow/#portfolio)：諾豪資訊官網上的作品介紹，另含諾豪自己使用的 LINE 官方帳號（ID：@879gqgah）與圖文選單。
