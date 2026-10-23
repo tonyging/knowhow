@@ -13,6 +13,7 @@
 - [進階維運（月費）](https://tonyging.github.io/knowhow/#care)：基本維運全部項目，加每月 3 小時更新與小修、每季資安檢查摘要、問題優先處理並於當日回覆。NT$5,000／月。
 - [資安健檢（一次性）](https://tonyging.github.io/knowhow/#care)：檢查 HTTPS 與安全標頭、帳號權限與密碼、套件漏洞與更新、備份還原機制，提供書面報告與修補建議。NT$8,000 起。不含滲透測試與入侵檢測，僅檢查客戶授權的網站。
 - [API 串接／LINE 機器人](https://tonyging.github.io/knowhow/#services)：第三方 API 串接、LINE 官方帳號聊天機器人。依複雜度報價，需先洽談需求。
+- [店家 LINE 預約＋訂單後台](https://tonyging.github.io/knowhow/#services)：客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。NT$45,000 起。示範作品見下方「微光指尖」。
 
 ## 作品範例
 

@@ -128,6 +128,16 @@
               "name": "API 串接／LINE 機器人",
               "description": "第三方 API 串接、LINE 官方帳號聊天機器人。依複雜度報價，需先洽談需求，確認範圍後提供報價。"
             }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/#services",
+            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 45000, "priceCurrency": "TWD"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "店家 LINE 預約＋訂單後台",
+              "description": "客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。價格為起算價，實際金額依需求範圍於書面報價時載明。"
+            }
           }
         ]
       }
@@ -313,7 +323,7 @@ ol.steps li{position:relative;counter-increment:s;padding:44px 0 0;font-size:14p
 ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;
   background:var(--card);border:1px solid var(--green);color:var(--green);font:12px/30px var(--mono);text-align:center}
 ol.steps+.note{margin-top:18px}
-.own{margin:18px 0 0;padding:12px 16px;border:1px solid var(--green);border-radius:12px;font-size:clamp(15px,1.25vw,18px);line-height:1.6;color:var(--ink)}
+.own{margin:18px 0 0;padding:12px 16px;border:1px solid var(--green);border-radius:12px;font-size:clamp(15px,1.25vw,18px);line-height:1.6;color:var(--ink);text-wrap:pretty}
 .own b{color:var(--green);margin-right:.8em}
 ol.steps+.own+.note{margin-top:12px}
 
@@ -856,7 +866,8 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
 <nav class="dots" aria-label="區塊導覽">
   <a href="#top" data-t="首頁" aria-label="首頁"><i></i></a>
-  <a href="#work" data-t="服務與流程" aria-label="服務與流程"><i></i></a>
+  <a href="#work" data-t="服務與價格" aria-label="服務與價格"><i></i></a>
+  <a href="#flow" data-t="合作流程" aria-label="合作流程"><i></i></a>
   <a href="#portfolio" data-t="作品範例" aria-label="作品範例"><i></i></a>
   <a href="#care" data-t="維運與資安" aria-label="維運與資安"><i></i></a>
   <a href="#trust" data-t="關於與付款" aria-label="關於與付款"><i></i></a>
@@ -962,10 +973,10 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
     </div></div>
   </section>
 
-  <!-- 服務與流程 -->
+  <!-- 服務與價格 -->
   <section class="screen" id="work">
     <div class="panel"><div class="copy-in" data-grow="1.35">
-      <div class="vt-head"><span class="en">SERVICES ・ PROCESS</span><h2 class="vt-h2" data-split>服務與流程</h2></div>
+      <div class="vt-head"><span class="en">SERVICES</span><h2 class="vt-h2" data-split>服務與價格</h2></div>
       <div class="bento">
 
         <div class="row-head" id="services" style="--d:12;--t:6" data-a>
@@ -973,7 +984,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p class="lead">價格為起算價（流程診斷為固定價），實際金額依需求範圍，於書面報價時載明。</p>
         </div>
 
-        <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
+        <article class="tile svc hover glow" style="--d:4;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="10" y="8" width="28" height="34" rx="3"/><rect x="18" y="5" width="12" height="7" rx="2"/>
             <path d="M16 21h16M16 27h10"/><path d="M16 35l4 4 9-10" stroke="var(--green)"/>
@@ -982,7 +993,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p>先聊清楚需求，附書面建議。</p>
           <div class="price">NT$1,500</div>
         </article>
-        <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
+        <article class="tile svc hover glow" style="--d:4;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 18h38M5 28h38M18 8v32"/>
             <path d="M25 34h10m-4-4 4 4-4 4" stroke="var(--green)"/>
@@ -991,7 +1002,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p>Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。</p>
           <div class="price">NT$3,000 起</div>
         </article>
-        <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
+        <article class="tile svc hover glow" style="--d:4;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 16h38"/>
             <circle cx="10" cy="12" r=".8" fill="currentColor"/><circle cx="14" cy="12" r=".8" fill="currentColor"/>
@@ -1001,7 +1012,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p>手機版型、服務介紹、聯絡方式與上線協助。</p>
           <div class="price">NT$15,000 起</div>
         </article>
-        <article class="tile svc hover glow" style="--d:3;--t:3" data-a>
+        <article class="tile svc hover glow" style="--d:6;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 10a3 3 0 0 1 3-3h20a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H17l-6 5v-5H9a3 3 0 0 1-3-3z"/>
             <path d="M13 14h14M13 19h8"/>
@@ -1011,6 +1022,28 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p>第三方 API 串接、LINE 官方帳號聊天機器人。需先洽談需求，確認範圍後提供報價。</p>
           <div class="price">依複雜度報價</div>
         </article>
+        <article class="tile svc hover glow" style="--d:6;--t:6" data-a>
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="8" y="5" width="18" height="34" rx="3"/><path d="M15 34h4"/>
+            <rect x="22" y="16" width="20" height="24" rx="2" fill="var(--card)"/><path d="M22 22h20M27 13v6M37 13v6"/>
+            <path d="M27 31l3.5 3.5 7-7" stroke="var(--green)"/>
+          </svg>
+          <h4>店家 LINE 預約＋訂單後台</h4>
+          <p>客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。</p>
+          <div class="price">NT$45,000 起</div>
+        </article>
+
+
+
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 合作流程 -->
+  <section class="screen" id="flow">
+    <div class="panel"><div class="copy-in" data-grow="1.3">
+      <div class="vt-head"><span class="en">PROCESS</span><h2 class="vt-h2" data-split>合作流程</h2></div>
+      <div class="bento">
 
         <section class="tile glow" id="process" style="--d:12;--t:6" data-a>
           <p class="label"><b>02</b><i></i>PROCESS</p>
@@ -1026,7 +1059,6 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p class="own"><b>網站是你的</b>網域、主機、後台帳號開在你名下，付清後程式一併交付，之後想找別人接手也可以。</p>
           <p class="note">範圍有變動時，會先說明再調整報價。</p>
         </section>
-
 
       </div>
     </div></div>
@@ -1062,7 +1094,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14.5h3M13 14.5h3M8 17h3"/></svg>排班自動排，請假推薦代班</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>結帳定金、候補回訪、抽成月報</li>
               </ul>
-              <p class="pfb-svc">對應服務：LINE 預約＋店家後台<b>依複雜度報價</b></p>
+              <p class="pfb-svc">對應服務：店家 LINE 預約＋訂單後台<b>NT$45,000 起</b></p>
               <p class="pf-stack">ASTRO ・ LINE ・ CLOUDFLARE</p>
               <div class="pf-cta">
                 <a class="btn btn-primary" href="https://tonyging.github.io/demo-booking/" target="_blank" rel="noopener" data-track="work-glimmer-site">看網站</a>
