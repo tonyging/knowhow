@@ -1,0 +1,19 @@
+# 允許所有爬蟲（含 AI 搜尋）。
+# 注意：GitHub Pages 專案網址（.../knowhow/）下，這個檔不在網域根目錄，爬蟲不會讀到；
+# 接上自有網域後才會生效。
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://tonyging.github.io/knowhow/sitemap.xml

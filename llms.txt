@@ -2,18 +2,34 @@
 
 > 諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具，以及網站維運與資安健檢。以線上洽談為主，依需求範圍報價，完成交付後提供使用說明。
 
-品牌名稱「諾豪」取自 Know-how（專業知識與實作經驗）的音譯，英文名稱為 Knowhow。價格為起算價（流程診斷報告為固定價 NT$1,500），實際金額依需求範圍，於書面報價時載明。報價確定後不臨時加價。付款方式為信用卡與 ATM 轉帳（透過藍新金流收款）。服務對象為個人與小型店家，服務地區為台灣，使用語言為繁體中文。
+品牌名稱「諾豪」取自 Know-how（專業知識與實作經驗）的音譯，英文名稱為 Knowhow。價格為起算價（流程診斷報告為固定價 NT$1,500），實際金額依需求範圍，於書面報價時載明。報價確定後不臨時加價。付款方式為信用卡與 ATM 轉帳（透過藍新金流收款）。簽約時付 50% 訂金，交付時付尾款。服務對象為個人與小型店家，服務地區為台灣，使用語言為繁體中文。
 
 ## 服務項目
 
 - [流程診斷報告（入門方案）](https://tonyging.github.io/knowhow/#services)：先聊清楚需求，附書面建議。NT$1,500（每次）。
 - [資料轉換／小工具](https://tonyging.github.io/knowhow/#services)：Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。NT$3,000 起。
-- [一頁式網站](https://tonyging.github.io/knowhow/#services)：手機版型、服務介紹、聯絡方式與上線協助。NT$15,000 起。
+- [一頁式網站](https://tonyging.github.io/knowhow/services/website/)：手機版型、服務介紹、聯絡方式與上線協助。NT$15,000 起。
+- [形象官網＋自改後台](https://tonyging.github.io/knowhow/services/website/)：產品自己上架、消息自己發布、門市資訊自己改。素材齊全後約 2～3 週交第一版，交付前含 2 次修改。NT$20,000 起。
 - [基本維運（月費）](https://tonyging.github.io/knowhow/#care)：每月備份與還原確認、系統與套件安全更新、網站狀態監控、每月 1 小時內容更新與小修。NT$3,000／月。
 - [進階維運（月費）](https://tonyging.github.io/knowhow/#care)：基本維運全部項目，加每月 3 小時更新與小修、每季資安檢查摘要、問題優先處理並於當日回覆。NT$5,000／月。
 - [資安健檢（一次性）](https://tonyging.github.io/knowhow/#care)：檢查 HTTPS 與安全標頭、帳號權限與密碼、套件漏洞與更新、備份還原機制，提供書面報告與修補建議。NT$8,000 起。不含滲透測試與入侵檢測，僅檢查客戶授權的網站。
-- [API 串接／LINE 機器人](https://tonyging.github.io/knowhow/#services)：第三方 API 串接、LINE 官方帳號聊天機器人。依複雜度報價，需先洽談需求。
-- [店家 LINE 預約＋訂單後台](https://tonyging.github.io/knowhow/#services)：客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。NT$45,000 起。示範作品見下方「微光指尖」。
+- [LINE 官方帳號建置](https://tonyging.github.io/knowhow/services/line-official-account/)：照品牌做大頭貼、封面、四格圖文選單，寫好歡迎訊息與關鍵字自動回覆，詢價分流與作品卡片可選購（另外報價）。NT$10,000 起。
+- [API 串接](https://tonyging.github.io/knowhow/#services)：第三方 API 串接。依複雜度報價，需先洽談需求。
+- [舊系統升級評估](https://tonyging.github.io/knowhow/services/legacy-upgrade/)：3 個工作天交書面報告，寫清楚修補、保留、改寫三條路各要多少錢、多久。NT$8,000 起（確定施作全額折抵）。
+- [店家 LINE 預約＋管理後台](https://tonyging.github.io/knowhow/services/booking-system/)：客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。NT$45,000 起。示範作品見下方「微光指尖」。
+
+## 服務說明頁
+
+- [小店想要線上預約＋LINE 通知，要多少錢、多久？](https://tonyging.github.io/knowhow/services/booking-system/)：NT$45,000 起，約 3～5 週上線。客人用手機自己約好時段，有新預約時店長的 LINE 馬上收到通知；後台可以排班、結帳、看報表。網站、資料和帳號都在你自己名下。
+- [想做一個形象官網，要多少錢、多久？](https://tonyging.github.io/knowhow/services/website/)：一頁式網站 NT$15,000 起；要自己就能改產品和消息的後台，NT$20,000 起。素材齊全後約 2～3 週交第一版，交付前含 2 次修改。網域和網站都在你自己名下。
+- [LINE 官方帳號想弄得好看、會自動回覆，找誰做？](https://tonyging.github.io/knowhow/services/line-official-account/)：NT$10,000 起。照你的品牌做大頭貼、封面和四格圖文選單，寫好歡迎訊息和關鍵字自動回覆；客人點選單就能看作品、問價格。素材和文案確認後約 1～2 週完成。
+- [舊系統在新電腦跑不動、想升級，要怎麼開始？](https://tonyging.github.io/knowhow/services/legacy-upgrade/)：先做評估：NT$8,000 起，資料齊全後 3 個工作天交書面報告，寫清楚卡在哪裡，以及「修補／保留舊系統／改寫」三條路各要多少錢、多久。評估費交報告後不退；你決定施作，評估費全額折抵開發費。
+
+## 案例頁
+
+- [美甲美睫店的線上預約＋店家後台，做出來長什麼樣？](https://tonyging.github.io/knowhow/work/glimmer-booking/)：這是諾豪做的示範作品：美甲美睫工作室的預約網站和店家後台。客人用手機三步約好，看作品照片可以直接約；有新預約時店長的 LINE 馬上收到。網站和後台都能直接點開試用。
+- [咖啡店官網，怎麼做到店家自己改內容？](https://tonyging.github.io/knowhow/work/lanan-coffee/)：這是諾豪做的示範作品：咖啡烘豆所的形象官網，附一個店家自己就能用的後台。產品上架、最新消息、門市資訊都自己改，不用每次找人。對應方案是形象官網＋後台，NT$20,000 起。
+- [LINE 官方帳號做好之後長什麼樣？直接加諾豪的帳號看](https://tonyging.github.io/knowhow/work/knowhow-line-oa/)：諾豪自己的 LINE 官方帳號就是實例（LINE ID：@879gqgah）。加好友後可以看到品牌化的圖文選單、歡迎訊息、作品卡片，點「我要報價」回答幾個問題，摘要會直接推播給負責人。
 
 ## 作品範例
 

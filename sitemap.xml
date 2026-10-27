@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 由 tools/build_pages.py 產生，不要手動修改 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tonyging.github.io/knowhow/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/services/booking-system/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/services/website/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/services/line-official-account/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/services/legacy-upgrade/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/work/glimmer-booking/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/work/lanan-coffee/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://tonyging.github.io/knowhow/work/knowhow-line-oa/</loc>
+    <lastmod>2026-10-27</lastmod>
   </url>
 </urlset>

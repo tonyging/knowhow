@@ -38,6 +38,15 @@
       "logo": "https://tonyging.github.io/knowhow/logo.png",
       "description": "諾豪資訊提供小型軟體開發服務：一頁式網站、Excel／CSV／XML 資料轉換、API 串接、LINE 官方帳號機器人與自動化小工具。以線上洽談為主，依需求範圍報價。「諾豪」取自 Know-how。",
       "areaServed": "TW",
+      "sameAs": ["https://line.me/R/ti/p/@879gqgah", "https://www.tasker.com.tw/workroom/nuohao", "https://www.linkedin.com/in/%E9%98%BF%E9%87%91-undefined-15b0aa38b"],
+      "founder": {
+        "@type": "Person",
+        "name": "阿金",
+        "jobTitle": "全端工程師",
+        "worksFor": {"@id": "https://tonyging.github.io/knowhow/#org"},
+        "sameAs": ["https://www.linkedin.com/in/%E9%98%BF%E9%87%91-undefined-15b0aa38b"]
+      },
+      "knowsAbout": ["線上預約系統", "LINE 官方帳號", "形象官網", "舊系統升級", "資料轉換"],
       "subjectOf": [{"@id": "https://tonyging.github.io/knowhow/#work-glimmer"}, {"@id": "https://tonyging.github.io/knowhow/#work-coffee"}],
       "knowsLanguage": "zh-TW",
       "contactPoint": [
@@ -82,7 +91,7 @@
           },
           {
             "@type": "Offer",
-            "url": "https://tonyging.github.io/knowhow/#services",
+            "url": "https://tonyging.github.io/knowhow/services/website/",
             "priceSpecification": {"@type": "PriceSpecification", "minPrice": 15000, "priceCurrency": "TWD"},
             "itemOffered": {
               "@type": "Service",
@@ -122,20 +131,50 @@
           },
           {
             "@type": "Offer",
-            "url": "https://tonyging.github.io/knowhow/#services",
+            "url": "https://tonyging.github.io/knowhow/services/line-official-account/",
+            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 10000, "priceCurrency": "TWD"},
             "itemOffered": {
               "@type": "Service",
-              "name": "API 串接／LINE 機器人",
-              "description": "第三方 API 串接、LINE 官方帳號聊天機器人。依複雜度報價，需先洽談需求，確認範圍後提供報價。"
+              "name": "LINE 官方帳號建置",
+              "description": "照你的品牌做大頭貼、封面和四格圖文選單，寫好歡迎訊息和關鍵字自動回覆，客人點選單就能看作品、問價格。價格為起算價，實際金額依需求範圍於書面報價時載明。"
             }
           },
           {
             "@type": "Offer",
             "url": "https://tonyging.github.io/knowhow/#services",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "API 串接",
+              "description": "第三方 API 串接。依複雜度報價，需先洽談需求，確認範圍後提供報價。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/services/website/",
+            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 20000, "priceCurrency": "TWD"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "形象官網＋自改後台",
+              "description": "產品自己上架、消息自己發布、門市資訊自己改。素材齊全後約 2～3 週交第一版，交付前含 2 次修改。價格為起算價，實際金額依需求範圍於書面報價時載明。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/services/legacy-upgrade/",
+            "priceSpecification": {"@type": "PriceSpecification", "minPrice": 8000, "priceCurrency": "TWD"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "舊系統升級評估",
+              "description": "資料齊全後 3 個工作天交書面報告，寫清楚修補、保留舊系統、改寫三條路各要多少錢、多久。確定施作，評估費全額折抵開發費。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://tonyging.github.io/knowhow/services/booking-system/",
             "priceSpecification": {"@type": "PriceSpecification", "minPrice": 45000, "priceCurrency": "TWD"},
             "itemOffered": {
               "@type": "Service",
-              "name": "店家 LINE 預約＋訂單後台",
+              "name": "店家 LINE 預約＋管理後台",
               "description": "客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。價格為起算價，實際金額依需求範圍於書面報價時載明。"
             }
           }
@@ -155,6 +194,7 @@
       "@id": "https://tonyging.github.io/knowhow/#work-glimmer",
       "name": "微光指尖 Glimmer Nail & Lash（示範作品・虛構品牌）",
       "url": "https://tonyging.github.io/demo-booking/",
+      "mainEntityOfPage": "https://tonyging.github.io/knowhow/work/glimmer-booking/",
       "description": "諾豪資訊製作的示範作品：美甲美睫工作室的線上預約網站與店家後台。客人用手機三步完成預約、可從作品照片直接預約；有新預約時店長的 LINE 會收到通知；後台含排班、請假代班、收銀結帳、定金、候補、回訪、業績抽成月結與月報表。品牌與內容皆為虛構。",
       "inLanguage": "zh-Hant-TW",
       "creator": {"@id": "https://tonyging.github.io/knowhow/#org"}
@@ -164,6 +204,7 @@
       "@id": "https://tonyging.github.io/knowhow/#work-coffee",
       "name": "嵐岸咖啡 Lan’an Roastery（示範作品・虛構品牌）",
       "url": "https://tonyging.github.io/demo-coffee/",
+      "mainEntityOfPage": "https://tonyging.github.io/knowhow/work/lanan-coffee/",
       "description": "諾豪資訊製作的示範作品：咖啡烘豆所形象官網，附 Sanity 後台，店家可自行新增產品、發布消息與修改門市資訊。品牌與內容皆為虛構。",
       "inLanguage": "zh-Hant-TW",
       "creator": {"@id": "https://tonyging.github.io/knowhow/#org"}
@@ -206,7 +247,7 @@ h1,h2,h3,h4,p{margin:0}
 .menu-btn .bars i{display:block;height:1px;background:currentColor;transition:transform .6s var(--ease)}
 .menu-btn[aria-expanded="true"] .bars i:first-child{transform:translateY(3.5px) rotate(32deg)}
 .menu-btn[aria-expanded="true"] .bars i:last-child{transform:translateY(-3.5px) rotate(-32deg)}
-.rail-brand{display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--ink);text-decoration:none}
+.rail-brand{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--ink);text-decoration:none}
 .rail-brand img{width:34px;height:34px;border-radius:50%}
 .rail-brand .vt{font-size:15px;letter-spacing:.34em;font-weight:700}
 .rail-cta{display:grid;gap:10px}
@@ -485,7 +526,7 @@ ol.stages li:nth-child(2){--n:1}ol.stages li:nth-child(3){--n:2}
 .tile.line{background:var(--green);border-color:var(--green);color:var(--on-green);justify-content:center;gap:10px;padding:28px 30px}
 .tile.line .cl-top svg{color:inherit;width:36px;height:36px}
 .tile.line .cl-name{color:inherit;opacity:.9;margin-top:8px}
-.cl-tag{font-size:15px;font-weight:700;letter-spacing:.06em;padding:5px 14px;border-radius:99px;background:color-mix(in srgb,var(--on-green) 20%,transparent)}
+.cl-tag{font-size:15px;font-weight:700;letter-spacing:.06em;padding:5px 14px;border-radius:99px;background:color-mix(in srgb,#000 22%,var(--green))}
 .cl-big{font-size:clamp(36px,4.6vw,60px);font-weight:800;line-height:1.1;letter-spacing:.02em;overflow-wrap:anywhere}
 .btn-copy{align-self:flex-start;margin-top:6px;padding:13px 26px;border-radius:99px;border:2px solid var(--on-green);
   background:var(--on-green);color:var(--green);font:700 17px/1 inherit;font-family:inherit;cursor:pointer;
@@ -570,7 +611,8 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .svc .badge{position:absolute;top:20px;right:18px;margin:0}
 
 /* ============ 完整退款條款（彈出視窗） ============ */
-.more-btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:15px;font-weight:600;line-height:1.2;letter-spacing:.04em;color:var(--green);background:none;border:0;padding:4px 0;cursor:pointer}
+.more-btn{position:relative;display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:15px;font-weight:600;line-height:1.2;letter-spacing:.04em;color:var(--green);background:none;border:0;padding:4px 0;cursor:pointer}
+.more-btn::before{content:"";position:absolute;left:0;right:0;top:-10px;bottom:-10px}
 .more-btn i{display:block;position:relative;width:20px;height:20px;border:1px solid var(--green);border-radius:50%;transition:transform .5s var(--ease)}
 .more-btn i::before,.more-btn i::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:1.5px;background:var(--green);transform:translate(-50%,-50%)}
 .more-btn i::after{transform:translate(-50%,-50%) rotate(90deg)}
@@ -615,12 +657,12 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .scan .label i{background:color-mix(in srgb,var(--on-green) 45%,transparent)}
 .scan .lead{color:inherit;opacity:.9;margin-bottom:12px;font-size:clamp(15px,1.2vw,17px)}
 .scan .wm{position:absolute;right:-26px;bottom:-30px;width:190px;height:190px;opacity:.13;pointer-events:none}
-.rep{list-style:none;margin:0 0 14px;padding:12px 14px;background:color-mix(in srgb,var(--on-green) 12%,transparent);border:1px solid color-mix(in srgb,var(--on-green) 28%,transparent);border-radius:14px;display:grid;gap:9px;position:relative;z-index:1}
-.rep .cap{font:11px/1 var(--mono);letter-spacing:.2em;opacity:.8;margin-bottom:2px}
+.rep{list-style:none;margin:0 0 14px;padding:12px 14px;background:color-mix(in srgb,#000 14%,var(--green));border:1px solid color-mix(in srgb,var(--on-green) 28%,transparent);border-radius:14px;display:grid;gap:9px;position:relative;z-index:1}
+.rep .cap{font:11px/1 var(--mono);letter-spacing:.2em;margin-bottom:2px}
 .rep li:not(.cap){display:flex;align-items:center;gap:10px;font-size:clamp(15px,1.2vw,17px)}
 .rep li i{width:9px;height:9px;border-radius:50%;background:var(--on-green);flex:none}
-.rep li.w i{background:#F2C14E}
-.rep li em{margin-left:auto;font-style:normal;font-size:.86em;opacity:.85;white-space:nowrap}
+.rep li.w i{background:transparent;box-shadow:inset 0 0 0 2px var(--on-green)}
+.rep li em{margin-left:auto;font-style:normal;font-size:.86em;white-space:nowrap}
 .scan .sp{margin-top:auto;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
 .scan .sp b{font-size:clamp(26px,2.4vw,34px);font-weight:800;letter-spacing:.01em}
 .scan .sp span{font-size:clamp(13.5px,1.05vw,15px);opacity:.9}
@@ -741,8 +783,12 @@ html.paged .panel{align-items:flex-start;padding-top:clamp(52px,8vh,84px)}
 .intro{text-wrap:pretty}
 ol.steps li span{text-wrap:balance}
 /* ============ 頁尾的隱私說明連結 ============ */
-.foot-link{background:none;border:0;padding:0;font-family:inherit;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.foot-link{position:relative;background:none;border:0;padding:0;font-family:inherit;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.foot-link::before{content:"";position:absolute;left:-8px;right:-8px;top:-13px;bottom:-13px}
 .foot-link:hover{color:var(--green)}
+.cl-val a.u{position:relative}
+.cl-val a.u::before{content:"";position:absolute;left:-6px;right:-6px;top:-9px;bottom:-9px}
+.rail-brand::before{content:"";position:absolute;left:-6px;right:-6px;top:-6px;bottom:-6px}
 
 /* ============ 語言切換 ============ */
 .langs{display:inline-flex;gap:8px;align-items:center}
@@ -807,13 +853,14 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 .pf-text{font-size:clamp(16px,1.35vw,20px);line-height:1.7;color:var(--ink);text-wrap:balance}
 .pf-text b{color:var(--green);font-weight:700;white-space:nowrap}
 .pf-stack{font:12px/1 var(--mono);letter-spacing:.22em;color:var(--muted)}
-.pf-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.pf-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.pf-case{font-weight:700;font-size:16px;white-space:nowrap;margin-left:6px;display:inline-flex;align-items:flex-end;min-height:56px;padding-top:25px;margin-top:-25px;box-sizing:border-box}
 .pf-line{display:flex;align-items:center;gap:18px 20px;flex-wrap:wrap;padding:16px 22px}
 .pf-line svg{width:32px;height:32px;color:var(--green);flex:none}
 .pf-lt{flex:1 1 260px;min-width:0}
 .pf-lt b{display:block;font-size:clamp(17px,1.5vw,20px);letter-spacing:.03em;line-height:1.4}
 .pf-lt span{display:block;color:var(--muted);font-size:clamp(14px,1.1vw,16px);line-height:1.6}
-.pf-line a.u{font-weight:700;font-size:16px;white-space:nowrap}
+.pf-line a.u{font-weight:700;font-size:16px;white-space:nowrap;display:inline-flex;align-items:flex-end;min-height:56px;padding-top:25px;margin-top:-25px;box-sizing:border-box}
 @media (max-width:899px){.pf-main{grid-template-columns:minmax(0,1fr);padding:14px}.pf-line{padding:16px 18px}}
 @media (min-width:900px){html.compact .pf-main{padding:12px}html.compact .pf-line{padding:10px 18px}html.compact .pf-body{gap:8px}}
 /* 作品切換（前綴 pfb-）：桌機用分頁切換兩個作品、兩張疊在同一格所以高度固定；手機與沒有 JS 時直接上下排列 */
@@ -839,6 +886,9 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 .pfb-pts svg{width:22px;height:22px;flex:none;color:var(--green)}
 .pfb-svc{display:flex;flex-wrap:wrap;column-gap:10px;font-size:16px;line-height:1.6;color:var(--muted);padding-top:10px;border-top:1px dashed var(--line-strong);align-self:stretch}
 .pfb-svc b{color:var(--green);font-weight:700;white-space:nowrap}
+.svc-sub{position:relative;z-index:2;display:inline-block;padding:12px 0;margin:-12px 0;color:var(--green);font-weight:700;text-decoration:none}
+.svc-sub:hover{text-decoration:underline}
+.pf-lp{font-style:normal;color:var(--green);font-weight:700;white-space:nowrap;margin-left:12px}
 @media (min-width:900px){
   .js .pfb-stack{gap:0}
   .js .pfb-stack>.pfb-pane{grid-area:1/1}
@@ -846,6 +896,54 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
   .js .pfb-stack>.pfb-pane.pfb-off{visibility:hidden;opacity:0;pointer-events:none}
   html.compact .pfb-tab{padding:8px 18px}
   html.compact .pfb-svc{padding-top:6px}
+}
+/* 服務卡連到說明頁：連結撐滿整張卡，不改變卡片高度 */
+.svc-go{color:inherit;text-decoration:none}
+.svc-go::after{content:"";position:absolute;inset:0;z-index:1}
+.svc-go:focus-visible{outline:none}
+.svc:has(.svc-go:focus-visible){outline:2px solid var(--green);outline-offset:3px}
+.price .go{display:inline-block;margin-left:.45em;font-weight:400;transition:transform .5s var(--ease)}
+.svc:hover .price .go{transform:translateX(4px)}
+/* 頁尾：服務說明連結 */
+.foot-pages{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;font-size:14px;line-height:1.7;color:var(--muted)}
+.foot-pages b{font:12px/1.7 var(--mono);letter-spacing:.2em;font-weight:400}
+.foot-pages a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:12px 0;margin:-12px 0}
+.foot-pages a:hover{color:var(--green)}
+
+/* ============ 2026-10-27 細修（新 class 前綴 nh-；只調尺寸、顏色與對齊，不動版面骨架） ============ */
+/* 頁尾：服務說明、案例分成兩組 */
+.foot-pages{column-gap:36px}
+.nh-fg{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;min-width:0}
+/* 服務卡：只有連到說明頁（有 .svc-go）的卡才有上浮／綠框；另外兩張 hover 時不動 */
+.svc:not(.hover):hover .ico{transform:none}
+.svc:not(.hover):hover .price{letter-spacing:normal}
+/* 作品分頁：點擊高度 ≥44px；選中時編號用較深的綠，淡綠底上對比 ≥4.5:1 */
+.pfb-tab{padding-top:14px;padding-bottom:14px}
+.pfb-tab[aria-selected="true"] i{color:color-mix(in srgb,var(--green) 75%,var(--ink))}
+/* MENU：字 12px；點擊區用透明的偽元素擴到 ≥44×44，不改外觀與位置 */
+.menu-btn{position:relative;font-size:12px}
+.menu-btn::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,48px);height:max(100%,48px);transform:translate(-50%,-50%)}
+/* 緊湊模式：整屏會被縮到 77%～85%，小字與膠囊放大，縮放後實際約 ≥11px */
+@media (min-width:900px){
+  html.compact .label,html.compact .label b,html.compact .badge,html.compact .pf-stack,html.compact .pfb-tab i,
+  html.compact .rep .cap,html.compact ol.stages em,html.compact .foot .tg,html.compact .foot-pages b{font-size:14.5px}
+  html.compact .rep li em,html.compact .cf span,html.compact .scan .sp span{font-size:14.5px}
+  html.compact .cmp .pp small{font-size:14.5px}
+  html.compact .pfb-tab{padding-top:16px;padding-bottom:16px}
+}
+/* 手機（單欄版面） */
+@media (max-width:899px){
+  /* LINE 小卡：價格換行時貼齊標題左緣 */
+  .pf-lt b{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px}
+  .pf-lp{margin-left:0}
+  /* 「案例說明 →」自成一行時與上方按鈕左緣對齊 */
+  .pf-case{margin-left:0}
+  /* 頁尾：字 ≥14px、點擊區 ≥44px（padding＋負 margin，不改視覺間距）；兩組各自分段 */
+  .foot{font-size:14px}
+  .foot .tg{font-size:14px}
+  .foot-link{font-size:14px;line-height:1.7;padding:12px 0;margin:-12px 0}
+  .foot-pages{flex-direction:column;align-items:stretch;gap:12px}
+  .foot-pages b{flex-basis:100%;font-size:14px}
 }
 </style>
 </head>
@@ -984,16 +1082,16 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <p class="lead">價格為起算價（流程診斷為固定價），實際金額依需求範圍，於書面報價時載明。</p>
         </div>
 
-        <article class="tile svc hover glow" style="--d:4;--t:3" data-a>
+        <article class="tile svc glow" style="--d:4;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="10" y="8" width="28" height="34" rx="3"/><rect x="18" y="5" width="12" height="7" rx="2"/>
             <path d="M16 21h16M16 27h10"/><path d="M16 35l4 4 9-10" stroke="var(--green)"/>
           </svg>
           <h4>流程診斷報告<span class="badge">入門方案</span></h4>
-          <p>先聊清楚需求，附書面建議。</p>
+          <p>先聊清楚需求，附書面建議。<br><a class="svc-sub" href="services/legacy-upgrade/" data-track="home-legacy-link">另有：舊系統升級 →</a></p>
           <div class="price">NT$1,500</div>
         </article>
-        <article class="tile svc hover glow" style="--d:4;--t:3" data-a>
+        <article class="tile svc glow" style="--d:4;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 18h38M5 28h38M18 8v32"/>
             <path d="M25 34h10m-4-4 4 4-4 4" stroke="var(--green)"/>
@@ -1008,9 +1106,9 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
             <circle cx="10" cy="12" r=".8" fill="currentColor"/><circle cx="14" cy="12" r=".8" fill="currentColor"/>
             <path d="M12 24h14M12 30h22"/><rect x="29" y="21" width="9" height="7" rx="1.5" stroke="var(--green)"/>
           </svg>
-          <h4>一頁式網站</h4>
-          <p>手機版型、服務介紹、聯絡方式與上線協助。</p>
-          <div class="price">NT$15,000 起</div>
+          <h4><a class="svc-go" href="services/website/" data-track="svc-website">形象官網</a></h4>
+          <p>一頁式，手機也好看；要自己改內容的後台 NT$20,000 起。</p>
+          <div class="price">NT$15,000 起<span class="go" aria-hidden="true">→</span></div>
         </article>
         <article class="tile svc hover glow" style="--d:6;--t:3" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1018,9 +1116,9 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
             <path d="M13 14h14M13 19h8"/>
             <path d="M36 30v-4M42 30v-4M34 30h10v4a5 5 0 0 1-10 0z" stroke="var(--green)"/><path d="M39 39v4" stroke="var(--green)"/>
           </svg>
-          <h4>API／LINE 機器人</h4>
-          <p>第三方 API 串接、LINE 官方帳號聊天機器人。需先洽談需求，確認範圍後提供報價。</p>
-          <div class="price">依複雜度報價</div>
+          <h4><a class="svc-go" href="services/line-official-account/" data-track="svc-line-oa">LINE 官方帳號／API</a></h4>
+          <p>圖文選單、歡迎訊息、自動回覆；詢價分流與 API 另外報價。</p>
+          <div class="price">NT$10,000 起<span class="go" aria-hidden="true">→</span></div>
         </article>
         <article class="tile svc hover glow" style="--d:6;--t:6" data-a>
           <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1028,9 +1126,9 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
             <rect x="22" y="16" width="20" height="24" rx="2" fill="var(--card)"/><path d="M22 22h20M27 13v6M37 13v6"/>
             <path d="M27 31l3.5 3.5 7-7" stroke="var(--green)"/>
           </svg>
-          <h4>店家 LINE 預約＋訂單後台</h4>
+          <h4><a class="svc-go" href="services/booking-system/" data-track="svc-booking">店家 LINE 預約＋管理後台</a></h4>
           <p>客人手機線上預約，店長 LINE 收通知；附排班、結帳、報表後台。</p>
-          <div class="price">NT$45,000 起</div>
+          <div class="price">NT$45,000 起<span class="go" aria-hidden="true">→</span></div>
         </article>
 
 
@@ -1094,11 +1192,12 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14.5h3M13 14.5h3M8 17h3"/></svg>排班自動排，請假推薦代班</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>結帳定金、候補回訪、抽成月報</li>
               </ul>
-              <p class="pfb-svc">對應服務：店家 LINE 預約＋訂單後台<b>NT$45,000 起</b></p>
+              <p class="pfb-svc">對應服務：店家 LINE 預約＋管理後台<b>NT$45,000 起</b></p>
               <p class="pf-stack">ASTRO ・ CLOUDFLARE WORKERS ・ LINE</p>
               <div class="pf-cta">
                 <a class="btn btn-primary" href="https://tonyging.github.io/demo-booking/" target="_blank" rel="noopener" data-track="work-glimmer-site">看網站</a>
                 <a class="btn btn-ghost" href="https://tonyging.github.io/demo-booking/live/" target="_blank" rel="noopener" data-track="work-glimmer-live">開一間示範店</a>
+                <a class="u pf-case" href="work/glimmer-booking/" data-track="work-glimmer-case" aria-label="微光指尖的案例說明">案例說明 →</a>
               </div>
             </div>
           </article>
@@ -1116,11 +1215,14 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v9l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v9"/></svg>產品自己上架</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>最新消息自己發布</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>門市資訊自己改</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="14" height="10" rx="1.5"/><path d="M7 18.5h5"/><rect x="15.5" y="9" width="6" height="11" rx="1.5"/></svg>手機電腦都好看</li>
               </ul>
+              <p class="pfb-svc">對應服務：形象官網＋自改後台<b>NT$20,000 起</b></p>
               <p class="pf-stack">ASTRO ・ SANITY</p>
               <div class="pf-cta">
                 <a class="btn btn-primary" href="https://tonyging.github.io/demo-coffee/" target="_blank" rel="noopener" data-track="work-coffee-site">看網站</a>
                 <a class="btn btn-ghost" href="https://tonyging.github.io/demo-coffee/backend-demo/" target="_blank" rel="noopener" data-track="work-coffee-backend">看後台怎麼改</a>
+                <a class="u pf-case" href="work/lanan-coffee/" data-track="work-coffee-case" aria-label="嵐岸咖啡的案例說明">案例說明 →</a>
               </div>
             </div>
           </article>
@@ -1128,8 +1230,8 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <article class="tile glow pf-line" style="--d:12;--t:6" data-a>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-5 4v-4H6a2 2 0 0 1-2-2z"/></svg>
-          <div class="pf-lt"><b>LINE 官方帳號＋圖文選單</b><span>諾豪自己正在用的實例，LINE ID：@879gqgah</span></div>
-          <a class="u" href="#contact" data-track="work-line-oa">看聯絡方式 →</a>
+          <div class="pf-lt"><b>LINE 官方帳號＋圖文選單<em class="pf-lp">NT$10,000 起</em></b><span>諾豪自己正在用的實例，LINE ID：@879gqgah</span></div>
+          <a class="u" href="work/knowhow-line-oa/" data-track="work-line-oa">看實例 →</a>
         </article>
 
       </div>
@@ -1219,7 +1321,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg>信用卡</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 4l9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/></svg>ATM 轉帳</span>
           </div>
-          <p class="lead">付款方式：信用卡、ATM 轉帳（透過藍新金流收款）。</p>
+          <p class="lead">付款方式：信用卡、ATM 轉帳（透過藍新金流收款）。簽約時付 50% 訂金，交付時付尾款。</p>
         </section>
 
         <div class="tile refund" style="--d:7;--t:6" data-a>
@@ -1294,6 +1396,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           </nav>
           -->
           <span class="tg"><i></i>SMALL &amp; FAST</span>
+          <nav class="foot-pages" aria-label="服務說明與案例"><div class="nh-fg"><b>服務說明</b><a href="services/booking-system/">預約系統</a><a href="services/website/">形象官網</a><a href="services/line-official-account/">LINE 官方帳號</a><a href="services/legacy-upgrade/">舊系統升級</a></div><div class="nh-fg"><b>案例</b><a href="work/glimmer-booking/">微光指尖</a><a href="work/lanan-coffee/">嵐岸咖啡</a><a href="work/knowhow-line-oa/">諾豪的 LINE 官方帳號</a></div></nav>
         </footer>
       </div>
     </div></div>
