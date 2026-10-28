@@ -437,6 +437,12 @@ def shots_block(w):
         p, alt = EXTRA_PHONE[w["slug"]]
         d = img_dims(p)
         phone = (p, d[0], d[1], alt)
+    if not desktop:  # 全是手機直式截圖（LINE 案例）：三張並排，各附說明
+        items = ""
+        for src, sw, sh, alt in phones:
+            rw, rh = img_dims(src, sw, sh)
+            items += f'<figure class="pg-shot pg-shot-tall">{zoom_img(src, rw, rh, alt)}<figcaption>{e(alt.split("：", 1)[-1])}</figcaption></figure>'
+        return f'<div class="pg-shots3">{items}</div>'
     main = desktop[0]
     mw, mh = img_dims(main[0], main[1], main[2])
     ph = ""

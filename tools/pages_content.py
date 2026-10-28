@@ -274,7 +274,11 @@ WORKS = [
         ],
         "result": "客人自己就能看作品、問價格；負責人收到的是整理好的需求，回覆更快。",
         "stack": "LINE MESSAGING API ・ CLOUDFLARE WORKERS",
-        "shots": [],
+        "shots": [
+            ("../../img/work-line-chat-menu.webp", 720, 883, "LINE 聊天室畫面：歡迎訊息與四格圖文選單（服務項目、作品與案例、我要報價、聯絡方式）"),
+            ("../../img/work-line-works.webp", 720, 1172, "LINE 作品卡片：左右滑看作品，每張有價格、看網站與我要做類似的按鈕"),
+            ("../../img/work-line-quote.webp", 720, 1061, "LINE 詢價卡：點「我要報價」後用三個問題整理需求"),
+        ],
         "links": [
             ("加 LINE 好友看看", LINE_URL),
         ],
