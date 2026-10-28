@@ -15,3 +15,8 @@ SAME_AS = [
     "https://www.linkedin.com/in/%E9%98%BF%E9%87%91-undefined-15b0aa38b",
     # TODO: PRO360 專家頁網址還沒有，拿到後加在這裡
 ]
+
+# 線上購買頁（/shop/）結帳按鈕連到的 TapPay 付款連結。
+# 空字串＝按鈕是「LINE 下單」（預填訂購訊息，我們再把付款連結傳給客人）；
+# 有值＝按鈕改成「前往結帳」，連到這個付款連結。填好後重跑 build_pages.py。
+SHOP_PAY_URL = ""

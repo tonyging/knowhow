@@ -6,7 +6,7 @@
 
 ## 服務項目
 
-- [流程診斷報告（入門方案）](https://tonyging.github.io/knowhow/#services)：先聊清楚需求，附書面建議。NT$1,500（每次）。
+- [流程診斷報告（入門方案）](https://tonyging.github.io/knowhow/#services)：先聊清楚需求，附書面建議。NT$1,500（每次）。之後選擇由諾豪開發並簽約，診斷費折抵開發費。
 - [資料轉換／小工具](https://tonyging.github.io/knowhow/#services)：Excel、CSV、XML 轉檔整理、批次處理、報表自動產生。NT$3,000 起。
 - [一頁式網站](https://tonyging.github.io/knowhow/services/website/)：手機版型、服務介紹、聯絡方式與上線協助。NT$15,000 起。
 - [形象官網＋自改後台](https://tonyging.github.io/knowhow/services/website/)：產品自己上架、消息自己發布、門市資訊自己改。素材齊全後約 2～3 週交第一版，交付前含 2 次修改。NT$20,000 起。

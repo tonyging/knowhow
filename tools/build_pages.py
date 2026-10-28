@@ -5,7 +5,7 @@
 
 - 內容來源：tools/pages_content.py（文字）、tools/site_config.py（網址與追蹤碼）
 - 樣式：assets/page.css（手寫，不是產生的）
-- 輸出：services/<slug>/index.html、work/<slug>/index.html、sitemap.xml
+- 輸出：services/<slug>/index.html、work/<slug>/index.html、shop/index.html、sitemap.xml
 - 只用標準函式庫。輸出檔可以隨時重跑覆蓋，不要手動修改。
 """
 import html
@@ -15,6 +15,7 @@ import re
 import struct
 import sys
 from datetime import date
+from urllib.parse import quote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -238,6 +239,7 @@ def cta_card(where):
 
 def footer():
     sv = "".join(f'<li><a href="../../services/{s["slug"]}/">{e(s["short"])}</a></li>' for s in C.SERVICES)
+    sv += '<li><a href="../../shop/">線上購買</a></li>'
     wk = "".join(f'<li><a href="../../work/{w["slug"]}/">{e(WORK_SHORT[w["slug"]])}</a></li>' for w in C.WORKS)
     return f"""<footer class="pg-foot">
   <div class="pg-wrap pg-foot-in">
@@ -511,6 +513,220 @@ def build_work(w):
     write(os.path.join("work", slug, "index.html"), out)
 
 
+# ---------- 線上購買頁（/shop/） ----------
+SHOP_JS = """<script>
+(function(){
+  var KEY="nh-shop-cart", root=document.getElementById("pg-shop");
+  if(!root) return;
+  var add=document.getElementById("pg-add"), full=document.getElementById("pg-cart-full"),
+      empty=document.getElementById("pg-cart-empty"), live=document.getElementById("pg-cart-live"),
+      rm=document.getElementById("pg-cart-rm"), count=document.getElementById("pg-cart-count"),
+      view=document.getElementById("pg-view-cart"), head=document.getElementById("pg-cart-h"),
+      rd=document.getElementById("pg-refund-d");
+  var inCart=false;
+  /* 購物車只存在這個分頁的 sessionStorage（關掉分頁就清空），不收集、不傳送任何資料 */
+  try{ inCart=sessionStorage.getItem(KEY)==="1"; }catch(x){}
+  function save(){ try{ if(inCart) sessionStorage.setItem(KEY,"1"); else sessionStorage.removeItem(KEY); }catch(x){} }
+  function rmo(){ return matchMedia("(prefers-reduced-motion:reduce)").matches; }
+  function render(msg){
+    full.hidden=!inCart; empty.hidden=inCart; view.hidden=!inCart;
+    add.textContent=inCart?"已加入購物車":"加入購物車";
+    add.setAttribute("aria-disabled",inCart?"true":"false");
+    add.classList.toggle("is-done",inCart);
+    count.textContent=inCart?"（1 件）":"（0 件）";
+    if(msg) live.textContent=msg;
+  }
+  add.addEventListener("click",function(){
+    if(inCart) return;
+    inCart=true; save(); render("已加入購物車，合計 NT$1,500。");
+  });
+  /* 「查看購物車」：把焦點移到購物車標題並捲到那裡（鍵盤與讀屏使用者也知道購物車在哪） */
+  view.addEventListener("click",function(e){
+    e.preventDefault();
+    head.focus({preventScroll:true});
+    try{ head.scrollIntoView({block:"start",behavior:rmo()?"auto":"smooth"}); }catch(x){}
+  });
+  rm.addEventListener("click",function(){
+    inCart=false; save(); render("已從購物車移除，購物車是空的。");
+    add.focus();
+  });
+  /* 退換貨規則：桌機預設展開，手機預設收合（沒有 JS 時維持展開） */
+  if(rd&&matchMedia("(max-width:767px)").matches) rd.removeAttribute("open");
+  render("");
+  /* 成效追蹤：與首頁相同，點擊帶有 data-track 的元素時送出事件；分析腳本未載入時什麼都不會發生 */
+  document.addEventListener("click",function(e){
+    var el=e.target.closest&&e.target.closest("[data-track]"); if(!el) return;
+    try{ if(window.umami&&typeof window.umami.track==="function") window.umami.track(el.getAttribute("data-track")); }catch(x){}
+  },true);
+})();
+</script>"""
+
+NO_ICO = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
+          'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/>'
+          '<path d="M9 9l6 6M15 9l-6 6" stroke="var(--muted)"/></svg>')
+
+
+def build_shop():
+    sh = C.SHOP
+    url = f"{S.SITE}/shop/"
+    p = sh["product"]
+    price_txt = f"NT${p['price']:,}"
+    pay_url = (getattr(S, "SHOP_PAY_URL", "") or "").strip()
+    parts = []
+    parts.append(crumb("服務與價格", "#services", "線上購買"))
+    parts.append(hero(1, sh["en"], sh["h1"], sh["badge"]))
+    facts = "".join(f"<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>" for k, v in sh["facts"])
+    parts.append(f"""<section class="pg-card pg-answer pg-rise" aria-label="簡短回答">
+    <p class="pg-lead">{e(sh["answer"])}</p>
+    <dl class="pg-facts">{facts}</dl>
+  </section>""")
+
+    # 結帳按鈕：build 時依 SHOP_PAY_URL 決定（前端不寫死）。
+    # 空字串＝LINE 下單（預填訂購訊息）；有值＝前往 TapPay 付款連結
+    if pay_url:
+        checkout = (f'<a class="pg-btn pg-btn-solid" id="pg-checkout" href="{e(pay_url)}" rel="noopener" '
+                    f'data-track="go-checkout">前往結帳</a>')
+        note = ""
+    else:
+        order = "https://line.me/R/oaMessage/%40879gqgah/?text=" + quote(sh["order_text"], safe="")
+        checkout = (f'<a class="pg-btn pg-btn-solid" id="pg-checkout" href="{order}" target="_blank" rel="noopener" '
+                    f'data-track="go-order-line">LINE 下單</a>')
+        note = f'<p class="pg-pay-note">{e(sh["order_note"])}</p>'
+
+    parts.append(f"""<section class="pg-sec pg-sec-s pg-reveal" id="pg-shop">
+  {label(2, "PRODUCT")}
+  <h2 class="pg-h2" id="product">選購商品</h2>
+  <article class="pg-card pg-prod">
+    <div class="pg-prod-body">
+      <h3>{e(p["name"])}<span class="pg-badge">{e(p["badge"])}</span></h3>
+      <p>{e(p["desc"])}</p>
+    </div>
+    <div class="pg-prod-buy">
+      <p class="pg-price"><b>{price_txt}</b><span>／{e(p["unit"])}，固定價</span></p>
+      <button type="button" class="pg-btn pg-btn-solid" id="pg-add" aria-describedby="pg-cart-live" data-track="add-to-cart">加入購物車</button>
+      <a class="pg-u pg-strong pg-viewcart" id="pg-view-cart" href="#pg-cart-h" hidden data-track="view-cart">查看購物車 ↓</a>
+    </div>
+  </article>
+</section>
+<section class="pg-sec pg-sec-s pg-reveal" id="pg-cart" aria-labelledby="pg-cart-h">
+  {label(3, "CART")}
+  <h2 class="pg-h2" id="pg-cart-h" tabindex="-1">購物車<span id="pg-cart-count" class="pg-cart-count">（0 件）</span></h2>
+  <div class="pg-card pg-cart">
+    <p class="pg-sr" id="pg-cart-live" role="status" aria-live="polite"></p>
+    <div id="pg-cart-empty">
+      <p class="pg-cart-empty-t">{e(sh["empty_title"])}</p>
+      <p class="pg-cart-empty-h">{e(sh["empty_hint"])}<a class="pg-u pg-strong" href="#product" data-track="cart-back-to-product">回到商品</a></p>
+    </div>
+    <div id="pg-cart-full" hidden>
+      <div class="pg-cart-row">
+        <div class="pg-cart-name"><b>{e(p["name"])}</b><span>數量 1 份</span></div>
+        <dl class="pg-cart-nums">
+          <div><dt>單價</dt><dd>{price_txt}</dd></div>
+          <div><dt>小計</dt><dd>{price_txt}</dd></div>
+        </dl>
+        <button type="button" class="pg-btn pg-btn-ghost pg-rm" id="pg-cart-rm" aria-label="從購物車移除{e(p["name"])}" data-track="remove-from-cart">移除</button>
+      </div>
+      <p class="pg-cart-total"><span>合計</span><b>{price_txt}</b></p>
+      <div class="pg-cart-go">
+        {checkout}
+        {note}
+      </div>
+    </div>
+    <noscript><p class="pg-cart-empty-h">購物車需要開啟 JavaScript。也可以直接<a class="pg-u pg-strong" href="{C.LINE_URL}" target="_blank" rel="noopener">加 LINE 洽談</a>。</p></noscript>
+  </div>
+</section>""")
+
+    n = 4
+    steps = "".join(f"<li><b>{e(t)}</b><span>{e(d)}</span></li>" for t, d in sh["steps"])
+    parts.append(f'<section class="pg-sec pg-sec-s pg-reveal">\n  {label(n, "ORDER")}\n  <h2 class="pg-h2">怎麼訂購</h2>\n  <ol class="pg-steps pg-steps3">{steps}</ol>\n</section>')
+
+    n += 1
+    inc = "".join(f'<article class="pg-tile" style="--sp:4"><h3>{e(t)}</h3><p>{e(d)}</p></article>' for t, d in sh["includes"])
+    parts.append(f'<section class="pg-sec pg-sec-s pg-reveal">\n  {label(n, "INCLUDES")}\n  <h2 class="pg-h2">你會拿到什麼</h2>\n  <div class="pg-bento">{inc}</div>\n</section>')
+
+    n += 1
+    fit = "".join(f"<li>{CHECK}<span>{e(t)}</span></li>" for t in sh["fit"])
+    fol = "".join(f"<li>{CHECK}<span>{e(t)}</span></li>" for t in sh["followup"])
+    noi = "".join(f"<li>{NO_ICO}<span>{faq_html(t)}</span></li>" for t in sh["not_incl"])
+    parts.append(f"""<section class="pg-sec pg-sec-s pg-reveal">
+  {label(n, "SCOPE")}
+  <h2 class="pg-h2">適合誰、不包含什麼</h2>
+  <div class="pg-split">
+    <div><h3 class="pg-h3">適合</h3><ul class="pg-fit pg-sol">{fit}</ul>
+      <h3 class="pg-h3">後續</h3><ul class="pg-fit pg-sol">{fol}</ul></div>
+    <div><h3 class="pg-h3">不包含</h3><ul class="pg-fit pg-sol">{noi}</ul></div>
+  </div>
+</section>""")
+
+    n += 1
+    parts.append(f"""<section class="pg-sec pg-sec-s pg-reveal">
+  {label(n, "PAYMENT")}
+  <h2 class="pg-h2">付款資訊</h2>
+  <div class="pg-card pg-pay">
+    <p class="pg-lead">{e(sh["pay_text"])}</p>
+    <p class="pg-tappay"><img src="../../img/tappay/tappay-horizontal.png" width="662" height="261" alt="TapPay 金流"></p>
+    <p class="pg-pay-sec">{e(sh["security"])}</p>
+    <p class="pg-pay-sec">{e(sh["pci"])}</p>
+  </div>
+</section>""")
+
+    comp = "".join(f"<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>" for k, v in sh["company"])
+    contact = (f'<div><dt>LINE ID</dt><dd><a class="pg-u" href="{C.LINE_URL}" target="_blank" rel="noopener" data-track="shop-line-id">{C.LINE_ID}</a></dd></div>'
+               f'<div><dt>電話</dt><dd><a class="pg-u" href="tel:{sh["phone_href"]}" data-track="click-phone">{e(sh["phone"])}</a></dd></div>'
+               f'<div><dt>Email</dt><dd><a class="pg-u" href="mailto:{e(sh["email"])}" data-track="click-email">{e(sh["email"])}</a></dd></div>')
+    stages = "".join(f"<li><b>{e(t)}</b><span>{e(d)}</span></li>" for t, d in sh["refund"])
+    n += 1
+    parts.append(f"""<section class="pg-sec pg-sec-s pg-reveal">
+  {label(n, "COMPANY")}
+  <h2 class="pg-h2">公司資訊與聯繫方式</h2>
+  <dl class="pg-card pg-info">{comp}{contact}</dl>
+</section>""")
+    n += 1
+    parts.append(f"""<section class="pg-sec pg-sec-s pg-reveal" id="refund-policy">
+  {label(n, "REFUND")}
+  <h2 class="pg-h2">退換貨與退款政策</h2>
+  <div class="pg-faq"><details id="pg-refund-d" open>
+    <summary>{e(sh["refund_summary"])}</summary>
+    <div class="pg-refund">
+      <p class="pg-text">{e(sh["refund_intro"])}</p>
+      <ol class="pg-stages">{stages}</ol>
+      <p class="pg-text pg-refund-via">{e(sh["refund_via"])}</p>
+      <a class="pg-u pg-strong" href="../../#refund" data-track="shop-refund-link">查看完整付款與退款政策 →</a>
+    </div>
+  </details></div>
+</section>""")
+    parts.append(cta_card("bottom"))
+
+    ld = {
+        "@context": "https://schema.org",
+        "@graph": [
+            crumb_ld("服務與價格", S.SITE + "/#services", "線上購買", url),
+            webpage_ld(url, sh["title"], sh["description"]),
+            {
+                "@type": "Product",
+                "@id": url + "#product",
+                "name": p["name"],
+                "description": sh["ld_desc"],
+                "url": url,
+                "brand": {"@id": S.SITE + "/#org"},
+                "offers": {
+                    "@type": "Offer",
+                    "url": url,
+                    "price": p["price"],
+                    "priceCurrency": "TWD",
+                    "availability": "https://schema.org/InStock",
+                    "seller": {"@id": S.SITE + "/#org"},
+                },
+            },
+        ],
+    }
+    body = "\n".join(parts) + "\n" + SHOP_JS
+    out = page_shell(head(sh["title"], sh["description"], url, ld), body)
+    # 本頁只有一層（shop/），共用區塊寫的是兩層（services/<slug>/）的相對路徑
+    out = out.replace("../../", "../")
+    write(os.path.join("shop", "index.html"), out)
+
+
 # ---------- 檔案輸出 ----------
 def write(rel, text):
     p = os.path.join(ROOT, rel)
@@ -521,7 +737,7 @@ def write(rel, text):
 
 
 def build_sitemap():
-    urls = [S.SITE + "/"] + [url_service(s["slug"]) for s in C.SERVICES] + [url_work(w["slug"]) for w in C.WORKS]
+    urls = [S.SITE + "/"] + [url_service(s["slug"]) for s in C.SERVICES] + [url_work(w["slug"]) for w in C.WORKS] + [S.SITE + "/shop/"]
     rows = "".join(
         f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{TODAY}</lastmod>\n  </url>\n" for u in urls)
     write("sitemap.xml",
@@ -535,6 +751,7 @@ def main():
         build_service(s)
     for w in C.WORKS:
         build_work(w)
+    build_shop()
     build_sitemap()
 
 
