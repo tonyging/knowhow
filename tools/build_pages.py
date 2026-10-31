@@ -32,7 +32,7 @@ SERVICE_TYPE = {
     "booking-system": "線上預約系統開發",
     "website": "形象官網製作",
     "line-official-account": "LINE 官方帳號建置",
-    "legacy-upgrade": "舊系統升級評估",
+    "legacy-upgrade": "舊系統升級",
 }
 WORK_SHORT = {
     "glimmer-booking": "微光指尖",
