@@ -13,7 +13,7 @@ SAME_AS = [
     "https://line.me/R/ti/p/@879gqgah",
     "https://www.tasker.com.tw/workroom/nuohao",
     "https://www.linkedin.com/in/%E9%98%BF%E9%87%91-undefined-15b0aa38b",
-    # TODO: PRO360 專家頁網址還沒有，拿到後加在這裡
+    "https://www.pro360.com.tw/service/327978",
 ]
 
 # 線上購買頁（/shop/）結帳按鈕連到的 TapPay 付款連結。
