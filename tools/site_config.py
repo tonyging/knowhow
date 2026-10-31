@@ -12,7 +12,7 @@ UMAMI_DOMAINS = "nuohao.tw,tonyging.github.io"
 SAME_AS = [
     "https://line.me/R/ti/p/@879gqgah",
     "https://www.tasker.com.tw/workroom/nuohao",
-    "https://www.linkedin.com/in/%E9%98%BF%E9%87%91-undefined-15b0aa38b",
+    "https://www.linkedin.com/in/tony-chin-15b0aa38b",
     "https://www.pro360.com.tw/service/327978",
 ]
 
