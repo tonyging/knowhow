@@ -16,4 +16,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://tonyging.github.io/knowhow/sitemap.xml
+Sitemap: https://nuohao.tw/sitemap.xml

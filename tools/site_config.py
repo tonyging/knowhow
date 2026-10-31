@@ -2,11 +2,11 @@
 """網站共用設定。換網域時用 `py tools/set_domain.py 新網域`，不要手動改。"""
 
 # 網站根網址（不含結尾斜線）
-SITE = "https://tonyging.github.io/knowhow"
+SITE = "https://nuohao.tw"
 
 # Umami 追蹤碼
 UMAMI_ID = "61f8dd1d-a873-4ab9-80a0-dcf2a8809eeb"
-UMAMI_DOMAINS = "tonyging.github.io"
+UMAMI_DOMAINS = "nuohao.tw,tonyging.github.io"
 
 # 對外的官方頁面（給搜尋引擎辨認同一個品牌）
 SAME_AS = [
