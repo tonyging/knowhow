@@ -742,10 +742,24 @@ def write(rel, text):
     print("wrote", rel.replace("\\", "/"))
 
 
+def lastmod(rel):
+    """該頁最後實際改動日：有未提交的變更＝今天，否則取最後一次 commit 的日期（拿不到就用今天）。"""
+    import subprocess
+    try:
+        run = lambda *a: subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()  # noqa: E731
+        if run("status", "--porcelain", "--", rel):
+            return TODAY
+        return run("log", "-1", "--format=%cs", "--", rel) or TODAY
+    except Exception:
+        return TODAY
+
+
 def build_sitemap():
-    urls = [S.SITE + "/"] + [url_service(s["slug"]) for s in C.SERVICES] + [url_work(w["slug"]) for w in C.WORKS] + [S.SITE + "/shop/"]
+    pages = [("/", "index.html")] + [(f"/services/{s['slug']}/", f"services/{s['slug']}/index.html") for s in C.SERVICES] \
+        + [(f"/work/{w['slug']}/", f"work/{w['slug']}/index.html") for w in C.WORKS] + [("/shop/", "shop/index.html")]
     rows = "".join(
-        f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{TODAY}</lastmod>\n  </url>\n" for u in urls)
+        f"  <url>\n    <loc>{S.SITE}{path}</loc>\n    <lastmod>{lastmod(rel)}</lastmod>\n  </url>\n"
+        for path, rel in pages)
     write("sitemap.xml",
           '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<!-- 由 tools/build_pages.py 產生，不要手動修改 -->\n'
