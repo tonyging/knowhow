@@ -37,15 +37,18 @@ SERVICE_TYPE = {
 WORK_SHORT = {
     "glimmer-booking": "微光指尖",
     "lanan-coffee": "嵐岸咖啡",
+    "liuwen-shop": "六紋",
     "knowhow-line-oa": "諾豪的 LINE 官方帳號",
 }
-WORK_TRACK = {"glimmer-booking": "glimmer", "lanan-coffee": "coffee", "knowhow-line-oa": "line"}
+WORK_TRACK = {"glimmer-booking": "glimmer", "lanan-coffee": "coffee", "liuwen-shop": "shop", "knowhow-line-oa": "line"}
 LINK_TRACK = {"看網站": "site", "看店家後台": "admin", "開一間示範店": "live",
               "看後台怎麼改": "backend", "加 LINE 好友看看": "add"}
 # 首頁作品屏用的手機版截圖（內容檔的 shots 沒有列，這裡補上；alt 沿用首頁的寫法）
 EXTRA_PHONE = {
     "glimmer-booking": ("../../img/work-glimmer-mobile.webp",
                         "微光指尖手機版畫面：美甲作品照片與底部「預約時段」按鈕"),
+    "liuwen-shop": ("../../img/work-shop-mobile.webp",
+                    "六紋手機版畫面：直排標語「先澀，後甘。」與商品照片"),
 }
 GEN_NOTE = "<!-- 由 tools/build_pages.py 產生，不要手動修改；要改文字請改 tools/pages_content.py 再重跑 -->"
 
