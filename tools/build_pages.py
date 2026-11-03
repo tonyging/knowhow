@@ -428,41 +428,64 @@ def zoom_img(src, w, h, alt):
     return f'<a class="pg-zoom" href="{src}" target="_blank" rel="noopener"><img src="{src}" width="{w}" height="{h}" loading="lazy" alt="{e(alt)}">{ZOOM_ICO}</a>{zoom_hint(src)}'
 
 
-def shots_block(w):
-    shots = w["shots"]
-    if not shots:
-        return LINE_MOCK
-    desktop = [s for s in shots if not (s[2] and s[1] and s[2] > s[1])]
-    phones = [s for s in shots if (s[2] and s[1] and s[2] > s[1])]
-    phone = None
-    if phones:
-        phone = (phones[0][0], phones[0][1], phones[0][2], phones[0][3])
-    elif w["slug"] in EXTRA_PHONE:
-        p, alt = EXTRA_PHONE[w["slug"]]
-        d = img_dims(p)
-        phone = (p, d[0], d[1], alt)
-    if not desktop:  # 全是手機直式截圖（LINE 案例）：三張並排，各附說明
-        items = ""
-        for src, sw, sh, alt in phones:
-            rw, rh = img_dims(src, sw, sh)
-            items += f'<figure class="pg-shot pg-shot-tall">{zoom_img(src, rw, rh, alt)}<figcaption>{e(alt.split("：", 1)[-1])}</figcaption></figure>'
-        return f'<div class="pg-shots3">{items}</div>'
-    main = desktop[0]
-    mw, mh = img_dims(main[0], main[1], main[2])
-    ph = ""
-    if phone:
-        pw, phh = img_dims(phone[0], phone[1], phone[2])
-        ph = f'<figure class="pg-phone"><img src="{phone[0]}" width="{pw}" height="{phh}" loading="lazy" alt="{e(phone[3])}"></figure>'
-    out = f'<div class="pg-fig{" pg-fig-phone" if phone else ""}"><figure class="pg-shot">{zoom_img(main[0], mw, mh, main[3])}</figure>{ph}</div>'
-    rest = desktop[1:]
-    if rest:
-        items = ""
-        for src, sw, sh, alt in rest:
-            rw, rh = img_dims(src, sw, sh)
-            cap = alt.split("：", 1)[-1]
-            items += f'<figure class="pg-shot">{zoom_img(src, rw, rh, alt)}<figcaption>{e(cap)}</figcaption></figure>'
-        out += f'<div class="pg-shots2">{items}</div>'
-    return out
+# ---------- 案例頁（2026-11-04 改版）：分工表＋截圖標註。class 一律用 pg-cs- 前綴 ----------
+TICK = ('<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
+        'stroke-linejoin="round" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5L15.5 6.5"/></svg>')
+
+
+def chores_block(w, n):
+    c = w["chores"]
+    head = "".join(f'<th scope="col">{e(t)}</th>' for t in c["cols"])
+    rows = "".join(f'<tr><th scope="row">{e(q)}</th><td data-col="{e(c["cols"][1])}">{e(b)}</td><td data-col="{e(c["cols"][2])}">{TICK}{e(a)}</td></tr>' for q, b, a in c["rows"])
+    note = f'\n  <p class="pg-cs-note">{e(w["note"])}</p>' if w.get("note") else ""
+    return (f'<section class="pg-sec pg-reveal" aria-labelledby="cs-tbl-h">\n  {label(n, "WHO DOES WHAT")}\n'
+            f'  <h2 class="pg-h2" id="cs-tbl-h">{e(c["title"])}</h2>\n'
+            f'  <table class="pg-cs-tbl"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>{note}\n</section>')
+
+
+def cs_pins(w, where):
+    pos = lambda x, y: "" if where == "phone" else f' style="left:{x}%;top:{y}%"'  # noqa: E731
+    return "".join(f'<span class="pg-cs-pin"{pos(x, y)} aria-hidden="true">{i}</span>'
+                   for i, (wh, x, y, _t, _s) in enumerate(w["pins"], 1) if wh == where)
+
+
+def cs_zoom(src, w_, h_, alt, cap, pins=""):
+    """可以點開燈箱的一張圖：figure 裡放連結、隱藏圖說（給燈箱用）與標註點"""
+    return (f'<figure class="pg-cs-pic"><a class="pg-zoom" href="{src}" target="_blank" rel="noopener">'
+            f'<img src="{src}" width="{w_}" height="{h_}" loading="lazy" alt="{e(alt)}"></a>'
+            f'<figcaption class="pg-sr">{e(cap)}</figcaption>{pins}</figure>')
+
+
+def screens_block(w):
+    shots = [(src, *img_dims(src, sw, sh), alt) for src, sw, sh, alt in w["shots"]]
+    is_tall = lambda s: s[2] > s[1]  # noqa: E731
+    main = shots[0]
+    phone = next((s for s in shots[1:] if is_tall(s)), None) if not is_tall(main) else None
+    if not is_tall(main) and phone is None and w["slug"] in EXTRA_PHONE:
+        src, alt = EXTRA_PHONE[w["slug"]]
+        phone = (src, *img_dims(src), alt)
+    cap = lambda s: s[3].split("：", 1)[-1]  # noqa: E731
+    legend = "".join(f'<li><i>{i}</i><b>{e(t)}</b><span>{e(sub)}</span></li>' for i, (_w, _x, _y, t, sub) in enumerate(w["pins"], 1))
+    pic = cs_zoom(main[0], main[1], main[2], main[3], cap(main), cs_pins(w, "main"))
+    if is_tall(main):
+        fig = pic
+    else:
+        ph = ""
+        if phone:
+            ph = f'<div class="pg-cs-phone">{cs_zoom(phone[0], phone[1], phone[2], phone[3], cap(phone), cs_pins(w, "phone"))}</div>'
+        fig = f'<div class="pg-cs-fig{" has-phone" if ph else ""}"><div class="pg-cs-win"><i aria-hidden="true"></i>{pic}</div>{ph}</div>'
+    mains = f'<div class="pg-cs-main">{fig}<ol class="pg-cs-legend" aria-label="畫面標註">{legend}</ol></div>'
+    minis = ""
+    for s_ in shots[1:]:
+        if s_ is phone or s_[0] not in w["minis"]:
+            continue
+        mono, t, sub = w["minis"][s_[0]]
+        minis += (f'<figure class="pg-cs-mini"><a class="pg-zoom" href="{s_[0]}" target="_blank" rel="noopener">'
+                  f'<img src="{s_[0]}" width="{s_[1]}" height="{s_[2]}" loading="lazy" alt="{e(s_[3])}"></a>'
+                  f'<figcaption><span class="pg-mono">{e(mono)}</span><b>{e(t)}</b><span>{e(sub)}</span></figcaption></figure>')
+    side = f'<div class="pg-cs-side">{minis}</div>' if minis else ""
+    kind = "is-tall" if is_tall(main) else "is-wide"
+    return f'<div class="pg-cs-bento {kind}{"" if side else " is-solo"}">{mains}{side}</div>'
 
 
 def build_work(w):
@@ -480,16 +503,13 @@ def build_work(w):
         a = f'<a class="pg-btn {cls}" href="{href}" target="_blank" rel="noopener" data-track="case-{WORK_TRACK[slug]}-{sfx}">{e(name)}</a>'
         note = w.get("link_notes", {}).get(name)
         btns += f'<span class="pg-btn-wrap">{a}<small class="pg-btn-note">{e(note)}</small></span>' if note else a
-    parts.append(f'<section class="pg-card pg-answer pg-rise" aria-label="簡短回答">\n    <p class="pg-lead">{e(w["answer"])}</p>\n    <div class="pg-btns">{btns}</div>\n  </section>')
-    parts.append(f'<section class="pg-sec pg-reveal" aria-label="畫面">\n  {shots_block(w)}\n</section>')
+    note = f'\n    <p class="pg-cs-id">{e(w["lead_note"])}</p>' if w.get("lead_note") else ""
+    parts.append(f'<section class="pg-card pg-answer pg-rise" aria-label="簡短回答">\n    <p class="pg-lead">{e(w["lead"])}<b>{e(w["lead_hl"])}</b></p>{note}\n    <div class="pg-btns">{btns}</div>\n  </section>')
 
     n += 1
-    parts.append(f'<section class="pg-sec pg-reveal">\n  {label(n, "PROBLEM")}\n  <h2 class="pg-h2">遇到的問題</h2>\n  <p class="pg-text">{e(w["problem"])}</p>\n</section>')
+    parts.append(chores_block(w, n))
     n += 1
-    sol = "".join(f"<li>{CHECK}<span>{e(t)}</span></li>" for t in w["solution"])
-    parts.append(f'<section class="pg-sec pg-reveal">\n  {label(n, "SOLUTION")}\n  <h2 class="pg-h2">怎麼做</h2>\n  <ul class="pg-fit pg-sol">{sol}</ul>\n</section>')
-    n += 1
-    parts.append(f'<section class="pg-sec pg-reveal">\n  {label(n, "RESULT")}\n  <h2 class="pg-h2">{e(w.get("result_title", "結果"))}</h2>\n  <p class="pg-text">{e(w["result"])}</p>\n  <p class="pg-stack">{e(w["stack"])}</p>\n</section>')
+    parts.append(f'<section class="pg-sec pg-reveal" aria-labelledby="cs-shot-h">\n  {label(n, "SCREENS")}\n  <h2 class="pg-h2" id="cs-shot-h">實際畫面</h2>\n  <p class="pg-cs-kind">{e(w["kind"])}・點圖可放大</p>\n  {screens_block(w)}\n  <p class="pg-stack">{e(w["stack"])}</p>\n</section>')
 
     n += 1
     parts.append(f"""<section class="pg-sec pg-reveal">
