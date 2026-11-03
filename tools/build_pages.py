@@ -4,7 +4,7 @@
 用法（在 repo 根目錄）：  py tools/build_pages.py
 
 - 內容來源：tools/pages_content.py（文字）、tools/site_config.py（網址與追蹤碼）
-- 樣式：assets/page.css（手寫，不是產生的）
+- 樣式：assets/page.css；截圖燈箱：assets/lightbox.js（都是手寫，不是產生的）
 - 輸出：services/<slug>/index.html、work/<slug>/index.html、shop/index.html、sitemap.xml
 - 只用標準函式庫。輸出檔可以隨時重跑覆蓋，不要手動修改。
 """
@@ -203,6 +203,7 @@ def head(title, desc, canon, extra_ld):
 <meta name="twitter:image" content="{S.SITE}/og.png">
 <link rel="icon" href="../../logo.png">
 <link rel="stylesheet" href="../../assets/page.css">
+<script defer src="../../assets/lightbox.js"></script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="{S.UMAMI_ID}" data-domains="{S.UMAMI_DOMAINS}" data-do-not-track="true"></script>
 <script type="application/ld+json">
 {jsonld(extra_ld)}
