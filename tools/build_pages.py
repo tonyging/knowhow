@@ -163,10 +163,70 @@ HERO_ART = """<div class="pg-hero-art" aria-hidden="true">
   </div>"""
 
 
-def hero(n, en, h1, badge=""):
+# 案例頁專屬插圖（2026-11-04）：同一套語言——左邊是「以前」的東西、虛線箭頭、右邊是做好的成果，
+# 綠色四格依序亮起（沿用 pg-c0～c3 與打勾的時間軸），每個案例換成自己的物件。
+CASE_ART = {
+    "glimmer-booking": (  # 手機三步預約 → 行事曆時段一格格填上
+        '<rect x="50" y="34" width="64" height="150" rx="10"/><path d="M72 44 h20"/>'
+        '<rect x="60" y="62" width="44" height="22" rx="3"/><rect x="60" y="94" width="44" height="22" rx="3"/>'
+        '<rect x="60" y="126" width="44" height="22" rx="3"/><rect x="60" y="158" width="44" height="14" rx="7"/>',
+        '<rect x="238" y="44" width="110" height="128" rx="6"/><path d="M262 36 V52 M324 36 V52"/>'
+        '<path d="M238 74 H348 M238 106.7 H348 M238 139.3 H348 M274.7 74 V172 M311.3 74 V172"/>',
+        [(246, 82, 20, 16), (319, 82, 20, 16), (283, 115, 20, 16), (246, 147, 20, 16)]),
+    "lanan-coffee": (  # 後台填表 → 網站上的咖啡豆卡片
+        '<rect x="30" y="40" width="92" height="136" rx="5"/><path d="M42 58 h30 M42 92 h24 M42 126 h34"/>'
+        '<rect x="42" y="66" width="68" height="14" rx="3"/><rect x="42" y="100" width="68" height="14" rx="3"/>'
+        '<rect x="42" y="134" width="68" height="14" rx="3"/><rect x="70" y="156" width="40" height="12" rx="6"/>'
+        '<path d="M126 34 l10 10 l-30 30 h-10 v-10 Z M120 40 l10 10"/>',
+        '<rect x="238" y="44" width="110" height="128" rx="6"/><path d="M238 62 H348 M248 53 h2 M256 53 h2 M264 53 h2"/>'
+        + "".join(f'<rect x="{x}" y="{y}" width="42" height="44" rx="3"/><ellipse cx="{x+21}" cy="{y+15}" rx="7" ry="9"/><path d="M{x+21} {y+7} q-4 8 0 16"/>'
+                  for x, y in ((248, 70), (298, 70), (248, 122), (298, 122))),
+        [(x + 9, y + 31, 24, 7) for x, y in ((248, 70), (298, 70), (248, 122), (298, 122))]),
+    "liuwen-shop": (  # 購物車 → 超商門市架上一件件待取的包裹
+        '<path d="M20 66 h16 l14 66 h60 l10 -46 H44"/><circle cx="60" cy="150" r="7"/><circle cx="102" cy="150" r="7"/>'
+        '<rect x="60" y="94" width="18" height="18" rx="2"/><rect x="84" y="86" width="22" height="26" rx="2"/>',
+        '<path d="M238 76 L248 52 H338 L348 76 Z"/><path d="M238 76 q9.2 10 18.3 0 q9.2 10 18.3 0 q9.2 10 18.3 0 q9.2 10 18.3 0 q9.2 10 18.3 0 q9.2 10 18.3 0"/>'
+        '<path d="M244 90 V172 H342 V90"/><path d="M244 128 H342 M244 166 H342"/>',
+        [(254, 104, 30, 24), (298, 110, 24, 18), (256, 146, 22, 20), (296, 142, 34, 24)]),
+    "knowhow-line-oa": (  # 客人一直問 → LINE 四格選單一格格亮起
+        '<rect x="16" y="40" width="80" height="30" rx="14"/><path d="M30 50 h40 M30 59 h26"/>'
+        '<rect x="42" y="90" width="80" height="30" rx="14"/><path d="M56 100 h46 M56 109 h22"/>'
+        '<rect x="16" y="140" width="80" height="30" rx="14"/><path d="M30 150 h36 M30 159 h30"/>',
+        '<rect x="262" y="30" width="74" height="152" rx="10"/><rect x="272" y="46" width="46" height="18" rx="8"/>'
+        '<rect x="270" y="104" width="58" height="68" rx="4"/><path d="M299 104 V172 M270 138 H328"/>',
+        [(274, 108, 21, 26), (303, 108, 21, 26), (274, 142, 21, 26), (303, 142, 21, 26)]),
+}
+
+
+def case_art(slug):
+    left, right, cells = CASE_ART[slug]
+    i = iter(range(60))
+    # 每個描線元素加 pg-d、依序延遲
+    draw = lambda svg: re.sub(r"<(rect|path|circle|ellipse)\b", lambda m: f'<{m[1]} class="pg-d" style="--i:{next(i)}" pathLength="1"', svg)  # noqa: E731
+    left, right = draw(left), draw(right)
+    greens = "".join(f'<rect class="pg-c{k}" x="{x}" y="{y}" width="{w}" height="{h}" rx="2"/>' for k, (x, y, w, h) in enumerate(cells))
+    return f"""<div class="pg-hero-art" aria-hidden="true">
+    <svg class="pg-art" viewBox="0 0 360 220" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        {left}
+        <path d="M142 112 H212" stroke-dasharray="2 6"/>
+        <path class="pg-d" style="--i:{next(i)}" pathLength="1" d="M205 105 L213 112 L205 119"/>
+        {right}
+      </g>
+      <g class="pg-g" fill="currentColor">
+        <circle class="pg-dot" cx="142" cy="112" r="3.5"/>
+        {greens}
+        <circle class="pg-cc" cx="344" cy="176" r="13"/>
+      </g>
+      <path class="pg-tick" pathLength="1" d="M337 176 l5 5 l9 -10" fill="none" stroke="var(--card)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>"""
+
+
+def hero(n, en, h1, badge="", art=HERO_ART):
     b = f'\n    <span class="pg-badge pg-rise">{e(badge)}</span>' if badge else ""
     return (f'<header class="pg-hero">\n  <div class="pg-hero-txt">\n    {label(n, en)}\n'
-            f'    <h1 class="pg-h1 pg-rise">{h1_html(h1)}</h1>{b}\n  </div>\n  {HERO_ART}\n</header>')
+            f'    <h1 class="pg-h1 pg-rise">{h1_html(h1)}</h1>{b}\n  </div>\n  {art}\n</header>')
 
 
 CHECK = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
@@ -479,8 +539,12 @@ def screens_block(w):
     for s_ in shots[1:]:
         if s_ is phone or s_[0] not in w["minis"]:
             continue
-        mono, t, sub = w["minis"][s_[0]]
-        minis += (f'<figure class="pg-cs-mini"><a class="pg-zoom" href="{s_[0]}" target="_blank" rel="noopener">'
+        mono, t, sub, *crop = w["minis"][s_[0]]
+        st = ""
+        if crop:  # 手機版裁切框 16:10：算出圖要放多大、往左上移多少
+            x0, y0, z = crop[0]
+            st = f' style="--cz:{z * 100:g}%;--cl:{-x0 * z * 100:.1f}%;--ct:{-y0 * z * s_[2] / s_[1] / 0.625 * 100:.1f}%"'
+        minis += (f'<figure class="pg-cs-mini{" has-crop" if crop else ""}"{st}><a class="pg-zoom" href="{s_[0]}" target="_blank" rel="noopener">'
                   f'<img src="{s_[0]}" width="{s_[1]}" height="{s_[2]}" loading="lazy" alt="{e(s_[3])}"></a>'
                   f'<figcaption><span class="pg-mono">{e(mono)}</span><b>{e(t)}</b><span>{e(sub)}</span></figcaption></figure>')
     side = f'<div class="pg-cs-side">{minis}</div>' if minis else ""
@@ -495,7 +559,7 @@ def build_work(w):
     n = 1
     parts = []
     parts.append(crumb("作品範例", "#portfolio", WORK_SHORT[slug]))
-    parts.append(hero(n, w["en"], w["h1"], w["kind"]))
+    parts.append(hero(n, w["en"], w["h1"], w["kind"], case_art(slug)))
     btns = ""
     for i, (name, href) in enumerate(w["links"]):
         cls = "pg-btn-solid" if i == 0 else "pg-btn-ghost"

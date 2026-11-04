@@ -612,3 +612,8 @@ img{max-width:100%}
 .pg-cs-plus{margin-top:18px;font-size:16px;line-height:1.7;color:var(--ink)}
 .pg-cs-plus svg{width:20px;height:20px;vertical-align:-4px;margin-right:8px;color:var(--green)}
 @media (max-width:640px){.pg-cs-more{font-size:16px;padding:6px 0}}
+/* 手機版輔圖只露重點區（裁切位置由 pages_content 的 minis 第四格決定） */
+@media (max-width:640px){
+  .is-wide .pg-cs-mini.has-crop .pg-zoom{position:relative;aspect-ratio:16/10}
+  .is-wide .pg-cs-mini.has-crop img{position:absolute;max-width:none;width:var(--cz);height:auto;left:var(--cl);top:var(--ct)}
+}
