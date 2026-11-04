@@ -500,8 +500,12 @@ def build_work(w):
     for i, (name, href) in enumerate(w["links"]):
         cls = "pg-btn-solid" if i == 0 else "pg-btn-ghost"
         sfx = LINK_TRACK.get(name, str(i + 1))
-        a = f'<a class="pg-btn {cls}" href="{href}" target="_blank" rel="noopener" data-track="case-{WORK_TRACK[slug]}-{sfx}">{e(name)}</a>'
         note = w.get("link_notes", {}).get(name)
+        attrs = f'href="{href}" target="_blank" rel="noopener" data-track="case-{WORK_TRACK[slug]}-{sfx}"'
+        if i >= 2:  # 第三個以後不做成按鈕，免得三顆一樣大不知道先按哪個
+            btns += f'<a class="pg-cs-more" {attrs}>{e(note or name)}&nbsp;→</a>'
+            continue
+        a = f'<a class="pg-btn {cls}" {attrs}>{e(name)}</a>'
         btns += f'<span class="pg-btn-wrap">{a}<small class="pg-btn-note">{e(note)}</small></span>' if note else a
     note = f'\n    <p class="pg-cs-id">{e(w["lead_note"])}</p>' if w.get("lead_note") else ""
     parts.append(f'<section class="pg-card pg-answer pg-rise" aria-label="簡短回答">\n    <p class="pg-lead">{e(w["lead"])}<b>{e(w["lead_hl"])}</b></p>{note}\n    <div class="pg-btns">{btns}</div>\n  </section>')
@@ -509,7 +513,7 @@ def build_work(w):
     n += 1
     parts.append(chores_block(w, n))
     n += 1
-    parts.append(f'<section class="pg-sec pg-reveal" aria-labelledby="cs-shot-h">\n  {label(n, "SCREENS")}\n  <h2 class="pg-h2" id="cs-shot-h">實際畫面</h2>\n  <p class="pg-cs-kind">{e(w["kind"])}・點圖可放大</p>\n  {screens_block(w)}\n  <p class="pg-stack">{e(w["stack"])}</p>\n</section>')
+    parts.append(f'<section class="pg-sec pg-reveal" aria-labelledby="cs-shot-h">\n  {label(n, "SCREENS")}\n  <h2 class="pg-h2" id="cs-shot-h">實際畫面</h2>\n  <p class="pg-cs-kind">{e(w["kind"])}・點圖可放大</p>\n  {screens_block(w)}\n  <p class="pg-cs-plus">{TICK}{e(w["plus"])}</p>\n</section>')
 
     n += 1
     parts.append(f"""<section class="pg-sec pg-reveal">

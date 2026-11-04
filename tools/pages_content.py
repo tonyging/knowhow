@@ -226,7 +226,7 @@ WORKS = [
             "../../img/work-glimmer-book.webp": ("預約", "三步約好", "選服務、選時段、留資料"),
             "../../img/work-glimmer-admin.webp": ("店家後台", "今天誰要來", "預約、排班、報表"),
         },
-        "stack": "ASTRO ・ CLOUDFLARE WORKERS ・ LINE",
+        "plus": "網頁打開快，預約一進來就傳到店長的 LINE。",
         "shots": [
             ("../../img/work-glimmer.webp", 1200, 712, "微光指尖首頁畫面：大標「Quiet details.」與珍珠光美甲照片，右上角是「預約時段」按鈕"),
             ("../../img/work-glimmer-book.webp", None, None, "微光指尖預約流程畫面：選服務、選時段、留資料"),
@@ -238,7 +238,7 @@ WORKS = [
             ("開一間示範店", "https://tonyging.github.io/demo-booking/live/"),
         ],
         # 按鈕下方的小字（2026-10-27 實測：開店不用帳號、Email 或密碼，只有一個自動的真人驗證）
-        "link_notes": {"開一間示範店": "免註冊，直接開一間自己的示範店玩玩看"},
+        "link_notes": {"開一間示範店": "或免註冊，直接開一間自己的示範店玩玩看"},
         "service": "booking-system",
     },
     {
@@ -272,7 +272,7 @@ WORKS = [
         "minis": {
             "../../img/work-coffee-backend.webp": ("後台", "填表就上架", "名稱、產地、價格自己填"),
         },
-        "stack": "ASTRO ・ SANITY",
+        "plus": "網頁打開快；產品和消息在後台改完，網站自己更新。",
         "shots": [
             ("../../img/work-coffee.webp", 1200, 712, "嵐岸咖啡官網首頁畫面：大標「山的味道，在岸邊慢慢烘開」與咖啡豆包裝"),
             ("../../img/work-coffee-mobile.webp", 780, 1688, "嵐岸咖啡手機版畫面：大標與「看看這季的豆子」按鈕"),
@@ -288,7 +288,8 @@ WORKS = [
         "slug": "liuwen-shop",
         "result_title": "這個示範能做到什麼",
         "service_label": "購物網站＋店家後台",
-        "service_price": "依需求報價",
+        # 依 yougan 已報出的自建購物車（購物車、會員、簡易後台、超商取貨付款）25,000 起，2026-11-04
+        "service_price": "NT$25,000 起",
         "title": "購物網站＋超商取貨付款＋店家後台實例：六紋｜諾豪資訊",
         "description": "諾豪資訊製作的示範作品「六紋」：小農食品品牌的購物網站與店家後台。購物車、地圖選 7-11／全家門市、取貨付款，訂單直接進後台建立寄件單。可以直接點開網站與後台試用。",
         "h1": "小農食品的<wbr>購物網站，<wbr>從下單到出貨<wbr>長什麼樣？",
@@ -318,7 +319,7 @@ WORKS = [
             "../../img/work-shop-admin.webp": ("店家後台", "按一下就出貨", "建寄件單、印託運單"),
         },
         "note": "需要的話，正式版可以接上超商物流和線上付款，也能加會員集點。",
-        "stack": "HTML ・ CSS ・ JAVASCRIPT",
+        "plus": "自己開發、不綁套裝平台，網站和資料都在你名下。",
         "shots": [
             ("../../img/work-shop.webp", 1200, 712, "六紋首頁畫面：直排大標「先澀，後甘。」與一顆油甘的商品照片"),
             ("../../img/work-shop-checkout.webp", 1200, 712, "六紋結帳畫面：門市電子地圖，在地圖或清單上選 7-11 門市"),
@@ -362,7 +363,7 @@ WORKS = [
             "../../img/work-line-works.webp": ("作品與案例", "作品可以左右滑", "每張有價格、看網站"),
             "../../img/work-line-quote.webp": ("我要報價", "點選項答 3 題", "不用打字"),
         },
-        "stack": "LINE MESSAGING API ・ CLOUDFLARE WORKERS",
+        "plus": "客人在 LINE 裡點選單、答問題就好，不用另外下載 App。",
         "shots": [
             ("../../img/work-line-chat-menu.webp", 720, 883, "LINE 聊天室畫面：歡迎訊息與四格圖文選單（服務項目、作品與案例、我要報價、聯絡方式）"),
             ("../../img/work-line-works.webp", 720, 1172, "LINE 作品卡片：左右滑看作品，每張有價格、看網站與我要做類似的按鈕"),
