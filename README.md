@@ -46,6 +46,7 @@
 | `sitemap.xml` | 網站地圖，**由 `build_pages.py` 產生**（首頁＋7 頁）。多語系加回來時，要把 `th/`、`ja/` 的網址合併進 `build_pages.py` 的產生邏輯，否則會被覆蓋 |
 | `og.png` | 社群分享預覽圖（1200×630） |
 | `google112b97dce942d55e.html` | Google Search Console 擁有權驗證檔，**不要刪除**，刪除會失去驗證 |
+| `<32 碼>.txt`（檔名與內容相同） | IndexNow 金鑰檔，Bing 用來確認通知真的是本站送的，**不要刪除**；push 上線後跑 `py -X utf8 -I tools/indexnow.py` 通知 Bing 有哪些頁更新 |
 | `logo.png` | 標誌與 favicon |
 | `llms.txt` | 提供給 AI 搜尋與 LLM 讀取的網站摘要（[llmstxt.org](https://llmstxt.org/) 格式） |
 
