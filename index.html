@@ -110,18 +110,28 @@
             "priceSpecification": {"@type": "UnitPriceSpecification", "price": 3000, "priceCurrency": "TWD", "unitText": "MON"},
             "itemOffered": {
               "@type": "Service",
-              "name": "基本維運（月費）",
-              "description": "每月備份與還原確認、系統與套件安全更新、網站狀態監控、每月 1 小時內容更新與小修。按月預付，下個月起可停止。"
+              "name": "月費方案：基本",
+              "description": "每月 5 點，傳 LINE 說一聲就幫你改（1 點可改一段文字或換一張照片）。含備份、安全更新、每月健檢、每月成效報告與每月 1 個主動建議。按月預付，下個月起可停止。"
             }
           },
           {
             "@type": "Offer",
             "url": "https://nuohao.tw/#care",
-            "priceSpecification": {"@type": "UnitPriceSpecification", "price": 5000, "priceCurrency": "TWD", "unitText": "MON"},
+            "priceSpecification": {"@type": "UnitPriceSpecification", "price": 6000, "priceCurrency": "TWD", "unitText": "MON"},
             "itemOffered": {
               "@type": "Service",
-              "name": "進階維運（月費）",
-              "description": "基本維運全部項目，加每月 3 小時更新與小修、每季資安檢查摘要、問題優先處理並於當日回覆。按月預付，下個月起可停止。"
+              "name": "月費方案：常用",
+              "description": "每月 12 點，適合常辦活動、常更新的店家。含備份、安全更新、每月健檢、每月成效報告與每月 2 個主動建議。按月預付，下個月起可停止。"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://nuohao.tw/#care",
+            "priceSpecification": {"@type": "UnitPriceSpecification", "price": 12000, "priceCurrency": "TWD", "unitText": "MON"},
+            "itemOffered": {
+              "@type": "Service",
+              "name": "月費方案：全包",
+              "description": "每月 25 點，適合想一直加新東西的店家。含備份、安全更新、每月健檢、每月成效報告與每月 3 個主動建議，問題優先處理。按月預付，下個月起可停止。"
             }
           },
           {
@@ -689,7 +699,11 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .care-bottom{padding:12px 14px}
 @media (max-width:1000px){.cf{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.cf{grid-template-columns:minmax(0,1fr)}.cmp th,.cmp td{padding:10px 6px;font-size:14px}.cmp .pp{font-size:20px}.cmp th:first-child,.cmp td:first-child{width:38%}.cmp .badge{display:none}}
-/* 手機：比較表改成「功能名稱一行、下面並排兩個方案」，避免第一欄被價格擠成直排 */
+/* 三檔月費：四欄放得下，價格字級收一點 */
+.cmp3 th,.cmp3 td{padding-left:6px;padding-right:6px}
+.cmp3 .pp{font-size:clamp(18px,1.45vw,21px)}
+.cmp3 td:first-child{white-space:nowrap}
+/* 手機：比較表改成「功能名稱一行、下面並排各方案」，避免第一欄被價格擠成直排 */
 @media (max-width:560px){
   .cmp,.cmp tbody{display:block}
   .cmp thead{display:block}
@@ -706,6 +720,11 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   .cmp tbody td:not(:first-child){padding:6px 6px 14px;font-size:16px}
   .cmp tbody .hot{background:none}
   .cmp tbody .hot.v{color:var(--green)}
+  .cmp3 thead tr,.cmp3 tbody tr{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cmp3 .pn{font-size:16px}
+  .cmp3 td:first-child{white-space:normal}
+  .cmp3 .pp{font-size:clamp(13px,4.2vw,19px)}
+  .cmp3 tbody td:not(:first-child){font-size:15px;padding-left:2px;padding-right:2px}
 }
 @media (max-width:899px){
   .hrs{min-width:0}
@@ -996,7 +1015,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
               <li><strong>已交付並驗收：</strong>不退款。交付後 30 天內發現的程式錯誤免費修正（不含新增功能）。</li>
               <li><strong>因本商店因素無法交付：</strong>全額退款。</li>
               <li><strong>金流手續費：</strong>由本商店負擔，不從退款金額中扣除。</li>
-              <li><strong>月費方案：</strong>按月預付，下個月起可停止；已開始的當月不退費。</li>
+              <li><strong>月費方案：</strong>按月預付，下個月起可停止；已開始的當月不退費。沒用完的點數可留到下個月，最多留一個月的量；點數不夠可加購 NT$700／點；超過 20 點的需求另外報價。</li>
               <li><strong>申請方式：</strong>以 LINE 或電話聯絡，說明訂單與退款原因，不需要填寫表單。</li>
               <li><strong>處理時間：</strong>確認退款後 3 個工作天內辦理。信用卡以退刷方式退回，實際入帳時間依發卡銀行而定；匯款付款則匯回原付款帳戶。</li>
             </ul>
@@ -1285,24 +1304,25 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
       <div class="bento">
 
         <div class="row-head" id="care-plans" style="--d:12;--t:6" data-a>
-          <div><p class="label"><b>04</b><i></i>CARE &amp; SECURITY</p><h3 class="th">網站維運與資安健檢</h3></div>
-          <p class="lead">網站上線之後，交給我們固定照顧。月費方案可隨時停止。</p>
+          <div><p class="label"><b>04</b><i></i>CARE &amp; SECURITY</p><h3 class="th">你 LINE 裡的 IT 部門</h3></div>
+          <p class="lead">傳一句話就幫你改，每個月還主動幫你想。改什麼用點數算，月費可隨時停止。</p>
         </div>
 
         <section class="tile glow plan" style="--d:7;--t:6" data-a>
-          <table class="cmp">
+          <table class="cmp cmp3">
             <thead><tr>
               <th scope="col"><span class="n">月費方案</span></th>
-              <th scope="col"><span class="pn">基本維運</span><span class="pp">NT$3,000<small>／月</small></span></th>
-              <th scope="col" class="hot"><span class="pn">進階維運<span class="badge">推薦</span></span><span class="pp">NT$5,000<small>／月</small></span></th>
+              <th scope="col"><span class="pn">基本</span><span class="pp">NT$3,000<small>／月</small></span></th>
+              <th scope="col" class="hot"><span class="pn">常用<span class="badge">推薦</span></span><span class="pp">NT$6,000<small>／月</small></span></th>
+              <th scope="col"><span class="pn">全包</span><span class="pp">NT$12,000<small>／月</small></span></th>
             </tr></thead>
             <tbody>
-              <tr><td>每月備份與還原確認</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td></tr>
-              <tr><td>系統與套件安全更新</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td></tr>
-              <tr><td>網站狀態監控</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td></tr>
-              <tr><td>內容更新與小修</td><td class="v">1 小時</td><td class="hot v">3 小時</td></tr>
-              <tr><td>每季資安檢查摘要</td><td class="n">—</td><td class="hot"><i class="y"></i></td></tr>
-              <tr><td>問題回覆</td><td class="v">一個工作天</td><td class="hot v">當日</td></tr>
+              <tr><td>每月點數</td><td class="v">5 點</td><td class="hot v">12 點</td><td class="v">25 點</td></tr>
+              <tr><td>備份與安全更新</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td><td><i class="y"></i></td></tr>
+              <tr><td>每月健檢＋報告</td><td><i class="y"></i></td><td class="hot"><i class="y"></i></td><td><i class="y"></i></td></tr>
+              <tr><td>每月主動建議</td><td class="v">1 個</td><td class="hot v">2 個</td><td class="v">3 個</td></tr>
+              <tr><td>沒用完的點數</td><td class="v">留到下個月</td><td class="hot v">留到下個月</td><td class="v">留到下個月</td></tr>
+              <tr><td>問題回覆</td><td class="v">一個工作天</td><td class="hot v">一個工作天</td><td class="v">優先處理</td></tr>
             </tbody>
           </table>
         </section>
@@ -1324,10 +1344,10 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <section class="tile glow care-bottom" style="--d:12;--t:6" data-a>
           <ul class="cf">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg><div><b>開發經驗</b><span>參與全國性公共服務系統</span></div></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>回覆時間</b><span>週一至週五，一個工作天內</span></div></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><div><b>月費方式</b><span>按月預付，下個月起可停止</span></div></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12h6"/></svg><div><b>服務界線</b><span>只檢查客戶授權的網站</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg><div><b>1 點</b><span>改一段文字、換一張照片、發一則消息</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h4"/></svg><div><b>2 點</b><span>表單加一個欄位、LINE 選單換圖</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M12 11v6M9 14h6"/></svg><div><b>4 點</b><span>新增一個活動頁；新功能先估點再做</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><div><b>不綁約</b><span>按月付，下個月起可停，東西都在你名下</span></div></li>
           </ul>
         </section>
 
