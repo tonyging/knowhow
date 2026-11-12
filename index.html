@@ -686,14 +686,13 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .tier-g i{display:block;width:12px;height:12px;border-radius:3px;box-shadow:inset 0 0 0 1px var(--line-strong)}
 .t5 .tier-g i:nth-child(-n+5),.t12 .tier-g i:nth-child(-n+12),.t25 .tier-g i{background:var(--green);box-shadow:none}
 .tier-n{margin:0 0 6px;font-weight:800;font-size:clamp(16px,1.3vw,18px)}
+.tier-n small{display:block;font-size:14px;font-weight:500;line-height:1.5;color:var(--muted)}
 .tier-f{list-style:none;margin:0;padding:0;font-size:clamp(14.5px,1.1vw,15.5px);line-height:1.7}
-.tier-f{margin-bottom:10px}
-.tier-for{margin:auto 0 0;padding-top:8px;border-top:1px dashed var(--line-strong);font-size:14px;line-height:1.5;color:var(--muted)}
 .tier-all{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line-strong)}
 .tier-all ul{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-weight:700;font-size:clamp(15px,1.15vw,16.5px)}
 .tier-all li.cap{font-weight:500;color:var(--muted)}
 .tier-all li:not(.cap)::before{content:"";display:inline-block;width:13px;height:7px;margin-right:9px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg) translate(2px,-3px)}
-.tier-all p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.tier-all p{margin:0;font-size:14px;line-height:1.6}
 .scan2{display:flex;align-items:center;justify-content:space-between;gap:10px 24px}
 .scan2-t{flex:1 1 0;min-width:0}
 #care-plans .lead{text-wrap:balance}
@@ -721,10 +720,8 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   .tier{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;align-items:start}
   .tier>*{grid-column:1}
   .tier-g{grid-column:2;grid-row:1/span 4;margin:4px 0 0}
-  .tier-f{margin-bottom:8px}
   .scan2{flex-direction:column;align-items:flex-start}
   .scan2-p{text-align:left}
-  .tier-for{border-top:0;padding-top:0}
   .cq-b{max-width:100%}
   .tier-g{grid-template-columns:repeat(5,9px);gap:3px}
   .tier-g i{width:9px;height:9px}
@@ -962,6 +959,8 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
   html.compact .label,html.compact .label b,html.compact .badge,html.compact .pf-stack,html.compact .pfb-tab i,
   html.compact ol.stages em,html.compact .foot .tg,html.compact .foot-pages b{font-size:14.5px}
   html.compact .pfb-tab{padding-top:16px;padding-bottom:16px}
+  html.compact .cq-chat em,html.compact .cq-note,html.compact .tier-p small,html.compact .tier-n small,html.compact .tier-all p,html.compact .scan2-p span,html.compact .cq-go span{font-size:15px}
+  html.compact .tile.accent.cq-cta .btn{padding:15px 28px}
 }
 /* 手機（單欄版面） */
 @media (max-width:899px){
@@ -1328,25 +1327,22 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
               <h4>基本</h4>
               <p class="tier-p">NT$3,000<small>／月</small></p>
               <span class="tier-g" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              <p class="tier-n">每月 5 點</p>
+              <p class="tier-n">每月 5 點<small>夠改 5 次字或圖</small></p>
               <ul class="tier-f"><li>主動建議 1 個</li><li>一個工作天回覆</li></ul>
-              <p class="tier-for">適合偶爾改字換圖</p>
             </li>
             <li class="tier t12 rec">
               <h4>常用<span class="badge">推薦</span></h4>
               <p class="tier-p">NT$6,000<small>／月</small></p>
               <span class="tier-g" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              <p class="tier-n">每月 12 點</p>
+              <p class="tier-n">每月 12 點<small>夠做 3 個活動頁</small></p>
               <ul class="tier-f"><li>主動建議 2 個</li><li>一個工作天回覆</li></ul>
-              <p class="tier-for">適合常辦活動</p>
             </li>
             <li class="tier t25">
               <h4>全包</h4>
               <p class="tier-p">NT$12,000<small>／月</small></p>
               <span class="tier-g" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              <p class="tier-n">每月 25 點</p>
+              <p class="tier-n">每月 25 點<small>夠做 6 個活動頁</small></p>
               <ul class="tier-f"><li>主動建議 3 個</li><li>問題優先處理</li></ul>
-              <p class="tier-for">適合想一直加新東西</p>
             </li>
           </ul>
           <div class="tier-all">
@@ -1358,7 +1354,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
         <section class="tile glow scan2" style="--d:7;--t:6" data-a>
           <div class="scan2-t">
             <h3 class="th">資安健檢<span class="badge">一次性</span></h3>
-            <p class="lead">一次完整檢查，交付書面報告與修補建議。</p>
+            <p class="lead">比月費的每月健檢更深入：一次完整檢查，附書面報告與修補建議。</p>
           </div>
           <div class="scan2-p"><b>NT$8,000 起</b><span>不含滲透測試，僅檢查授權網站</span></div>
         </section>
