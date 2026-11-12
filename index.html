@@ -675,8 +675,7 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .cq-pts dd{margin:0;font-size:clamp(14.5px,1.15vw,16px);line-height:1.55}
 .cq-note{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
 .tier-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:1}
-.tier{display:flex;flex-direction:column;padding:14px 12px 12px;border:1px solid var(--line);border-radius:12px;transition:border-color .35s var(--ease),transform .5s var(--ease)}
-.tier:hover{border-color:var(--green);transform:translateY(-3px)}
+.tier{display:flex;flex-direction:column;padding:14px 12px 12px;border:1px solid var(--line);border-radius:12px}
 .tier.rec{border-color:var(--green);background:color-mix(in srgb,var(--green) 7%,transparent)}
 .tier h4{display:flex;align-items:center;gap:8px;margin:0;font-size:clamp(17px,1.4vw,20px);letter-spacing:.03em}
 .tier h4 .badge{margin:0}
@@ -687,7 +686,8 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .t5 .tier-g i:nth-child(-n+5),.t12 .tier-g i:nth-child(-n+12),.t25 .tier-g i{background:var(--green);box-shadow:none}
 .tier-n{margin:0 0 6px;font-weight:800;font-size:clamp(16px,1.3vw,18px)}
 .tier-f{list-style:none;margin:0;padding:0;font-size:clamp(14.5px,1.1vw,15.5px);line-height:1.7}
-.tier-for{margin:auto 0 0;padding-top:8px;font-size:14px;line-height:1.5;color:var(--muted)}
+.tier-f{margin-bottom:10px}
+.tier-for{margin:auto 0 0;padding-top:8px;border-top:1px dashed var(--line-strong);font-size:14px;line-height:1.5;color:var(--muted)}
 .tier-all{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line-strong)}
 .tier-all ul{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-weight:700;font-size:clamp(15px,1.15vw,16.5px)}
 .tier-all li.cap{font-weight:500;color:var(--muted)}
@@ -698,14 +698,15 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .scan2 .th{margin-bottom:4px}
 .scan2 .lead{margin:0;font-size:clamp(14.5px,1.15vw,16px);line-height:1.65}
 .scan2-p{flex:none;text-align:right}
-.scan2-p b{display:block;font-size:clamp(22px,1.9vw,26px);font-weight:800;color:var(--green);white-space:nowrap}
+.scan2-p b{display:block;font-size:clamp(20px,1.6vw,23px);font-weight:800;color:var(--green);white-space:nowrap}
 .scan2-p span{font-size:14px;color:var(--muted)}
 .cq-cta{display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .cq-cta .th{color:inherit;margin-bottom:4px}
-.cq-cta .lead{color:inherit;opacity:.92;margin-bottom:12px;font-size:clamp(14.5px,1.15vw,16px);line-height:1.65}
+.cq-cta .lead{color:inherit;margin-bottom:12px;font-size:clamp(14.5px,1.15vw,16px);line-height:1.65}
 .tile.accent.cq-cta .btn{background:var(--on-green);color:var(--green);padding:10px 26px}
+.tile.accent.cq-cta .btn:focus-visible{outline:2px solid var(--on-green);outline-offset:3px}
 .cq-go{margin:0;display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap}
-.cq-go span{font-size:14px;opacity:.92}
+.cq-go span{font-size:14px}
 @media (prefers-reduced-motion:no-preference){
   .js .tier-g i{transition:background-color .5s var(--ease) .7s,box-shadow .5s var(--ease) .7s}
   .js .tier-g i:nth-child(n+6){transition-delay:.82s}
@@ -719,7 +720,7 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   .tier{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;align-items:start}
   .tier>*{grid-column:1}
   .tier-g{grid-column:2;grid-row:1/span 4;margin:4px 0 0}
-  .tier-for{padding-top:6px}
+  .tier-f{margin-bottom:8px}
   .scan2-p{text-align:left}
   .cq-b{max-width:92%}
   .tier-g{grid-template-columns:repeat(5,9px);gap:3px}
@@ -1300,7 +1301,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <div class="row-head" id="care-plans" style="--d:12;--t:6" data-a>
           <div><p class="label"><b>04</b><i></i>CARE &amp; SECURITY</p><h3 class="th">你 LINE 裡的 IT 部門</h3></div>
-          <p class="lead">傳一句話就幫你改，每個月還主動幫你想。按月付，下個月起可停。</p>
+          <p class="lead">傳一句話就幫你改，每個月還主動幫你想。按月預付，下個月起可停。</p>
         </div>
 
         <section class="tile glow cq" style="--d:5;--t:6" data-a>
