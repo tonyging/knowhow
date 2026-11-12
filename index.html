@@ -662,18 +662,19 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 /* ============ 維運與資安 ============ */
 /* 2026-11 重排：左邊 LINE 對話演出「傳一句話就改」，右邊三檔用 25 格點數圖比較 */
 .cq,.tiers{display:flex;flex-direction:column}
-.cq .label .badge,.scan2 .label .badge{margin-left:0}
-.cq-chat{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px}
+.cq .label .badge{margin-left:0}
+.scan2 .th .badge{margin-left:12px;vertical-align:4px;font-weight:400}
+.cq-chat{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
 .cq-chat li{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .cq-chat li.me{align-items:flex-end}
 .cq-b{max-width:88%;padding:9px 14px;border-radius:16px 16px 16px 4px;background:var(--bg);border:1px solid var(--line);font-size:clamp(15px,1.2vw,17px);line-height:1.6}
 .cq-chat .me .cq-b{border-radius:16px 16px 4px 16px;background:var(--green-soft);border-color:transparent}
 .cq-chat em{font-style:normal;font-size:14px;font-weight:700;color:var(--green);padding-left:6px}
-.cq-pts{margin:auto 0 0;padding-top:12px;border-top:1px dashed var(--line-strong);display:grid;gap:6px}
+.cq-pts{margin:auto 0 0;padding-top:10px;border-top:1px dashed var(--line-strong);display:grid;gap:4px}
 .cq-pts div{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:10px;align-items:baseline}
 .cq-pts dt{font-weight:800;color:var(--green);white-space:nowrap;font-size:clamp(16px,1.3vw,18px)}
 .cq-pts dd{margin:0;font-size:clamp(14.5px,1.15vw,16px);line-height:1.55}
-.cq-note{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
+.cq-note{margin:6px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
 .tier-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:1}
 .tier{display:flex;flex-direction:column;padding:14px 12px 12px;border:1px solid var(--line);border-radius:12px}
 .tier.rec{border-color:var(--green);background:color-mix(in srgb,var(--green) 7%,transparent)}
@@ -693,16 +694,16 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .tier-all li.cap{font-weight:500;color:var(--muted)}
 .tier-all li:not(.cap)::before{content:"";display:inline-block;width:13px;height:7px;margin-right:9px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg) translate(2px,-3px)}
 .tier-all p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
-.scan2{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;flex-wrap:wrap}
-.scan2-t{flex:1 1 320px;min-width:0}
+.scan2{display:flex;align-items:center;justify-content:space-between;gap:10px 24px}
+.scan2-t{flex:1 1 0;min-width:0}
+#care-plans .lead{text-wrap:balance}
 .scan2 .th{margin-bottom:4px}
 .scan2 .lead{margin:0;font-size:clamp(14.5px,1.15vw,16px);line-height:1.65}
 .scan2-p{flex:none;text-align:right}
 .scan2-p b{display:block;font-size:clamp(20px,1.6vw,23px);font-weight:800;color:var(--green);white-space:nowrap}
 .scan2-p span{font-size:14px;color:var(--muted)}
 .cq-cta{display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
-.cq-cta .th{color:inherit;margin-bottom:4px}
-.cq-cta .lead{color:inherit;margin-bottom:12px;font-size:clamp(14.5px,1.15vw,16px);line-height:1.65}
+.cq-cta .th{color:inherit;margin-bottom:10px}
 .tile.accent.cq-cta .btn{background:var(--on-green);color:var(--green);padding:10px 26px}
 .tile.accent.cq-cta .btn:focus-visible{outline:2px solid var(--on-green);outline-offset:3px}
 .cq-go{margin:0;display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap}
@@ -721,8 +722,10 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   .tier>*{grid-column:1}
   .tier-g{grid-column:2;grid-row:1/span 4;margin:4px 0 0}
   .tier-f{margin-bottom:8px}
+  .scan2{flex-direction:column;align-items:flex-start}
   .scan2-p{text-align:left}
-  .cq-b{max-width:92%}
+  .tier-for{border-top:0;padding-top:0}
+  .cq-b{max-width:100%}
   .tier-g{grid-template-columns:repeat(5,9px);gap:3px}
   .tier-g i{width:9px;height:9px}
   .tier-p{font-size:20px}
@@ -1301,7 +1304,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <div class="row-head" id="care-plans" style="--d:12;--t:6" data-a>
           <div><p class="label"><b>04</b><i></i>CARE &amp; SECURITY</p><h3 class="th">你 LINE 裡的 IT 部門</h3></div>
-          <p class="lead">傳一句話就幫你改，每個月還主動幫你想。按月預付，下個月起可停。</p>
+          <p class="lead">網站要改什麼，傳一句話就好；每個月還主動幫你想。按月預付，下個月起可停。</p>
         </div>
 
         <section class="tile glow cq" style="--d:5;--t:6" data-a>
@@ -1309,7 +1312,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           <ol class="cq-chat">
             <li class="me"><span class="cq-b">週六公休，首頁公告幫我改一下</span></li>
             <li><span class="cq-b">改好了，你看一下。</span><em>扣 1 點・這個月還有 11 點</em></li>
-            <li><span class="cq-b">這個月的健檢報告好了，另外有 2 個建議給你。</span><em>不扣點</em></li>
+            <li><span class="cq-b">這個月的報告好了，另有 2 個建議。</span><em>報告與建議不扣點・要做才照點數算</em></li>
           </ol>
           <dl class="cq-pts">
             <div><dt>1 點</dt><dd>改一段文字、換一張照片、發一則消息</dd></div>
@@ -1348,23 +1351,21 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
           </ul>
           <div class="tier-all">
             <ul><li class="cap">三檔都含</li><li>備份與安全更新</li><li>每月健檢＋報告</li><li>點數可留到下個月</li></ul>
-            <p>點數最多留一個月的量；不夠可加購 NT$700／點；單件超過 20 點另外報價。</p>
+            <p>點數最多留一個月的量；不夠可加購 <span style="white-space:nowrap">NT$700／點</span>；單件超過 20 點另外報價。</p>
           </div>
         </section>
 
         <section class="tile glow scan2" style="--d:7;--t:6" data-a>
           <div class="scan2-t">
-            <p class="label"><i></i>SECURITY CHECK<span class="badge">一次性</span></p>
-            <h3 class="th">資安健檢</h3>
-            <p class="lead">一次完整檢查網站安全設定，交付書面報告與修補建議。跟月費裡的每月健檢不同，需要時再加。</p>
+            <h3 class="th">資安健檢<span class="badge">一次性</span></h3>
+            <p class="lead">一次完整檢查，交付書面報告與修補建議。</p>
           </div>
           <div class="scan2-p"><b>NT$8,000 起</b><span>不含滲透測試，僅檢查授權網站</span></div>
         </section>
 
         <section class="tile accent cq-cta" style="--d:5;--t:6" data-a>
           <h3 class="th">不確定選哪一檔？</h3>
-          <p class="lead">說說你多久改一次，直接給你建議。</p>
-          <p class="cq-go"><a class="btn" href="#contact" data-track="care-line-cta">LINE 問問看</a><span>不綁約・東西都在你名下</span></p>
+          <p class="cq-go"><a class="btn" href="#contact" data-track="care-line-cta">LINE 問問看</a><span>不綁約，網站都在你名下</span></p>
         </section>
 
       </div>
