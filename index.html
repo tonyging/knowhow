@@ -697,7 +697,7 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
 .tier-all p{margin:0;font-size:14px;line-height:1.6}
 .scan2{display:flex;align-items:center;justify-content:space-between;gap:10px 24px}
 .scan2-t{flex:1 1 0;min-width:0}
-#care-plans .lead{text-wrap:balance}#care-plans .lead span{display:inline-block}
+#care-plans .lead{text-wrap:balance}#care-plans .lead span,#care-plans .lead i{display:inline-block;font-style:normal}
 .scan2 .th{margin-bottom:4px}
 .scan2 .lead{margin:0;font-size:clamp(14.5px,1.15vw,16px);line-height:1.65}
 .scan2-p{flex:none;text-align:right}
@@ -716,7 +716,12 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   .js .tier-g i:nth-child(n+16){transition-delay:1.06s}
   .js .tier-g i:nth-child(n+21){transition-delay:1.18s}
   .js #care:not(.on) .tier-g i{background:transparent;box-shadow:inset 0 0 0 1px var(--line-strong);transition-delay:0s}
+  .js .cq-chat li{transition:opacity .5s var(--ease) .45s,transform .6s var(--ease) .45s}
+  .js .cq-chat li:nth-child(2){transition-delay:1s}
+  .js .cq-chat li:nth-child(3){transition-delay:1.55s}
+  .js #care:not(.on) .cq-chat li{opacity:0;transform:translateY(10px);transition-delay:0s}
 }
+@media (min-width:1100px){.scan2{order:1}}
 @media (min-width:900px) and (max-width:1279px){.tier-p{font-size:19px}.tier-p small{display:block;margin:0;line-height:1.3}}
 @media (max-width:720px){
   .tier-list{grid-template-columns:minmax(0,1fr)}
@@ -732,6 +737,8 @@ html.paged .panel{height:100%;display:flex;align-items:center;padding-top:44px;p
   .tier-all ul{flex-direction:column;gap:2px}
   .cq-chat em,.cq-note,.tier-n small,.tier-all p,.scan2-p span,.cq-go span{font-size:15.5px}
   .tier-all p>span{display:block}
+  #care-plans .lead span{display:block}
+  #care-plans .lead span,.cq-b,.cq-chat em,.cq-def,.cq-pts dd,.cq-note,.scan2 .lead{text-wrap:balance}
 }
 @media (max-width:360px){.tier-p{font-size:18px}}
 @media (max-width:899px){
@@ -1308,7 +1315,7 @@ html.paged.tall .panel{height:auto;min-height:100vh;min-height:100svh;align-item
 
         <div class="row-head" id="care-plans" style="--d:12;--t:6" data-a>
           <div><p class="label"><b>04</b><i></i>CARE &amp; SECURITY</p><h3 class="th">你 LINE 裡的 IT 部門</h3></div>
-          <p class="lead"><span>網站要改什麼，傳一句話就好；每月還主動幫你想。</span><span><b class="cq-from">月費 NT$3,000 起</b>，按月預付，下個月起可停。</span></p>
+          <p class="lead"><span><i>網站要改什麼，傳一句話就好；</i><i>每月還主動幫你想。</i></span><span><i><b class="cq-from">月費 NT$3,000 起</b>，</i><i>按月預付，下個月起可停。</i></span></p>
         </div>
 
         <section class="tile glow cq" style="--d:5;--t:6" data-a>
